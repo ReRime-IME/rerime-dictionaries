@@ -12,6 +12,9 @@ if [[ "${1:-}" != --locked ]]; then echo 'Usage: build-local.sh --locked' >&2; e
 python3 tools/engine.py
 xcrun swiftc tools/sign.swift -o .build/bin/sign
 python3 tools/adapt.py --work "$RERIME_BUILD_WORK" ${RERIME_UPSTREAM_REVISION:+--revision "$RERIME_UPSTREAM_REVISION"}
+if [[ -n "${RERIME_CHECK_PLAN:-}" ]]; then
+  python3 tools/check_release.py verify-source --plan "$RERIME_CHECK_PLAN" --work "$RERIME_BUILD_WORK"
+fi
 xcrun simctl spawn "$RERIME_SIMULATOR_UDID" "$PWD/.build/bin/GlyphQualifier" "$RERIME_BUILD_WORK/adapted" "$RERIME_BUILD_WORK/qualified"
 python3 - "$RERIME_BUILD_WORK/qualified" <<'PY'
 from pathlib import Path

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Deterministic public source/runtime packaging; signing is a separate step."""
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -42,10 +43,23 @@ def prepare(work, output, revision, adapter_revision, app_build):
     source_files['build-tools-LICENSE']=ROOT/'LICENSE'
     source_archive=output/(release+'-source.zip');zip_files(source_archive,source_files)
     runtime=fingerprints(root,[p for p in RUNTIME if p!='build-receipt.json'])
+    from check_release import relevant_tools
+    from contract import sha
+    git_sources=[]
+    for item in source['files']:
+        digest=hashlib.sha1(f'blob {item["size"]}\0'.encode())
+        with open(work/'original'/item['path'],'rb') as stream:
+            for chunk in iter(lambda:stream.read(262144),b''):digest.update(chunk)
+        git_sources.append(dict(path=item['path'],size=item['size'],git_blob_sha=digest.hexdigest()))
+    source_git_digest=sha(canonical(sorted(git_sources,key=lambda item:item['path'])))
+    tool_digest=sha(canonical(relevant_tools()))
+    input_identity=sha(canonical(dict(source_git_digest=source_git_digest,tool_digest=tool_digest,
+        recipe_sha256=json.loads((ROOT/'locks/recipe.json').read_text())['sha256'],engine_archive_sha256=ENGINE_SHA)))
     receipt=dict(format_version=1,compatibility_id=PROFILE,engine_archive_sha256=ENGINE_SHA,engine_version='1.16.1',
         adapter_revision=adapter_revision,recipe_sha256=json.loads((ROOT/'locks/recipe.json').read_text())['sha256'],
         upstream_revision=source['revision'],source_digest=source['source_digest'],qualified_os=['26.5'],
-        xcode_version='26.6',xcode_build='17F113',deployment_calls=1,runtime_files=runtime)
+        xcode_version='26.6',xcode_build='17F113',deployment_calls=1,runtime_files=runtime,
+        source_git_digest=source_git_digest,tool_digest=tool_digest,input_identity=input_identity)
     (root/'build-receipt.json').write_bytes(canonical(receipt))
     manifest=dict(format_version=4,payload_kind='precompiled-rime-v1',profile='mobile_wanxiang_full',package_revision=revision,
         release_id=release,compatibility_id=PROFILE,engine_archive_sha256=ENGINE_SHA,recipe_sha256=receipt['recipe_sha256'],

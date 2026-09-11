@@ -62,9 +62,11 @@ verification may a signed channel point at the new release. Failed builds retain
 previous channel. GitHub schedules can be delayed; a scheduled configuration is not
 a guarantee of real-time updates.
 
-The build and publication workflow is introduced separately after this producer's
-local consumer checks. Until a verified release and channel exist, this repository
-must not be represented as an active download service.
+The publication workflow is configured for a manual first run and hourly checks.
+An active download service requires a successful release and signed channel;
+configuration alone does not establish availability. See
+[publication and recovery](docs/release-recovery.md) for failure handling and
+the separate manual/scheduled evidence requirements.
 
 ## Licenses
 

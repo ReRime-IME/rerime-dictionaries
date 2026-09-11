@@ -1,6 +1,7 @@
 import CoreText
 import CryptoKit
 import Foundation
+import Darwin
 import UIKit
 
 // Public build executable. Evaluated text never appears in its output receipt.
@@ -60,6 +61,7 @@ final class Glyphs {
         return hash.finalize().map { String(format: "%02x", $0) }.joined()
     }
     static func main() throws {
+        let started = ProcessInfo.processInfo.systemUptime
         guard CommandLine.arguments.count == 3 else { throw QualificationError.arguments }
         let version = UIDevice.current.systemVersion.split(separator: ".").prefix(2).joined(separator: ".")
         guard version == "26.5" else { throw QualificationError.runtime }
@@ -108,5 +110,11 @@ final class Glyphs {
             "rows": total, "excluded": excludedTotal, "files": report]
         let data = try JSONSerialization.data(withJSONObject: receipt, options: [.sortedKeys, .withoutEscapingSlashes])
         try data.write(to: destination.appendingPathComponent("qualification.json"))
+        var usage = rusage()
+        guard getrusage(RUSAGE_SELF, &usage) == 0, usage.ru_maxrss > 0 else { throw QualificationError.runtime }
+        let resources = ["elapsed_ms": Int((ProcessInfo.processInfo.systemUptime - started) * 1000),
+                         "peak_resident_bytes": Int(usage.ru_maxrss)]
+        try JSONSerialization.data(withJSONObject: resources, options: [.sortedKeys]).write(to:
+            destination.appendingPathComponent("qualifier-resources.json"))
     }
 }

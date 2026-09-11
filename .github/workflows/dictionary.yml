@@ -1,0 +1,134 @@
+name: Public dictionaries
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/**'
+      - 'scripts/**'
+      - 'recipe/**'
+      - 'locks/**'
+      - 'contract/**'
+      - 'keys/**'
+      - '.github/workflows/dictionary.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dictionary-channel-v1
+  cancel-in-progress: false
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+
+jobs:
+  check:
+    if: github.repository == 'Nongfsq/rerime-dictionaries' && github.ref == 'refs/heads/main'
+    runs-on: macos-26
+    timeout-minutes: 10
+    outputs:
+      mode: ${{ steps.check.outputs.mode }}
+      upstream_revision: ${{ steps.check.outputs.upstream_revision }}
+      package_revision: ${{ steps.check.outputs.package_revision }}
+      minimum_app_build: ${{ steps.check.outputs.minimum_app_build }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Compile the trusted signature verifier
+        run: |
+          mkdir -p .build/bin
+          xcrun swiftc tools/sign.swift -o .build/bin/sign
+      - name: Validate producer contracts and promotion policy
+        run: python3 -m unittest discover -s tests -v
+      - name: Check relevant public input identities
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/check_release.py check --output "$RUNNER_TEMP/rerime-check"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: checked-input
+          path: ${{ runner.temp }}/rerime-check/check.json
+          if-no-files-found: error
+          retention-days: 7
+
+  build:
+    needs: check
+    if: needs.check.outputs.mode == 'build'
+    runs-on: macos-26
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: checked-input
+          path: ${{ runner.temp }}/rerime-check
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .build/engine/Frameworks.tgz
+          key: public-engine-${{ hashFiles('locks/engine.json') }}
+      - name: Select the pinned runtime on the ephemeral runner
+        run: python3 scripts/ci-simulator.py
+      - name: Qualify, compile and test the source-free consumer
+        env:
+          RERIME_BUILD_WORK: ${{ runner.temp }}/rerime-build-work
+          RERIME_BUILD_OUTPUT: ${{ runner.temp }}/rerime-build-output
+          RERIME_CHECK_PLAN: ${{ runner.temp }}/rerime-check/check.json
+          RERIME_UPSTREAM_REVISION: ${{ needs.check.outputs.upstream_revision }}
+          RERIME_PACKAGE_REVISION: ${{ needs.check.outputs.package_revision }}
+          RERIME_APP_BUILD: ${{ needs.check.outputs.minimum_app_build }}
+        run: python3 tools/ci_build.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: unsigned-public-dictionary
+          path: ${{ runner.temp }}/rerime-build-output
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
+      - name: Stop the task-selected ephemeral Simulator
+        if: always() && env.RERIME_SIMULATOR_UDID != ''
+        run: xcrun simctl shutdown "$RERIME_SIMULATOR_UDID"
+
+  promote:
+    needs: [check, build]
+    if: >-
+      always() && github.repository == 'Nongfsq/rerime-dictionaries' && github.ref == 'refs/heads/main' &&
+      needs.check.result == 'success' &&
+      ((needs.check.outputs.mode == 'build' && needs.build.result == 'success') || needs.check.outputs.mode == 'refresh')
+    runs-on: macos-26
+    timeout-minutes: 15
+    environment: dictionary-release
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: checked-input
+          path: ${{ runner.temp }}/rerime-check
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        if: needs.check.outputs.mode == 'build'
+        with:
+          name: unsigned-public-dictionary
+          path: ${{ runner.temp }}/rerime-build-output
+      - name: Compile the trusted signer
+        run: |
+          mkdir -p .build/bin
+          xcrun swiftc tools/sign.swift -o .build/bin/sign
+      - name: Publish immutable assets, verify anonymous downloads, then promote
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RERIME_SIGNING_KEY: ${{ secrets.RERIME_SIGNING_KEY }}
+        run: python3 tools/promote.py --plan "$RUNNER_TEMP/rerime-check/check.json" --output "$RUNNER_TEMP/rerime-build-output"
