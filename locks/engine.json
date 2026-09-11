@@ -1,0 +1,9 @@
+{
+  "url": "https://github.com/thomfang/LibrimeKit-iOS/releases/download/v0.1.0/Frameworks.tgz",
+  "sha256": "d123d38b004d60548eef21c2688c17a9b988c8565dd8aee334a8fe215f273bd5",
+  "simulator_sha256": "21ab40a78170b09fad8d4f9beb1b8a601c4bc348b410fdcfd78a3a68f435c1bf",
+  "device_sha256": "d1345ac2d479949f306d350754bc8d680889932e6b6c30cfb273031f72e5bfb1",
+  "xcode": "26.6",
+  "xcode_build": "17F113",
+  "ios": "26.5"
+}

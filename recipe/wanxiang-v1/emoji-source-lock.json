@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/iDvel/rime-ice",
+  "revision": "569ff3bc65dd4aec0a26b33c49c8bbdfa8b5fd57",
+  "licenseSPDX": "GPL-3.0-only",
+  "files": {
+    "opencc/emoji.json": "79fe3b878625d8f96d70aeb6c4d1929ab2a582f8b935d309125b6ccffd799602",
+    "opencc/emoji.txt": "f3e13962289eedccbe92f6d4c5df97db03357c5ad94abdad3d5910aba556705a",
+    "opencc/others.txt": "9595273a49139e1184bca0f1923660793b3873d7b4996d0a5dd665e777d4e55c"
+  }
+}

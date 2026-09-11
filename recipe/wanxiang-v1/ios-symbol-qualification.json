@@ -1,0 +1,16 @@
+{
+  "catalogSHA256": "113766d81c34ff7255ec9b0c0268a5b5b87a9b023b3186fdce573516f382c3e6",
+  "colorEmojiCount": 0,
+  "glyphSnapshotSHA256": "c74bf4115c25f935c257e67d8b76f852dfbc0892c4251efb6cdc0260684c7aab",
+  "platform": "iOS Simulator",
+  "policyVersion": 1,
+  "productionSHA256": "5b4298ba24b0e124457a3b5240181073dd6bf10e1fc87ea4e0c65da4818dc751",
+  "qualifiedItemCount": 5436,
+  "qualifiedRouteCount": 12512,
+  "recognizerPattern": "^(?:v(?:0|1|10|2|3|4|5|6|7|8|9|A|AE|Alpha|B|Beta|C|Chi|D|Delta|Digamma|E|Epsilon|Eta|F|G|Gamma|H|HV|I|IJ|Iota|J|K|Kappa|L|LL|Lambda|M|N|NJ|Nj|O|OE|OI|OU|Omega|Omicron|P|Phi|Psi|Q|R|Rho|Rx|S|Sha|Sigma|T|Tau|Theta|U|Upsilon|V|W|X|Y|Z|Zeta|a|acute|ae|afghani|aleph|alpha|amp|and|angle|angstrom|angzarr|approx|asymp|b|backslash|backspace|baht|bai|ballot|bd|bdz|bdzy|because|beta|beth|bg|bgm|bh|bitcoin|bot|bq|breve|budeng|budengyu|bullet|c|cap|caps|caret|caron|cedi|cent|checkmark|cheng|chi|chu|cmd|colon|comma|complement|compose|convolve|copyright|crossmark|ctrl|cuo|currency|d|dagger|daleth|dayu|db|degree|del|delta|dh|diaer|diameter|dian|digamma|div|divides|dn|dollar|dong|dorome|dram|du|dui|dw|dz|e|earth|eject|ell|emptyset|end|enter|epsilon|equiv|escape|eta|euro|excl|exists|ey|eyd|f|ff|ffi|ffl|fh|fi|fjz|fk|fl|flat|floral|fn|forall|forces|frown|fs|g|gamma|genhao|gimel|gradient|grave|guarani|gz|h|hash|hat|hb|hj|home|hryvnia|hsd|hv|hw|hwh|hwq|hyph|hzh|hzq|i|ij|image|infinity|integral|inter|interleave|interrobang|iota|iro|j|jg|jgh|jh|jihe|jm|jma|jmb|jmbj|jmd|jme|jmg|jmh|jmi|jmk|jmm|jmn|jmo|jmp|jmq|jmr|jms|jmt|jmu|jmw|jmy|jmz|jq|jt|jupiter|jz|k|kappa|kip|kx|l|lambda|laplace|lari|lat|lira|lj|ll|lm|lmd|ls|lssg|lssgm|lx|lz|m|macron|maltese|manat|mapsfrom|mapsto|mars|mercury|minus|miny|mj|models|multimap|n|nabla|nacui|naira|natural|neptune|nian|nj|not|nothing|numero|o|oe|oi|omega|omicron|opt|original|ou|p|pai|parallel|partial|pataca|pee|percent|permille|permyriad|perp|peso|pgdn|pgup|phi|pi|pilcrow|pjm|pk|planck|plus|pound|pp|prec|prime|product|prop|psi|py|pyd|q|qed|qian|qp|quest|r|ratio|refmark|return|rho|riel|rq|ruble|s|sa|saturn|sb|sd|section|semi|sha|shang|sharp|shekel|shift|shuxuezimu|sigma|sj|slash|smash|smile|smt|space|spacebar|ssd|subset|succ|sum|sun|suoyi|supset|sx|sxc|sxd|sxg|sxgc|sxh|sxhc|sxs|sxw|sxwc|sxwx|sxwz|sxx|sxz|sz|szd|szh|szm|szq|t|tab|tabl|tabr|taka|taman|tau|tc|tenge|tg|th|therefore|theta|times|tiny|togrog|top|tq|trademark|ts|tt|txj|u|ue|underscore|union|upsilon|uranus|ux|uxc|uxd|uxg|uxgc|uxh|uxhc|uxs|uxw|uxwc|uxwx|uxwz|uxx|uxz|v|venus|w|wanzi|weijifen|without|won|wreath|ww|x|xb|xh|xi|xia|xiaoyu|xl|xlc|xld|xlwc|xlwz|xlx|xlz|xor|xq|xzg|xzm|y|yb|yen|yf|yinwei|you|youshang|youxia|yr|yuan|yunsuan|yy|z|zero|zeta|zhengfu|zhengfuhao|zmh|zmq|zuo|zuoshang|zuoxia|zuoyou|zy|help|list|sym[.?][A-Za-z0-9.]*|sym[A-Za-z0-9]*|find[A-Za-z0-9]*)|/[A-Za-z0-9?./_-]*)$",
+  "recognizerSHA256": "2e861b4052c408f411d1e47e8d0aacf7762160c498ca7bb6e2c3ccce2b762348",
+  "schema": "rerime.ios-symbol-package-qualification.v1",
+  "symbolsSHA256": "be19c5f91f72b74f451b580b56dcbb07af8ebceb50e13af269e4aecb28532b7f",
+  "systemVersion": "26.5",
+  "unsupportedCount": 0
+}
