@@ -62,11 +62,13 @@ verification may a signed channel point at the new release. Failed builds retain
 previous channel. GitHub schedules can be delayed; a scheduled configuration is not
 a guarantee of real-time updates.
 
-The publication workflow is configured for a manual first run and hourly checks.
-An active download service requires a successful release and signed channel;
-configuration alone does not establish availability. See
-[publication and recovery](docs/release-recovery.md) for failure handling and
-the separate manual/scheduled evidence requirements.
+The first signed release and authenticated channel are available. The initial
+[manual build](https://github.com/Nongfsq/rerime-dictionaries/actions/runs/34589812884)
+passed complete qualification, compilation, source-free consumer checks and anonymous
+asset verification. A second [unchanged-input run](https://github.com/Nongfsq/rerime-dictionaries/actions/runs/34590902668)
+skipped both build and promotion. See [initial distribution evidence](docs/initial-distribution.md)
+and [publication and recovery](docs/release-recovery.md). Hourly scheduling is
+configured; these two manual runs do not establish scheduled execution.
 
 ## Licenses
 
