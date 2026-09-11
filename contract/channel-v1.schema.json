@@ -48,7 +48,7 @@
       "type": "integer"
     },
     "repository": {
-      "const": "Nongfsq/rerime-dictionaries",
+      "enum": ["Nongfsq/rerime-dictionaries", "ReRime-IME/rerime-dictionaries"],
       "type": "string"
     },
     "compatibility_id": {

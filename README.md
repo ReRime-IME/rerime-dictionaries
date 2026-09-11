@@ -78,3 +78,21 @@ retains Apache-2.0. See `recipe/wanxiang-v1/NOTICE.md` and the included original
 license files. Every release includes corresponding editable dictionary and recipe
 sources and the public build tools used to produce it. These distinct licenses must
 not be replaced by the tool license.
+
+## Organization transfer (2026-09-11)
+
+This repository now lives at `ReRime-IME/rerime-dictionaries`. Existing releases,
+assets, signatures and channel history are preserved. The publisher targets the
+organization and accepts both exact historical and organization channel identities,
+with each package URL bound to its channel's own repository. Existing signed fixtures
+remain unchanged.
+
+Older ReRime builds that reject repository-migration redirects need an App update
+to restore online dictionary downloads after the transfer. Installed dictionaries
+and offline typing remain available.
+
+Migration validation: 15 local test methods pass, including organization identity,
+unknown repositories and cross-repository package mismatches. The existing latest
+release was downloaded anonymously from the organization; its 41,676,811-byte
+archive matches the signed channel SHA-256, with channel and manifest signatures
+verified. This does not claim a newly built release or an updated installed App.

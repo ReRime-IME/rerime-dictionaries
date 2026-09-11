@@ -2,14 +2,16 @@
 import json
 from contract import ROOT,validate
 
-REPOSITORY = 'Nongfsq/rerime-dictionaries'
+REPOSITORIES = {'Nongfsq/rerime-dictionaries', 'ReRime-IME/rerime-dictionaries'}
 
 def validate_channel(value, now):
     validate(value, json.loads((ROOT/'contract/channel-v1.schema.json').read_text()))
+    if value['repository'] not in REPOSITORIES:
+        raise ValueError('release-repository')
     release = value['release_id']
     if not release.startswith(f"wanxiang-precompiled-{value['package_revision']}-"):
         raise ValueError('release-identity')
-    expected = f'https://github.com/{REPOSITORY}/releases/download/{release}/ReRime-{release}.zip'
+    expected = f"https://github.com/{value['repository']}/releases/download/{release}/ReRime-{release}.zip"
     if value['package_url'] != expected:
         raise ValueError('release-url')
     issued,expires,checked = (value[k] for k in ('issued_at','expires_at','upstream_checked_at'))

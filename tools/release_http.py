@@ -2,7 +2,7 @@
 import json,subprocess,urllib.request,urllib.error,urllib.parse
 from pathlib import Path
 
-REPO='Nongfsq/rerime-dictionaries'
+REPO='ReRime-IME/rerime-dictionaries'
 ASSET_HOSTS={'github.com','release-assets.githubusercontent.com','objects.githubusercontent.com'}
 
 class PublicRedirect(urllib.request.HTTPRedirectHandler):

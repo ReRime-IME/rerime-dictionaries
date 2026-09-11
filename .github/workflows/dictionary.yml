@@ -27,7 +27,7 @@ env:
 
 jobs:
   check:
-    if: github.repository == 'Nongfsq/rerime-dictionaries' && github.ref == 'refs/heads/main'
+    if: github.repository == 'ReRime-IME/rerime-dictionaries' && github.ref == 'refs/heads/main'
     runs-on: macos-26
     timeout-minutes: 10
     outputs:
@@ -101,7 +101,7 @@ jobs:
   promote:
     needs: [check, build]
     if: >-
-      always() && github.repository == 'Nongfsq/rerime-dictionaries' && github.ref == 'refs/heads/main' &&
+      always() && github.repository == 'ReRime-IME/rerime-dictionaries' && github.ref == 'refs/heads/main' &&
       needs.check.result == 'success' &&
       ((needs.check.outputs.mode == 'build' && needs.build.result == 'success') || needs.check.outputs.mode == 'refresh')
     runs-on: macos-26
