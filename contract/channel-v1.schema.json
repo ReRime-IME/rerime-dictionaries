@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "sequence",
+    "issued_at",
+    "expires_at",
+    "upstream_checked_at",
+    "package_revision",
+    "format_version",
+    "repository",
+    "compatibility_id",
+    "release_id",
+    "package_url",
+    "package_size",
+    "package_sha256",
+    "manifest_sha256"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "sequence": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "issued_at": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "expires_at": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "upstream_checked_at": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "package_revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "format_version": {
+      "const": 1,
+      "type": "integer"
+    },
+    "repository": {
+      "const": "Nongfsq/rerime-dictionaries",
+      "type": "string"
+    },
+    "compatibility_id": {
+      "const": "wanxiang-ios-arm64-rime1161-v1",
+      "type": "string"
+    },
+    "release_id": {
+      "type": "string",
+      "pattern": "wanxiang-precompiled-[1-9][0-9]*-[0-9a-f]{12}"
+    },
+    "package_url": {
+      "type": "string",
+      "maxLength": 512
+    },
+    "package_size": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 536870912
+    },
+    "package_sha256": {
+      "type": "string",
+      "pattern": "[0-9a-f]{64}"
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "pattern": "[0-9a-f]{64}"
+    }
+  }
+}
