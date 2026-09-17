@@ -1,6 +1,6 @@
 # Private release watcher — PLAN+TASK
 
-Plan identity: DRS-20260916. Revision: 5. Readiness: READY.
+Plan identity: DRS-20260916. Revision: 6. Readiness: READY.
 
 ## Approved decisions and current reality
 
@@ -94,7 +94,7 @@ location and normal scoped implementation are authorized by the user's explicit
 PLAN+TASK + execution request. No additional approval gate is introduced.
 
 PLAN_GATE: PASS
-PLAN_TASKS_STATUS: READY
+PLAN_TASKS_STATUS: COMPLETE
 
 ## Execution evidence
 
@@ -144,7 +144,7 @@ on demand and never persisted. Personal-token operation remains the rollout fall
 - Observability: sanitized authentication failure only; no JWT/key/response body.
 
 ### DRS-005 — Register, install and verify App cutover
-- Status: in progress — registration form prepared, final owner confirmation pending
+- Status: done — App dispatch/reconciliation and production cutover verified
 - Depends on: DRS-004
 - Files: docs/release-watcher-plan.md; private deployment receipt outside Git.
 - Change: Register private organization App, Actions write and Metadata read only;
@@ -157,3 +157,21 @@ on demand and never persisted. Personal-token operation remains the rollout fall
 - Parallelism: sequential; owner interaction only for required credential/UI steps.
 - Rollback: retain prior deployed version and protected PAT; restore old configuration
   on failed migration. Do not revoke credentials without explicit owner instruction.
+
+
+### App migration execution evidence
+
+- 35 local tests pass, including real RSA signature verification, automatic token
+  refresh, current opaque token format, strict token scope and idle no-auth behavior.
+- Reviewed runtime commit `a8d0057581a576d7aa9eb2b7ae3cfe1cbcf85f0c` is deployed.
+- App installation restricted to this repository; Actions write and Metadata read.
+  Private key/config are root-owned 0600 files supplied through systemd credentials.
+- [Run 35188394866](https://github.com/ReRime-IME/rerime-dictionaries/actions/runs/35188394866)
+  was triggered by `rerime-dictionary-watcher[bot]`, succeeded, and was reconciled
+  using only App credentials in a separate private acceptance state directory.
+  It correctly skipped build/promotion for the older official upstream Release.
+- Production service now loads only App key/config; timer enabled and active;
+  existing production state preserved. Personal token retained privately for explicit
+  rollback, not loaded or used by the active service. No credential revocation.
+- Public repository visibility and anonymous download contract unchanged. This is
+  authentication acceptance, not evidence of a newly built dictionary package.

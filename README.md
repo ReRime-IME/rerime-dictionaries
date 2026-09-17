@@ -123,11 +123,16 @@ the sync-preservation mechanism, release evidence, and older-client advisory cav
 
 The producer now resolves official upstream Releases to exact commits and rejects
 automatic rollback to an older/diverged release. A private outbound-only watcher
-is deployed and active with a dedicated single-repository Actions credential.
+is deployed and active with a private GitHub App installed on this repository only.
+The server automatically obtains short-lived installation tokens; routine operation
+no longer depends on a personal token or periodic manual token renewal.
+The repository, Releases and anonymous downloads remain public.
 The [server-triggered verification](https://github.com/ReRime-IME/rerime-dictionaries/actions/runs/35184339643)
 succeeded and was reconciled by the watcher. The older official Release correctly
 produced no build or promotion, preserving the existing package. Daily release
 checks use conditional requests; pending runs are reconciled every 15 minutes.
 Channel renewal near expiry retains the existing package and signing gates.
+The [App-authenticated verification](https://github.com/ReRime-IME/rerime-dictionaries/actions/runs/35188394866)
+succeeded under `rerime-dictionary-watcher[bot]` and was reconciled on the server.
 See [watcher operations](docs/release-watcher.md) and
 [PLAN+TASK and rollout status](docs/release-watcher-plan.md).

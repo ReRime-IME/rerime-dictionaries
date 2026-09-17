@@ -30,7 +30,11 @@ be added to this repository, workflow inputs, run names, artifacts or public log
 
 ## Credentials
 
-Use a dedicated fine-grained GitHub token scoped to this repository, with Actions
+Production uses the GitHub App configuration described below. It has no scheduled
+personal-token renewal requirement; installation tokens are minted automatically.
+The following PAT instructions are retained only for historical rollback.
+
+For that fallback, use a dedicated fine-grained GitHub token scoped to this repository, with Actions
 read/write and automatically required metadata read. No contents-write permission,
 SSH key, account password or dictionary signing key is needed by the watcher.
 Use a finite expiry and record the renewal date in the private operations record.
@@ -54,7 +58,8 @@ personal GitHub CLI credential to the server as a shortcut.
 4. Read-only connectivity probe:
    `python3 -I /opt/rerime-release-watch/current/release_watch.py --state /tmp/unused --probe`.
    Probe mode reads public release/channel metadata only and creates no state.
-5. Provision the dedicated token privately. Start the service manually, inspect
+5. Provision the App credentials and drop-in described below (or the explicit PAT
+   fallback). Start the service manually, inspect
    the redacted event, then start it again after the cloud run finishes. Confirm
    matching `last_run_id`, success and `completed_release` in private state.
 6. Enable the timer with `systemctl enable --now rerime-release-watch.timer`.
