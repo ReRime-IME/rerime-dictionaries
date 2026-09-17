@@ -1,13 +1,17 @@
 # Publication and recovery
 
-`Public dictionaries` resolves the latest official Release and checks its relevant
-dictionary blobs weekly on Monday at
-08:17 UTC, on manual dispatch, and after producer changes on main. GitHub can delay
-or omit scheduled runs. The signed channel carries the last successful upstream
-check; older clients report a delayed check after 72 hours, which can now occur during
-a normal weekly interval; this advisory does not invalidate installed dictionaries.
-The signed channel expires after 30 days, so weekly refresh remains within its lifetime. An unchanged input skips native
-compilation, with authenticated check metadata refreshed at most once per day.
+`Public dictionaries` accepts explicit workflow dispatches. The private watcher
+checks official upstream Releases daily and dispatches only a newly observed
+Release, a bounded retry, or signed-channel renewal near expiry. GitHub cron and
+automatic producer-push triggers are disabled. See [watcher operations](release-watcher.md)
+for private service inspection, credential renewal and recovery.
+
+An unchanged input skips native compilation. The signed channel expires after
+30 days; the watcher requests renewal within ten days of expiry without rebuilding
+the existing package. Renewal preserves the last genuine upstream-check timestamp.
+Older clients may consequently show their 72-hour freshness advisory during a quiet
+upstream period; it does not invalidate installed dictionaries. Server polling does
+not by itself update signed public metadata or claim a new dictionary release.
 
 All jobs use the standard public-repository `macos-26` runner. The producer requires
 Xcode 26.6 (17F113), arm64 and an existing iOS 26.5 iPhone 17 Pro Simulator. An image
@@ -44,6 +48,6 @@ an App trust update before using the new key; remote metadata cannot introduce a
 new trust root. Stop the workflow to pause future promotion while preserving all
 published assets and current client installations.
 
-A configured schedule is not evidence of a scheduled run. The first real manual
-build, anonymous release/channel verification and subsequent schedule receipts must
-be recorded separately before making distribution claims.
+A configured timer or HTTP dispatch response is not proof of completion. Record
+the correlated successful cloud run and server reconciliation separately. The
+initial server round trip is documented in the [rollout plan](release-watcher-plan.md).

@@ -14,18 +14,6 @@ on:
       request_id:
         type: string
         default: ''
-  schedule:
-    - cron: '17 8 * * 1'
-  push:
-    branches: [main]
-    paths:
-      - 'tools/**'
-      - 'scripts/**'
-      - 'recipe/**'
-      - 'locks/**'
-      - 'contract/**'
-      - 'keys/**'
-      - '.github/workflows/dictionary.yml'
 
 permissions:
   contents: read

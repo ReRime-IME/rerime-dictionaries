@@ -74,6 +74,8 @@ class PublishingTests(unittest.TestCase):
         self.assertNotIn('secrets.',value.split('  promote:')[0])
         self.assertEqual(value.count('contents: write'),1)
         self.assertTrue(all(len(ref)==40 for ref in re.findall(r'uses: [^@]+@(\S+)',value)))
-        self.assertIn("cron: '17 8 * * 1'",value)
+        self.assertIn("  workflow_dispatch:",value)
+        self.assertNotIn("  schedule:",value)
+        self.assertNotIn("  push:",value)
 
 if __name__=='__main__':unittest.main()

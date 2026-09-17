@@ -59,17 +59,17 @@ The versioned package contract separates package revisions from signed channel
 sequences. Releases contain runtime and editable source archives, signed manifest,
 glyph qualification and build receipts. Only after complete anonymous download
 verification may a signed channel point at the new release. Failed builds retain the
-previous channel. GitHub schedules can be delayed; a scheduled configuration is not
-a guarantee of real-time updates.
+previous channel. A private watcher checks official upstream Releases daily and
+dispatches GitHub builds only when needed; this is not real-time push notification.
 
 The first signed release and authenticated channel are available. The initial
 [manual build](https://github.com/Nongfsq/rerime-dictionaries/actions/runs/34589812884)
 passed complete qualification, compilation, source-free consumer checks and anonymous
 asset verification. A second [unchanged-input run](https://github.com/Nongfsq/rerime-dictionaries/actions/runs/34590902668)
 skipped both build and promotion. See [initial distribution evidence](docs/initial-distribution.md)
-and [publication and recovery](docs/release-recovery.md). Weekly scheduling is configured for Monday 08:17 UTC; manual dispatch and
-producer changes on main also trigger checks. These initial manual runs are
-historical evidence, not proof of the current schedule.
+and [publication and recovery](docs/release-recovery.md). Automatic checks are dispatched by the private release watcher; explicit manual
+dispatch remains available. GitHub cron and automatic push triggers are removed.
+These initial manual runs remain historical evidence.
 
 ## Licenses
 
@@ -123,7 +123,11 @@ the sync-preservation mechanism, release evidence, and older-client advisory cav
 
 The producer now resolves official upstream Releases to exact commits and rejects
 automatic rollback to an older/diverged release. A private outbound-only watcher
-is implemented and installed; its activation awaits dedicated GitHub credentials.
-The weekly GitHub schedule remains until the server dispatch round trip is verified.
+is deployed and active with a dedicated single-repository Actions credential.
+The [server-triggered verification](https://github.com/ReRime-IME/rerime-dictionaries/actions/runs/35184339643)
+succeeded and was reconciled by the watcher. The older official Release correctly
+produced no build or promotion, preserving the existing package. Daily release
+checks use conditional requests; pending runs are reconciled every 15 minutes.
+Channel renewal near expiry retains the existing package and signing gates.
 See [watcher operations](docs/release-watcher.md) and
 [PLAN+TASK and rollout status](docs/release-watcher-plan.md).

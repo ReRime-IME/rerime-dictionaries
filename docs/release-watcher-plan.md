@@ -1,6 +1,6 @@
 # Private release watcher — PLAN+TASK
 
-Plan identity: DRS-20260916. Revision: 3. Readiness: READY.
+Plan identity: DRS-20260916. Revision: 4. Readiness: READY.
 
 ## Approved decisions and current reality
 
@@ -12,7 +12,7 @@ this public repository. No inbound port, DNS change, root-running daemon or sign
 key transfer is required. A narrowly scoped Actions-write credential is provisioned
 privately. Access metadata is not public evidence.
 
-Existing workflow: weekly cron and producer pushes; source follows branch HEAD.
+Pre-migration baseline: weekly cron and producer pushes; source followed branch HEAD.
 Existing signed channel expires in 30 days. Native build, immutable assets, signature
 and consumer gates remain intact. Existing public package may be newer than the
 latest stable upstream tag: compare ancestry and never automatically downgrade.
@@ -63,7 +63,7 @@ Product/architecture decisions are supplied above; no additional framework requi
 - Observability: redacted status codes and opaque request/run IDs; no response bodies.
 
 ### DRS-003 — Deployment and schedule cutover
-- Status: in progress; installation/probe complete, credential and cutover pending
+- Status: done
 - Depends on: DRS-001, DRS-002
 - Files: ops/install.sh (new); docs/release-watcher.md (new); README.md;
   .github/workflows/dictionary.yml; private deployment receipt outside Git.
@@ -94,7 +94,7 @@ location and normal scoped implementation are authorized by the user's explicit
 PLAN+TASK + execution request. No additional approval gate is introduced.
 
 PLAN_GATE: PASS
-PLAN_TASKS_STATUS: READY
+PLAN_TASKS_STATUS: COMPLETE
 
 ## Execution evidence
 
@@ -108,8 +108,13 @@ PLAN_TASKS_STATUS: READY
 - Watcher commit `560645e958413d37b3c577a260b8e41ab6bfc368` installed on the
   authorized private host; installed script SHA-256 matches the reviewed source.
   systemd unit validation and public release/channel connectivity probe passed.
-- Credential is not yet provisioned: GitHub requires the owner's interactive
-  identity confirmation before token creation. Timer remains disabled; existing
-  GitHub schedule/push triggers remain as the reversible transition fallback.
-- No server-dispatched cloud run or final trigger cutover is claimed yet. Actual
-  server access/privilege metadata and installation record are private, outside Git.
+- Dedicated single-repository Actions-write credential provisioned privately; root
+  0600 credential, 0700 parent, DynamicUser and strict service sandbox verified.
+- Server-triggered cloud run [35184339643](https://github.com/ReRime-IME/rerime-dictionaries/actions/runs/35184339643)
+  passed; check succeeded and build/promotion were correctly skipped for an older
+  upstream Release. Server reconciled success and recorded the completed release.
+- Timer enabled and active. GitHub cron and producer-push triggers removed after
+  successful reconciliation; manual dispatch remains available.
+- Actual host, access metadata, credential expiry and deployment receipt remain
+  private outside Git. This verifies dispatch and no-rollback behavior, not a new
+  package build; earlier full package qualification evidence remains separate.
