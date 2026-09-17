@@ -1,9 +1,11 @@
 # Publication and recovery
 
-`Public dictionaries` checks the relevant upstream dictionary blobs every hour at
-minute 17, on manual dispatch, and after producer changes on main. GitHub can delay
+`Public dictionaries` checks the relevant upstream dictionary blobs weekly on Monday at
+08:17 UTC, on manual dispatch, and after producer changes on main. GitHub can delay
 or omit scheduled runs. The signed channel carries the last successful upstream
-check; clients report a delayed check after 72 hours. An unchanged input skips native
+check; older clients report a delayed check after 72 hours, which can now occur during
+a normal weekly interval; this advisory does not invalidate installed dictionaries.
+The signed channel expires after 30 days, so weekly refresh remains within its lifetime. An unchanged input skips native
 compilation, with authenticated check metadata refreshed at most once per day.
 
 All jobs use the standard public-repository `macos-26` runner. The producer requires

@@ -19,6 +19,10 @@ def test(directory,simulator):
         cases=[('chinese','wanxiang','nihao','你好','simplified'),('china','wanxiang','zhongguo','中国','simplified'),
             ('english','wanxiang_english','hello','hello','simplified'),('mixed','wanxiang_mixedcode','agu','A股','simplified'),
             ('traditional','wanxiang','zhongguo','中國','traditional'),('personal','wanxiang','xinghegongzuoshi','星河工作室','simplified')]
+        cases += [('taiwan-flag','wanxiang','taiwan','🇹🇼','simplified'),
+                  ('hongkong-flag','wanxiang','xianggang','🇭🇰','simplified'),
+                  ('taiwan-flag-traditional','wanxiang','taiwanqizhi','🇹🇼','traditional'),
+                  ('hongkong-flag-traditional','wanxiang','xianggangquqi','🇭🇰','traditional')]
         result=[]
         def run(case):
             label,schema,text,expected,mode=case

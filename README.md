@@ -67,8 +67,9 @@ The first signed release and authenticated channel are available. The initial
 passed complete qualification, compilation, source-free consumer checks and anonymous
 asset verification. A second [unchanged-input run](https://github.com/Nongfsq/rerime-dictionaries/actions/runs/34590902668)
 skipped both build and promotion. See [initial distribution evidence](docs/initial-distribution.md)
-and [publication and recovery](docs/release-recovery.md). Hourly scheduling is
-configured; these two manual runs do not establish scheduled execution.
+and [publication and recovery](docs/release-recovery.md). Weekly scheduling is configured for Monday 08:17 UTC; manual dispatch and
+producer changes on main also trigger checks. These initial manual runs are
+historical evidence, not proof of the current schedule.
 
 ## Licenses
 
@@ -96,3 +97,21 @@ unknown repositories and cross-repository package mismatches. The existing lates
 release was downloaded anonymously from the organization; its 41,676,811-byte
 archive matches the signed channel SHA-256, with channel and manifest signatures
 verified. This does not claim a newly built release or an updated installed App.
+
+## ReRime regional word and Emoji additions
+
+`tools/local_additions.json` owns Taiwan and Hong Kong simplified/traditional
+word triggers and the standard 🇹🇼 / 🇭🇰 sequences. Every adaptation applies this
+layer after copying the pinned recipe and fetching upstream dictionaries. It adds
+a dedicated `rerime_regions` table and merges Emoji alternatives without removing
+existing ones. Upstream deletion or replacement cannot remove these additions.
+The original upstream files and recipe remain unchanged for attribution; overlay
+data/code and its receipt are included in the corresponding-source archive and
+bound by the producer identity. The old recipe Emoji qualification describes only
+the base resources, not this overlay. Source-free consumer tests require actual
+flag candidates and matching commits before publishing a new package.
+
+Hong Kong already existed in the base Emoji mapping; Taiwan did not. This change
+protects both and adds explicit flag-name triggers. Emoji glyph appearance is
+controlled by the device OS and region as well as the dictionary; candidate
+coverage does not guarantee identical rendering on every device.

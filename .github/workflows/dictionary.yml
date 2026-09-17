@@ -3,7 +3,7 @@ name: Public dictionaries
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 * * * *'
+    - cron: '17 8 * * 1'
   push:
     branches: [main]
     paths:

@@ -7,6 +7,7 @@ import shutil
 import urllib.request
 from pathlib import Path
 from contract import ROOT, SCHEMAS, canonical, fingerprints, sha
+from local_additions import apply as apply_local_additions
 
 MAX_FILE = 80 * 1024 * 1024
 TABLE = re.compile(r'dicts/[a-z_]{1,40}')
@@ -111,6 +112,7 @@ def build(work,revision):
     for table,english in sorted(tables.items()):
         path=table+'.dict.yaml';fetch(path)
         _,rows[path]=adapt(source/path,destination/path,english=english)
+    apply_local_additions(destination)
     fetch('LICENSE')
     # License drift requires review rather than automatically replacing notices.
     if (source/'LICENSE').read_bytes()!=(recipe/'LICENSE').read_bytes(): raise ValueError('license-changed')
