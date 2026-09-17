@@ -115,3 +115,6 @@ Hong Kong already existed in the base Emoji mapping; Taiwan did not. This change
 protects both and adds explicit flag-name triggers. Emoji glyph appearance is
 controlled by the device OS and region as well as the dictionary; candidate
 coverage does not guarantee identical rendering on every device.
+
+See [regional additions and verification](docs/regional-emoji-additions.md) for
+the sync-preservation mechanism, release evidence, and older-client advisory caveat.
