@@ -6,6 +6,7 @@ from contract import ROOT,SCHEMAS,PROFILE,ENGINE_SHA,canonical,sha,file_sha,stri
 from adapt import header,MAX_FILE
 from channel import validate_channel
 from release_http import REPO,api,read
+from upstream_release import resolve_release,release_relation
 
 CHANNEL_PATH=f'channels/{PROFILE}.json'
 
@@ -83,19 +84,28 @@ def decide(input_identity,previous_value,now):
     if previous_value is None or previous_value['receipt'].get('input_identity')!=input_identity:return 'build'
     return 'refresh' if now-previous_value['channel']['upstream_checked_at']>=86400 else 'noop'
 
-def check(output):
+def check(output,operation="release",release_id=None):
     output.mkdir(parents=True,exist_ok=False)
     now=int(time.time());public_policy=policy()
-    reference=api('repos/amzxyz/rime-wanxiang/git/ref/heads/wanxiang')
-    revision=reference['object']['sha']
-    if not re.fullmatch('[0-9a-f]{40}',revision):raise ValueError('upstream-revision')
+    old=previous(output,public_policy,now)
+    if operation not in ('release','renew'):raise ValueError('operation')
+    if operation=='renew':
+        if release_id:raise ValueError('renew-release-id')
+        if old is None:raise ValueError('renew-without-channel')
+        return maintenance(output,old,now,public_policy,'renew',None)
+    release=resolve_release(release_id)
+    revision=release['revision']
+    if old:
+        relation=release_relation(old['manifest']['upstream_revision'],revision)
+        if relation in ('behind','diverged'):
+            # Preserve existing data; record that an official Release was checked.
+            return maintenance(output,old,now,public_policy,'release-'+relation,release)
     tree=api(f'repos/amzxyz/rime-wanxiang/git/trees/{revision}?recursive=1')
     root_data={schema+'.dict.yaml':read(f'https://raw.githubusercontent.com/amzxyz/rime-wanxiang/{revision}/{schema}.dict.yaml',16384) for schema in SCHEMAS}
     sources=source_snapshot(revision,tree,root_data)
     source_digest=sha(canonical(sources));tools_digest=sha(canonical(relevant_tools()))
     recipe=json.loads((ROOT/'locks/recipe.json').read_text())['sha256']
     identity=sha(canonical(dict(source_git_digest=source_digest,tool_digest=tools_digest,recipe_sha256=recipe,engine_archive_sha256=ENGINE_SHA)))
-    old=previous(output,public_policy,now)
     releases=[]
     for page in range(1,11):
         batch=api(f'repos/{REPO}/releases?per_page=100&page={page}');releases.extend(batch)
@@ -106,16 +116,37 @@ def check(output):
     revisions=[int(match.group(1)) for release in releases if (match:=re.fullmatch(r'wanxiang-precompiled-([1-9][0-9]*)-[0-9a-f]{12}',release['tag_name']))]
     next_revision=max([0,*revisions,old['channel']['package_revision'] if old else 0])+1
     mode=decide(identity,old,now)
-    plan=dict(format_version=1,mode=mode,checked_at=now,upstream_revision=revision,source_files=sources,
+    plan=dict(format_version=1,mode=mode,checked_at=now,upstream_checked_at=now,upstream_release=release,
+        operation="release",upstream_revision=revision,source_files=sources,
         source_git_digest=source_digest,tool_digest=tools_digest,input_identity=identity,
         tool_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         package_revision=next_revision if mode=='build' else old['channel']['package_revision'],
         previous=old,minimum_app_build=public_policy['minimum_app_build'])
+    emit_plan(output,plan)
+
+def maintenance(output,old,now,public_policy,reason,release):
+    tools_digest=sha(canonical(relevant_tools()))
+    due=old['channel']['expires_at']-now <= 10*86400
+    checked=now if release else old['channel']['upstream_checked_at']
+    plan=dict(format_version=1,mode='refresh' if due else 'noop',checked_at=now,
+        upstream_checked_at=checked,operation=reason,upstream_release=release,
+        upstream_revision=old['manifest']['upstream_revision'],source_files=[],
+        source_git_digest=old['receipt']['source_git_digest'],tool_digest=tools_digest,
+        input_identity=old['receipt']['input_identity'],
+        tool_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+        package_revision=old['channel']['package_revision'],previous=old,
+        minimum_app_build=public_policy['minimum_app_build'])
+    emit_plan(output,plan)
+
+def emit_plan(output,plan):
     (output/'check.json').write_text(json.dumps(plan,sort_keys=True,separators=(',',':'))+'\n')
     if github_output:=os.environ.get('GITHUB_OUTPUT'):
         with open(github_output,'a') as stream:
-            stream.write(f'mode={mode}\nupstream_revision={revision}\npackage_revision={plan["package_revision"]}\nminimum_app_build={plan["minimum_app_build"]}\n')
-    print(json.dumps(dict(stage='checked',mode=mode,upstream_revision=revision,input_identity=identity,files=len(sources))),flush=True)
+            for key in ('mode','upstream_revision','package_revision','minimum_app_build'):
+                stream.write(f'{key}={plan[key]}\n')
+    print(json.dumps(dict(stage='checked',mode=plan['mode'],operation=plan['operation'],
+        upstream_revision=plan['upstream_revision'],input_identity=plan['input_identity'],
+        files=len(plan['source_files']))),flush=True)
 
 def verify_source(plan_path,work):
     plan=json.loads(plan_path.read_text());receipt=json.loads((work/'source-receipt.json').read_text())
@@ -134,7 +165,8 @@ def verify_source(plan_path,work):
 if __name__=='__main__':
     parser=argparse.ArgumentParser();sub=parser.add_subparsers(dest='command',required=True)
     p=sub.add_parser('check');p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--operation',choices=['release','renew'],default='release');p.add_argument('--release-id')
     p=sub.add_parser('verify-source');p.add_argument('--plan',type=Path,required=True);p.add_argument('--work',type=Path,required=True)
     args=parser.parse_args()
-    if args.command=='check':check(args.output.resolve())
+    if args.command=='check':check(args.output.resolve(),args.operation,args.release_id)
     else:verify_source(args.plan.resolve(),args.work.resolve())

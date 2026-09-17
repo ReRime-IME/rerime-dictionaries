@@ -166,7 +166,7 @@ def promote(plan_path,output):
             channel=dict(live['channel'])
         issued=int(time.time())
         channel.update(sequence=live['channel']['sequence']+1 if live else 1,issued_at=issued,
-            expires_at=issued+30*86400,upstream_checked_at=plan['checked_at'])
+            expires_at=issued+30*86400,upstream_checked_at=plan.get('upstream_checked_at',plan['checked_at']))
         validate_channel(channel,issued)
         payload=scratch/'channel-payload.json';payload.write_bytes(canonical(channel));envelope=scratch/'channel.json'
         subprocess.run([str(ROOT/'.build/bin/sign'),'sign','environment',public_policy['key_id'],

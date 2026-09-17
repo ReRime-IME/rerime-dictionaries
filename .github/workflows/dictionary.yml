@@ -1,7 +1,19 @@
 name: Public dictionaries
+run-name: Dictionary ${{ inputs.request_id || github.run_id }}
 
 on:
   workflow_dispatch:
+    inputs:
+      operation:
+        type: choice
+        options: [release, renew]
+        default: release
+      release_id:
+        type: string
+        default: ''
+      request_id:
+        type: string
+        default: ''
   schedule:
     - cron: '17 8 * * 1'
   push:
@@ -50,7 +62,12 @@ jobs:
         id: check
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 tools/check_release.py check --output "$RUNNER_TEMP/rerime-check"
+          CHECK_OPERATION: ${{ inputs.operation || 'release' }}
+          CHECK_RELEASE_ID: ${{ inputs.release_id }}
+        run: |
+          args=(--operation "$CHECK_OPERATION")
+          if [[ -n "$CHECK_RELEASE_ID" ]]; then args+=(--release-id "$CHECK_RELEASE_ID"); fi
+          python3 tools/check_release.py check --output "$RUNNER_TEMP/rerime-check" "${args[@]}"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: checked-input
