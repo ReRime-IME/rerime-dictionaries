@@ -1,0 +1,11 @@
+[Unit]
+Description=Reconcile ReRime dispatches; poll official releases daily
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=15min
+RandomizedDelaySec=60
+Unit=rerime-release-watch.service
+
+[Install]
+WantedBy=timers.target
