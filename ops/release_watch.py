@@ -113,7 +113,7 @@ class AppCredential:
         if len(repositories) != 1 or repositories[0].get('full_name') != REPO:
             raise ValueError('app-token-repositories')
         token = response.get('token')
-        if not isinstance(token, str) or not re.fullmatch(r'ghs_[A-Za-z0-9_]+', token):
+        if not isinstance(token, str) or not re.fullmatch(r'ghs_[A-Za-z0-9_.-]{1,4096}', token):
             raise ValueError('app-token-format')
         try:
             expiry = datetime.fromisoformat(response['expires_at'].replace('Z', '+00:00'))

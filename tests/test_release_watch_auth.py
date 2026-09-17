@@ -23,7 +23,7 @@ class AppAuthTests(unittest.TestCase):
         self.auth = AppCredential(self.config, self.key, lambda: self.now)
 
     def response(self):
-        return {'token': 'ghs_test_fixture',
+        return {'token': 'ghs_test.fixture-with_new_format',
                 'permissions': {'actions': 'write', 'metadata': 'read'},
                 'repositories': [{'full_name': REPO}],
                 'expires_at': datetime.fromtimestamp(self.now+3600, timezone.utc).isoformat()}
@@ -48,7 +48,7 @@ class AppAuthTests(unittest.TestCase):
     def test_narrow_exchange_cache_and_automatic_refresh(self):
         with patch.object(AppCredential, 'jwt', return_value='test.jwt'), patch.object(
                 GitHub, 'request', side_effect=lambda *a, **kw: (self.response(), None)) as request:
-            self.assertEqual(self.auth(), 'ghs_test_fixture')
+            self.assertEqual(self.auth(), 'ghs_test.fixture-with_new_format')
             self.auth()
             self.assertEqual(request.call_count, 1)
             args, kwargs = request.call_args
