@@ -5,6 +5,16 @@ from pathlib import Path
 from contract import ROOT,RUNTIME,canonical,file_sha
 from verify import zip_shape
 
+CASES=[('chinese','wanxiang','nihao','你好','simplified'),('china','wanxiang','zhongguo','中国','simplified'),
+    ('english','wanxiang_english','hello','hello','simplified'),('mixed','wanxiang_mixedcode','agu','A股','simplified'),
+    ('traditional','wanxiang','zhongguo','中國','traditional'),('personal','wanxiang','xinghegongzuoshi','星河工作室','simplified')]
+CASES += [('taiwan-flag','wanxiang','taiwan','🇹🇼','simplified'),
+  ('hongkong-flag','wanxiang','xianggang','🇭🇰','simplified'),
+  ('taiwan-flag-traditional','wanxiang','taiwanqizhi','🇹🇼','traditional'),
+  ('hongkong-flag-traditional','wanxiang','xianggangquqi','🇭🇰','traditional')]
+PERSONAL_EDIT_CASE=('personal-edit','wanxiang','xinghexingongzuoshi','星河新工作室','simplified')
+CONSUMER_CASES=[case[0] for case in [*CASES, PERSONAL_EDIT_CASE]]
+
 def test(directory,simulator):
     manifest=json.loads((directory/'manifest-payload.json').read_text());zip_shape(directory/'runtime-unsigned.zip',manifest,False)
     scratch=Path(tempfile.mkdtemp(prefix='consumer-',dir=ROOT/'.build'))
@@ -16,13 +26,7 @@ def test(directory,simulator):
         if list(scratch.rglob('*.dict.yaml')):raise ValueError('consumer-has-source')
         before={p:file_sha(scratch/p) for p in RUNTIME}
         (scratch/'rerime_personal.txt').write_text('星河工作室\txing he gong zuo shi\t100000\n')
-        cases=[('chinese','wanxiang','nihao','你好','simplified'),('china','wanxiang','zhongguo','中国','simplified'),
-            ('english','wanxiang_english','hello','hello','simplified'),('mixed','wanxiang_mixedcode','agu','A股','simplified'),
-            ('traditional','wanxiang','zhongguo','中國','traditional'),('personal','wanxiang','xinghegongzuoshi','星河工作室','simplified')]
-        cases += [('taiwan-flag','wanxiang','taiwan','🇹🇼','simplified'),
-                  ('hongkong-flag','wanxiang','xianggang','🇭🇰','simplified'),
-                  ('taiwan-flag-traditional','wanxiang','taiwanqizhi','🇹🇼','traditional'),
-                  ('hongkong-flag-traditional','wanxiang','xianggangquqi','🇭🇰','traditional')]
+        cases=CASES
         result=[]
         def run(case):
             label,schema,text,expected,mode=case
@@ -32,7 +36,7 @@ def test(directory,simulator):
             result.append(dict(case=label,exit=0))
         for case in cases:run(case)
         (scratch/'rerime_personal.txt').write_text('星河新工作室\txing he xin gong zuo shi\t100000\n')
-        run(('personal-edit','wanxiang','xinghexingongzuoshi','星河新工作室','simplified'))
+        run(PERSONAL_EDIT_CASE)
         if before!={p:file_sha(scratch/p) for p in RUNTIME}:raise ValueError('public-files-mutated')
         missing=scratch/'build/wanxiang.table.bin';missing.rename(missing.with_suffix('.absent'))
         failure=subprocess.run(['xcrun','simctl','spawn',simulator,str(ROOT/'.build/bin/RimeConsumer'),str(scratch),'wanxiang','nihao','你好','simplified'],capture_output=True,timeout=90)

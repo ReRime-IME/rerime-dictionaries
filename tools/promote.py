@@ -9,7 +9,7 @@ from release_http import REPO,api,download,read
 from pack import sign
 from verify import verify,zip_shape
 
-CONSUMER_CASES=['chinese','china','english','mixed','traditional','personal','personal-edit']
+from consumer_test import CONSUMER_CASES
 
 def require_plan(plan,now):
     if plan.get('format_version')!=1 or plan.get('mode') not in ('build','refresh','noop'):raise ValueError('check-plan')
