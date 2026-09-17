@@ -83,3 +83,41 @@ App's 72-hour advisory is a separate UI maintenance item, not a reason to invent
 fresh upstream checks during renewal.
 
 See [PLAN+TASK](release-watcher-plan.md) for rollout status and evidence.
+
+## GitHub App authentication migration
+
+The owner-approved target is a private organization GitHub App installed only on
+`ReRime-IME/rerime-dictionaries`. Repository visibility, public Releases and anonymous
+client downloads remain unchanged. App permissions are Actions read/write and
+Metadata read only; webhooks and user OAuth are unnecessary.
+
+Provision two root-owned 0600 files under the existing 0700 credential directory:
+
+- `github-app.json`: `{"client_id":"APP_CLIENT_ID","installation_id":123}`
+  (replace both placeholders with the registered App and verified installation).
+- `github-app.pem`: the private RSA key downloaded from GitHub, never in Git.
+
+Deploy the reviewed watcher code first. Stop the timer and finish any active service
+run before installing `ops/github-app.conf` as
+`/etc/systemd/system/rerime-release-watch.service.d/github-app.conf`. This resets
+credential loading to those two files. Run `systemctl daemon-reload`, verify units,
+and perform the App-authenticated dispatch/completion round trip before enabling
+the timer again. Preserve existing state, package identity and prior PAT for rollback.
+For a one-time authentication acceptance run, use a separate private state file and
+then reconcile its run to completion; do not erase production release history.
+
+The App private key has no automatic expiry. A short JWT is signed with system
+OpenSSL; the installation token is requested with explicit repository and permission
+limits, validated and cached only in process memory. Busy processes renew it before
+expiry; idle ticks never sign or request tokens. A revoked/suspended App or invalid
+credential fails visibly without silently reverting to a personal identity.
+No key, JWT, token, raw API response or private installation metadata is logged.
+
+Rollback: remove only the App service drop-in, reload systemd and restore the prior
+reviewed code if needed. Existing personal-token credential remains available until
+explicitly revoked; do not delete or revoke it as implicit cleanup.
+
+Official contracts: [JWT signing](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-json-web-token-jwt-for-a-github-app),
+[installation tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app),
+[private keys](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/managing-private-keys-for-github-apps).
+Actual activation status is in the rollout plan; code support alone is not deployment.

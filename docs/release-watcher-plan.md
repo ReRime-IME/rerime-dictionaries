@@ -1,6 +1,6 @@
 # Private release watcher — PLAN+TASK
 
-Plan identity: DRS-20260916. Revision: 4. Readiness: READY.
+Plan identity: DRS-20260916. Revision: 5. Readiness: READY.
 
 ## Approved decisions and current reality
 
@@ -94,7 +94,7 @@ location and normal scoped implementation are authorized by the user's explicit
 PLAN+TASK + execution request. No additional approval gate is introduced.
 
 PLAN_GATE: PASS
-PLAN_TASKS_STATUS: COMPLETE
+PLAN_TASKS_STATUS: READY
 
 ## Execution evidence
 
@@ -118,3 +118,42 @@ PLAN_TASKS_STATUS: COMPLETE
 - Actual host, access metadata, credential expiry and deployment receipt remain
   private outside Git. This verifies dispatch and no-rollback behavior, not a new
   package build; earlier full package qualification evidence remains separate.
+
+## Approved GitHub App migration
+
+Owner authorizes a private organization GitHub App identity while the dictionary
+repository, signed channel and downloads stay public. No client or data migration.
+The server retains the App private key; short-lived installation tokens are minted
+on demand and never persisted. Personal-token operation remains the rollout fallback.
+
+### DRS-004 — Automatic installation authentication
+- Status: done — 35 tests pass; activation tracked separately in DRS-005
+- Depends on: DRS-003
+- Files: ops/release_watch.py, tests/test_release_watch_auth.py (new),
+  ops/github-app.conf (new), docs/release-watcher.md, README.md.
+- Change: Add lazy RS256 App authentication using system OpenSSL, exact installation
+  endpoint and repository/permission narrowing. Protected systemd credentials carry
+  App configuration and key. No network requests or signing on idle ticks.
+- Acceptance: Token renewal is automatic; tokens/keys never enter state or logs;
+  invalid App configuration fails closed without falling back to a personal token;
+  existing dispatch/reconciliation and public downloads remain unchanged.
+- Validation: Real temporary RSA signature verification; mocked scope/expiry/refresh,
+  failed exchange and no-idle-auth tests; full unittest discovery; syntax checks.
+- Parallelism: sequential; owns authentication and deployment configuration.
+- Rollback: remove App drop-in and restart with existing protected personal token.
+- Observability: sanitized authentication failure only; no JWT/key/response body.
+
+### DRS-005 — Register, install and verify App cutover
+- Status: in progress — registration form prepared, final owner confirmation pending
+- Depends on: DRS-004
+- Files: docs/release-watcher-plan.md; private deployment receipt outside Git.
+- Change: Register private organization App, Actions write and Metadata read only;
+  install on dictionary repository only, securely provision key and config; deploy
+  pinned code; verify App-authenticated cloud dispatch and completed reconciliation.
+- Acceptance: Timer enabled on App identity; same public repository/downloads;
+  no personal-token dependency, private host/credentials absent from public artifacts.
+- Validation: Installation scope, file permissions, actual cloud actor/run success,
+  server reconciliation and idle check. No duplicate dispatch after restart.
+- Parallelism: sequential; owner interaction only for required credential/UI steps.
+- Rollback: retain prior deployed version and protected PAT; restore old configuration
+  on failed migration. Do not revoke credentials without explicit owner instruction.
