@@ -5,7 +5,8 @@
 ## Scope and implementation
 
 The owner requested Taiwan and Hong Kong words/flags that survive upstream Wanxiang
-synchronization, and a weekly or fortnightly update cadence. The base recipe already
+synchronization. The initial weekly cadence was later superseded by the approved
+private Release watcher described below. The base recipe already
 contains `香港 → 🇭🇰`; it lacks a Taiwan flag mapping. This does not establish why
 any particular installed device failed to display Hong Kong.
 
@@ -26,21 +27,27 @@ remains separate from candidate/commit correctness.
 
 ## Cadence and compatibility
 
-Scheduled checks run Monday at 08:17 UTC, rather than hourly. Manual dispatch and
-relevant producer changes on main still run. Unchanged input avoids compilation;
-the 30-day signed-channel lifetime accommodates weekly refresh.
+The initial Monday 08:17 UTC schedule was superseded by the private server
+[Release watcher](release-watcher.md), whose [completed plan](release-watcher-plan.md)
+records deployment and GitHub App authentication verification. It checks official
+upstream Releases daily using conditional requests; ordinary commits, drafts and
+prereleases do not trigger a dictionary update. GitHub cron and push triggers are
+removed. Authorized workflow dispatch remains the cloud build/publication entry.
+The server's 15-minute timer reconciles pending work; it does not poll upstream
+on every invocation. Signed-channel renewal is separate from upstream data updates.
 
-Existing App versions show a delayed-check advisory after 72 hours. With weekly
-checks that message can occur during a normal interval. This repository change does
-not update installed App binaries or their UI threshold. It does not expire an
-installed dictionary or disable offline typing. Track the advisory threshold in the
-next App maintenance update; do not falsify the upstream-check timestamp to hide it.
+Existing App versions show a delayed-check advisory after 72 hours. Under
+release-driven publication, no new upstream Release is normal; this advisory still
+needs an App maintenance update. This repository change does not modify installed
+App binaries, expire installed dictionaries or disable offline typing. Renewal must
+preserve the real upstream-check timestamp rather than hide the advisory.
 
-## Verification
+## Original regional-overlay verification
 
 - 17 local tests pass, including two isolated upstream adaptation runs with no region
   words, persistence of all additions, repeat application, preserving existing Emoji
-  alternatives, and the weekly workflow contract.
+  alternatives, and the then-active weekly workflow contract. Current trigger/authentication
+  verification is recorded in the Release watcher plan.
 - Native build run [35179603130](https://github.com/ReRime-IME/rerime-dictionaries/actions/runs/35179603130)
   compiled the dictionary and passed 11 source-free consumer cases. The four added
   cases select and commit 🇹🇼 / 🇭🇰 using simplified and traditional settings.
