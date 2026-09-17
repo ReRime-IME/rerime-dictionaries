@@ -1,6 +1,7 @@
 # Publication and recovery
 
-`Public dictionaries` checks the relevant upstream dictionary blobs weekly on Monday at
+`Public dictionaries` resolves the latest official Release and checks its relevant
+dictionary blobs weekly on Monday at
 08:17 UTC, on manual dispatch, and after producer changes on main. GitHub can delay
 or omit scheduled runs. The signed channel carries the last successful upstream
 check; older clients report a delayed check after 72 hours, which can now occur during

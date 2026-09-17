@@ -118,3 +118,12 @@ coverage does not guarantee identical rendering on every device.
 
 See [regional additions and verification](docs/regional-emoji-additions.md) for
 the sync-preservation mechanism, release evidence, and older-client advisory caveat.
+
+## Official-release watcher migration
+
+The producer now resolves official upstream Releases to exact commits and rejects
+automatic rollback to an older/diverged release. A private outbound-only watcher
+is implemented and installed; its activation awaits dedicated GitHub credentials.
+The weekly GitHub schedule remains until the server dispatch round trip is verified.
+See [watcher operations](docs/release-watcher.md) and
+[PLAN+TASK and rollout status](docs/release-watcher-plan.md).

@@ -1,6 +1,6 @@
 # Private release watcher — PLAN+TASK
 
-Plan identity: DRS-20260916. Revision: 2. Readiness: READY.
+Plan identity: DRS-20260916. Revision: 3. Readiness: READY.
 
 ## Approved decisions and current reality
 
@@ -25,7 +25,7 @@ Product/architecture decisions are supplied above; no additional framework requi
 ## Tasks
 
 ### DRS-001 — Release-bound producer and maintenance
-- Status: implemented; cloud integration pending
+- Status: done
 - Depends on: none
 - Files: tools/upstream_release.py (new), tools/check_release.py, tools/promote.py,
   .github/workflows/dictionary.yml, tests/test_release_trigger.py (new).
@@ -42,7 +42,7 @@ Product/architecture decisions are supplied above; no additional framework requi
 - Observability: public release IDs, commit hashes, mode and reason only.
 
 ### DRS-002 — Private watcher and durable handoff
-- Status: pending
+- Status: done
 - Depends on: DRS-001
 - Files: ops/release_watch.py, ops/rerime-release-watch.service,
   ops/rerime-release-watch.timer (new),
@@ -63,7 +63,7 @@ Product/architecture decisions are supplied above; no additional framework requi
 - Observability: redacted status codes and opaque request/run IDs; no response bodies.
 
 ### DRS-003 — Deployment and schedule cutover
-- Status: pending
+- Status: in progress; installation/probe complete, credential and cutover pending
 - Depends on: DRS-001, DRS-002
 - Files: ops/install.sh (new); docs/release-watcher.md (new); README.md;
   .github/workflows/dictionary.yml; private deployment receipt outside Git.
@@ -101,3 +101,15 @@ PLAN_TASKS_STATUS: READY
 - Local release selection against current public state returned `release-behind`,
   mode `noop`, preserving package 11. Renewal preflight returned `noop` because
   the current channel is not near expiry. Five release-bound producer tests pass.
+
+- 28 local test methods pass; Python compilation and shell syntax checks pass.
+- Cloud producer run [35183553706](https://github.com/ReRime-IME/rerime-dictionaries/actions/runs/35183553706)
+  succeeded after switching to official-release selection.
+- Watcher commit `560645e958413d37b3c577a260b8e41ab6bfc368` installed on the
+  authorized private host; installed script SHA-256 matches the reviewed source.
+  systemd unit validation and public release/channel connectivity probe passed.
+- Credential is not yet provisioned: GitHub requires the owner's interactive
+  identity confirmation before token creation. Timer remains disabled; existing
+  GitHub schedule/push triggers remain as the reversible transition fallback.
+- No server-dispatched cloud run or final trigger cutover is claimed yet. Actual
+  server access/privilege metadata and installation record are private, outside Git.
