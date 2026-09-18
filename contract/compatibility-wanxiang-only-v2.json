@@ -1,0 +1,42 @@
+{
+  "format_version": 1,
+  "id": "wanxiang-ios-arm64-rime1161-v1",
+  "engine_archive_sha256": "d123d38b004d60548eef21c2688c17a9b988c8565dd8aee334a8fe215f273bd5",
+  "engine_version": "1.16.1",
+  "architecture": "arm64",
+  "byte_order": "little",
+  "table": "4.0",
+  "prism": "4.0",
+  "reverse": "3.1",
+  "qualified_os": [
+    "27.0"
+  ],
+  "runtime_files": [
+    "LICENSE",
+    "NOTICE.md",
+    "build-receipt.json",
+    "build/default.yaml",
+    "build/wanxiang.prism.bin",
+    "build/wanxiang.reverse.bin",
+    "build/wanxiang.schema.yaml",
+    "build/wanxiang.table.bin",
+    "build/wanxiang_english.prism.bin",
+    "build/wanxiang_english.reverse.bin",
+    "build/wanxiang_english.schema.yaml",
+    "build/wanxiang_english.table.bin",
+    "build/wanxiang_mixedcode.prism.bin",
+    "build/wanxiang_mixedcode.reverse.bin",
+    "build/wanxiang_mixedcode.schema.yaml",
+    "build/wanxiang_mixedcode.table.bin",
+    "default.yaml",
+    "opencc/LICENSE",
+    "opencc/STCharacters.ocd2",
+    "opencc/STPhrases.ocd2",
+    "opencc/emoji.json",
+    "opencc/emoji.txt",
+    "opencc/s2t.json",
+    "qualification.json",
+    "upstream-lock.json"
+  ],
+  "recipe_sha256": "b413fa34637ed6d14bd4a43f12a5a2ede200ab035c20c60ec69be4f38b77e8e6"
+}

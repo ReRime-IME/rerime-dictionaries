@@ -16,23 +16,19 @@ OpenCC simplified-to-traditional resources retain their Apache 2.0 license in
 opencc/LICENSE. Personal entries and learning are produced on the device and are
 never included in this public archive.
 
-The restored symbol routes also derive from iDvel/rime-ice `symbols_v.yaml`,
-revision `fbb516b2786e4d5444383706d13c31c2e4d10c08`, under GPL-3.0-only.
-Its unchanged license accompanies this archive as `LICENSE-rime-ice.txt`.
-Original source: https://github.com/iDvel/rime-ice/blob/fbb516b2786e4d5444383706d13c31c2e4d10c08/symbols_v.yaml
-Wanxiang symbol and Codex-name additions retain CC BY 4.0 attribution above.
-ReRime filters unsupported iOS glyphs and actual color Emoji, preserves the retained
-original ordering, and adds native mathematical groups and finite name-prefix aliases.
-`rerime_symbols.yaml` is the complete editable, generated route source distributed
-under those source notices; `ios-symbol-qualification.json` binds its exact hash.
+Symbol and word-triggered Emoji inputs come from pinned Wanxiang revision
+`3e0ab702725ffeec790bce5959fdd8319fe4bf64`. `upstream-auxiliary/source-lock.json`
+records the original files and hashes. Wanxiang's symbol file retains its Rime/
+Squirrel attribution, and its Codex symbol data credits typst/codex. Their source
+headers accompany the corresponding editable sources.
 
-Word-triggered Emoji and the accompanying text aliases restore the selected
-iDvel/rime-ice no-Lua OpenCC resources from revision
-`569ff3bc65dd4aec0a26b33c49c8bbdfa8b5fd57`, under GPL-3.0-only with the same included
-`LICENSE-rime-ice.txt`. `emoji-source-lock.json` records the original hashes;
-`ios-emoji-qualification.json` binds the iOS-qualified output alternatives, keeping
-their original order. Color Emoji is allowed for these candidates.
-Source: https://github.com/iDvel/rime-ice/tree/569ff3bc65dd4aec0a26b33c49c8bbdfa8b5fd57/opencc
+ReRime converts Wanxiang Emoji rows to OpenCC at build time, retaining the original
+word followed by upstream alternatives. No Ice alias table is merged. The source
+lock and iOS qualification bind the exact generated and qualified mappings. Color
+Emoji is allowed for these candidates. Symbols use native glyph qualification,
+exclude unsupported or actual color Emoji items, preserve source order, and retain
+ReRime category/pair presentation and finite name lookup. Punctuation-only upstream
+command aliases outside the native command grammar are not imported.
 
 English table codes use ASCII lowercase for case-compatible local learning;
 candidate display text and public weights remain unchanged.

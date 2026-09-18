@@ -1,6 +1,6 @@
 {
   "format_version": 1,
-  "sha256": "c21dbaec7e43052ea95de8729e59ed3bc80902413cb6d8f57bd2bbc94dbe98d8",
+  "sha256": "b413fa34637ed6d14bd4a43f12a5a2ede200ab035c20c60ec69be4f38b77e8e6",
   "files": [
     {
       "path": "LICENSE",
@@ -8,14 +8,9 @@
       "sha256": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94"
     },
     {
-      "path": "LICENSE-rime-ice.txt",
-      "size": 35149,
-      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
-    },
-    {
       "path": "NOTICE.md",
-      "size": 2418,
-      "sha256": "295cc3dc5c8f92f8844f1d56fa6ab5635261e39c6c98e0dc995fd8159a925a3d"
+      "size": 2063,
+      "sha256": "e8aa10b1fc0993482fe14e092913827fbba7c5c1e5f43b4954d6bbeedc6c82d9"
     },
     {
       "path": "default.yaml",
@@ -23,19 +18,24 @@
       "sha256": "5974354d62bcb5d4c825d469c4e265f0c862777165b38b360bb70bad315c7d88"
     },
     {
+      "path": "emoji-glyph-evidence.json",
+      "size": 27018,
+      "sha256": "b1f3771979e15010b0383775210b6529661e04453760a2e590befb46c3b3d3b6"
+    },
+    {
       "path": "emoji-source-lock.json",
-      "size": 442,
-      "sha256": "14adb3a0f8c9c034f82101fa2601546753faba4bd373a530b51ca7591f8d28ef"
+      "size": 846,
+      "sha256": "ba105a62c2a2dcbde4d7622b7e426e3c1aedfda17761486bb1f278de24713e7a"
     },
     {
       "path": "ios-emoji-qualification.json",
-      "size": 1043,
-      "sha256": "216d02dc4215251d539eed34769f6f821e6eeb25faef62c80696e0d07f3c757a"
+      "size": 826,
+      "sha256": "f243f1e66b0a9e3420dd45ba08eb54509a5a4f6597d81e54ccf244afed50db50"
     },
     {
       "path": "ios-symbol-qualification.json",
-      "size": 3117,
-      "sha256": "02fc98ff4649931cef6d247d317be51415d4d20a1d7e84abf4b562aede332ea9"
+      "size": 5080,
+      "sha256": "2dd5f234127dfffcdf89b3276672732fd57f70ede7721b4ad73a7e7bbb9595a0"
     },
     {
       "path": "opencc/LICENSE",
@@ -54,18 +54,13 @@
     },
     {
       "path": "opencc/emoji.json",
-      "size": 352,
-      "sha256": "79fe3b878625d8f96d70aeb6c4d1929ab2a582f8b935d309125b6ccffd799602"
+      "size": 277,
+      "sha256": "4477b92db74c7b1dec0a173c6cef78a14b9677bb5f7401a6be5ee14d0de389b9"
     },
     {
       "path": "opencc/emoji.txt",
-      "size": 132898,
-      "sha256": "f3e13962289eedccbe92f6d4c5df97db03357c5ad94abdad3d5910aba556705a"
-    },
-    {
-      "path": "opencc/others.txt",
-      "size": 44603,
-      "sha256": "ee0567d012533316c125f0ab54aa3e21d39e8ec3d0de59619e2d685db45133a7"
+      "size": 136620,
+      "sha256": "81235902825bdf4044d282f2f36d3a06c787c55626f3b9720ea66ab88945d75d"
     },
     {
       "path": "opencc/s2t.json",
@@ -74,13 +69,53 @@
     },
     {
       "path": "rerime_symbol_recognizer.yaml",
-      "size": 4838,
-      "sha256": "2e861b4052c408f411d1e47e8d0aacf7762160c498ca7bb6e2c3ccce2b762348"
+      "size": 8764,
+      "sha256": "d830154c31b2a14b46717460af771ae4121c6f09a58ea7f34e22dff7621b1c11"
     },
     {
       "path": "rerime_symbols.yaml",
-      "size": 1078909,
-      "sha256": "be19c5f91f72b74f451b580b56dcbb07af8ebceb50e13af269e4aecb28532b7f"
+      "size": 1241283,
+      "sha256": "c148fddf88152d86fa0c9e8cafae09c23c7c898a5596348960c0274f7c1e4aee"
+    },
+    {
+      "path": "symbol-generation/pairs-v1.json",
+      "size": 1003,
+      "sha256": "107494c8d85a0a2656cc3c6c31bcc94f854ac9c3ea0701b91cef33eb2c6585a2"
+    },
+    {
+      "path": "symbol-generation/taxonomy-wanxiang-v2.json",
+      "size": 17174,
+      "sha256": "b3daa3bac5e8e26487b451d24d9c09c5a4d4e1d6cd527f0e9869622cad152e91"
+    },
+    {
+      "path": "symbol-generation/wanxiang-increment-v1.json",
+      "size": 109704,
+      "sha256": "fac563dab1fdb291c47cb650c8ac78f1cd83d5c4abd4c0d803872e8750d9c352"
+    },
+    {
+      "path": "upstream-auxiliary/LICENSE",
+      "size": 18656,
+      "sha256": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94"
+    },
+    {
+      "path": "upstream-auxiliary/lua/data/codex_sym.txt",
+      "size": 19431,
+      "sha256": "859ea5a9f63f24d336d4fd7cd73d621584aa549ea724ce65dbbc494e0d331f4c"
+    },
+    {
+      "path": "upstream-auxiliary/lua/data/emoji.txt",
+      "size": 87414,
+      "sha256": "d086f31388b9dfbd5e68204e6805170bac34a263d31772823deed213ecb88337"
+    },
+    {
+      "path": "upstream-auxiliary/source-lock.json",
+      "size": 539,
+      "sha256": "01bc7b6f67c7a62183e58e7543207603b41f7feff8b5703cf912e96bf68dda4c"
+    },
+    {
+      "path": "upstream-auxiliary/wanxiang_symbols.yaml",
+      "size": 99018,
+      "sha256": "d176354b390c999f356a14a5ff07bfec0328fcff25c2089167f3b42c352ca810"
     },
     {
       "path": "wanxiang.schema.yaml",

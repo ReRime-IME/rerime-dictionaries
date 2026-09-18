@@ -1,0 +1,7385 @@
+{
+  "names": [
+    {
+      "name": "wj",
+      "text": "⁠"
+    },
+    {
+      "name": "zwj",
+      "text": "‍"
+    },
+    {
+      "name": "zwnj",
+      "text": "‌"
+    },
+    {
+      "name": "zws",
+      "text": "​"
+    },
+    {
+      "name": "lrm",
+      "text": "‎"
+    },
+    {
+      "name": "rlm",
+      "text": "‏"
+    },
+    {
+      "name": "space",
+      "text": " "
+    },
+    {
+      "name": "space.nobreak",
+      "text": " "
+    },
+    {
+      "name": "space.nobreak.narrow",
+      "text": " "
+    },
+    {
+      "name": "space.en",
+      "text": " "
+    },
+    {
+      "name": "space.quad",
+      "text": " "
+    },
+    {
+      "name": "space.third",
+      "text": " "
+    },
+    {
+      "name": "space.quarter",
+      "text": " "
+    },
+    {
+      "name": "space.sixth",
+      "text": " "
+    },
+    {
+      "name": "space.med",
+      "text": " "
+    },
+    {
+      "name": "space.fig",
+      "text": " "
+    },
+    {
+      "name": "space.punct",
+      "text": " "
+    },
+    {
+      "name": "space.thin",
+      "text": " "
+    },
+    {
+      "name": "space.hair",
+      "text": " "
+    },
+    {
+      "name": "paren.l",
+      "text": "("
+    },
+    {
+      "name": "paren.l.flat",
+      "text": "⟮"
+    },
+    {
+      "name": "paren.l.closed",
+      "text": "⦇"
+    },
+    {
+      "name": "paren.l.stroked",
+      "text": "⦅"
+    },
+    {
+      "name": "paren.r",
+      "text": ")"
+    },
+    {
+      "name": "paren.r.flat",
+      "text": "⟯"
+    },
+    {
+      "name": "paren.r.closed",
+      "text": "⦈"
+    },
+    {
+      "name": "paren.r.stroked",
+      "text": "⦆"
+    },
+    {
+      "name": "paren.t",
+      "text": "⏜"
+    },
+    {
+      "name": "paren.b",
+      "text": "⏝"
+    },
+    {
+      "name": "brace.l",
+      "text": "{"
+    },
+    {
+      "name": "brace.l.stroked",
+      "text": "⦃"
+    },
+    {
+      "name": "brace.r",
+      "text": "}"
+    },
+    {
+      "name": "brace.r.stroked",
+      "text": "⦄"
+    },
+    {
+      "name": "brace.t",
+      "text": "⏞"
+    },
+    {
+      "name": "brace.b",
+      "text": "⏟"
+    },
+    {
+      "name": "bracket.l",
+      "text": "["
+    },
+    {
+      "name": "bracket.l.tick.t",
+      "text": "⦍"
+    },
+    {
+      "name": "bracket.l.tick.b",
+      "text": "⦏"
+    },
+    {
+      "name": "bracket.l.stroked",
+      "text": "⟦"
+    },
+    {
+      "name": "bracket.r",
+      "text": "]"
+    },
+    {
+      "name": "bracket.r.tick.t",
+      "text": "⦐"
+    },
+    {
+      "name": "bracket.r.tick.b",
+      "text": "⦎"
+    },
+    {
+      "name": "bracket.r.stroked",
+      "text": "⟧"
+    },
+    {
+      "name": "bracket.t",
+      "text": "⎴"
+    },
+    {
+      "name": "bracket.b",
+      "text": "⎵"
+    },
+    {
+      "name": "shell.l",
+      "text": "❲"
+    },
+    {
+      "name": "shell.l.stroked",
+      "text": "⟬"
+    },
+    {
+      "name": "shell.l.filled",
+      "text": "⦗"
+    },
+    {
+      "name": "shell.r",
+      "text": "❳"
+    },
+    {
+      "name": "shell.r.stroked",
+      "text": "⟭"
+    },
+    {
+      "name": "shell.r.filled",
+      "text": "⦘"
+    },
+    {
+      "name": "shell.t",
+      "text": "⏠"
+    },
+    {
+      "name": "shell.b",
+      "text": "⏡"
+    },
+    {
+      "name": "bag.l",
+      "text": "⟅"
+    },
+    {
+      "name": "bag.r",
+      "text": "⟆"
+    },
+    {
+      "name": "mustache.l",
+      "text": "⎰"
+    },
+    {
+      "name": "mustache.r",
+      "text": "⎱"
+    },
+    {
+      "name": "bar.v",
+      "text": "|"
+    },
+    {
+      "name": "bar.v.double",
+      "text": "‖"
+    },
+    {
+      "name": "bar.v.triple",
+      "text": "⦀"
+    },
+    {
+      "name": "bar.v.broken",
+      "text": "¦"
+    },
+    {
+      "name": "bar.v.o",
+      "text": "⦶"
+    },
+    {
+      "name": "bar.h",
+      "text": "―"
+    },
+    {
+      "name": "fence.l",
+      "text": "⧘"
+    },
+    {
+      "name": "fence.l.double",
+      "text": "⧚"
+    },
+    {
+      "name": "fence.r",
+      "text": "⧙"
+    },
+    {
+      "name": "fence.r.double",
+      "text": "⧛"
+    },
+    {
+      "name": "fence.dotted",
+      "text": "⦙"
+    },
+    {
+      "name": "chevron.l",
+      "text": "⟨"
+    },
+    {
+      "name": "chevron.l.curly",
+      "text": "⧼"
+    },
+    {
+      "name": "chevron.l.dot",
+      "text": "⦑"
+    },
+    {
+      "name": "chevron.l.closed",
+      "text": "⦉"
+    },
+    {
+      "name": "chevron.l.double",
+      "text": "⟪"
+    },
+    {
+      "name": "chevron.r",
+      "text": "⟩"
+    },
+    {
+      "name": "chevron.r.curly",
+      "text": "⧽"
+    },
+    {
+      "name": "chevron.r.dot",
+      "text": "⦒"
+    },
+    {
+      "name": "chevron.r.closed",
+      "text": "⦊"
+    },
+    {
+      "name": "chevron.r.double",
+      "text": "⟫"
+    },
+    {
+      "name": "ceil.l",
+      "text": "⌈"
+    },
+    {
+      "name": "ceil.r",
+      "text": "⌉"
+    },
+    {
+      "name": "floor.l",
+      "text": "⌊"
+    },
+    {
+      "name": "floor.r",
+      "text": "⌋"
+    },
+    {
+      "name": "corner.l.t",
+      "text": "⌜"
+    },
+    {
+      "name": "corner.l.b",
+      "text": "⌞"
+    },
+    {
+      "name": "corner.r.t",
+      "text": "⌝"
+    },
+    {
+      "name": "corner.r.b",
+      "text": "⌟"
+    },
+    {
+      "name": "amp",
+      "text": "&"
+    },
+    {
+      "name": "amp.inv",
+      "text": "⅋"
+    },
+    {
+      "name": "ast.op",
+      "text": "∗"
+    },
+    {
+      "name": "ast.op.o",
+      "text": "⊛"
+    },
+    {
+      "name": "ast.basic",
+      "text": "*︎"
+    },
+    {
+      "name": "ast.low",
+      "text": "⁎"
+    },
+    {
+      "name": "ast.double",
+      "text": "⁑"
+    },
+    {
+      "name": "ast.triple",
+      "text": "⁂"
+    },
+    {
+      "name": "ast.square",
+      "text": "⧆"
+    },
+    {
+      "name": "at",
+      "text": "@"
+    },
+    {
+      "name": "backslash",
+      "text": "\\"
+    },
+    {
+      "name": "backslash.o",
+      "text": "⦸"
+    },
+    {
+      "name": "backslash.not",
+      "text": "⧷"
+    },
+    {
+      "name": "co",
+      "text": "℅"
+    },
+    {
+      "name": "colon",
+      "text": ":"
+    },
+    {
+      "name": "colon.currency",
+      "text": "₡"
+    },
+    {
+      "name": "colon.double",
+      "text": "∷"
+    },
+    {
+      "name": "colon.tri",
+      "text": "⁝"
+    },
+    {
+      "name": "colon.tri.op",
+      "text": "⫶"
+    },
+    {
+      "name": "colon.eq",
+      "text": "≔"
+    },
+    {
+      "name": "colon.double.eq",
+      "text": "⩴"
+    },
+    {
+      "name": "comma",
+      "text": ","
+    },
+    {
+      "name": "comma.inv",
+      "text": "⸲"
+    },
+    {
+      "name": "comma.rev",
+      "text": "⹁"
+    },
+    {
+      "name": "dagger",
+      "text": "†"
+    },
+    {
+      "name": "dagger.double",
+      "text": "‡"
+    },
+    {
+      "name": "dagger.triple",
+      "text": "⹋"
+    },
+    {
+      "name": "dagger.l",
+      "text": "⸶"
+    },
+    {
+      "name": "dagger.r",
+      "text": "⸷"
+    },
+    {
+      "name": "dagger.inv",
+      "text": "⸸"
+    },
+    {
+      "name": "dash.en",
+      "text": "–"
+    },
+    {
+      "name": "dash.em",
+      "text": "—"
+    },
+    {
+      "name": "dash.em.two",
+      "text": "⸺"
+    },
+    {
+      "name": "dash.em.three",
+      "text": "⸻"
+    },
+    {
+      "name": "dash.fig",
+      "text": "‒"
+    },
+    {
+      "name": "dash.colon",
+      "text": "∹"
+    },
+    {
+      "name": "dash.o",
+      "text": "⊝"
+    },
+    {
+      "name": "dash.wave",
+      "text": "〜"
+    },
+    {
+      "name": "dash.wave.double",
+      "text": "〰︎"
+    },
+    {
+      "name": "underscore",
+      "text": "_"
+    },
+    {
+      "name": "dot.op",
+      "text": "⋅"
+    },
+    {
+      "name": "dot.basic",
+      "text": "."
+    },
+    {
+      "name": "dot.c",
+      "text": "·"
+    },
+    {
+      "name": "dot.o",
+      "text": "⊙"
+    },
+    {
+      "name": "dot.o.big",
+      "text": "⨀"
+    },
+    {
+      "name": "dot.square",
+      "text": "⊡"
+    },
+    {
+      "name": "dot.double",
+      "text": "¨"
+    },
+    {
+      "name": "dot.triple",
+      "text": "⃛"
+    },
+    {
+      "name": "dot.quad",
+      "text": "⃜"
+    },
+    {
+      "name": "excl",
+      "text": "!"
+    },
+    {
+      "name": "excl.double",
+      "text": "‼︎"
+    },
+    {
+      "name": "excl.inv",
+      "text": "¡"
+    },
+    {
+      "name": "excl.quest",
+      "text": "⁉︎"
+    },
+    {
+      "name": "quest",
+      "text": "?"
+    },
+    {
+      "name": "quest.double",
+      "text": "⁇"
+    },
+    {
+      "name": "quest.excl",
+      "text": "⁈"
+    },
+    {
+      "name": "quest.inv",
+      "text": "¿"
+    },
+    {
+      "name": "interrobang",
+      "text": "‽"
+    },
+    {
+      "name": "interrobang.inv",
+      "text": "⸘"
+    },
+    {
+      "name": "hash",
+      "text": "#︎"
+    },
+    {
+      "name": "hyph",
+      "text": "‐"
+    },
+    {
+      "name": "hyph.minus",
+      "text": "-"
+    },
+    {
+      "name": "hyph.nobreak",
+      "text": "‑"
+    },
+    {
+      "name": "hyph.point",
+      "text": "‧"
+    },
+    {
+      "name": "hyph.soft",
+      "text": "­"
+    },
+    {
+      "name": "numero",
+      "text": "№"
+    },
+    {
+      "name": "percent",
+      "text": "%"
+    },
+    {
+      "name": "permille",
+      "text": "‰"
+    },
+    {
+      "name": "permyriad",
+      "text": "‱"
+    },
+    {
+      "name": "pilcrow",
+      "text": "¶"
+    },
+    {
+      "name": "pilcrow.rev",
+      "text": "⁋"
+    },
+    {
+      "name": "section",
+      "text": "§"
+    },
+    {
+      "name": "semi",
+      "text": ";"
+    },
+    {
+      "name": "semi.inv",
+      "text": "⸵"
+    },
+    {
+      "name": "semi.rev",
+      "text": "⁏"
+    },
+    {
+      "name": "slash",
+      "text": "/"
+    },
+    {
+      "name": "slash.o",
+      "text": "⊘"
+    },
+    {
+      "name": "slash.double",
+      "text": "⫽"
+    },
+    {
+      "name": "slash.triple",
+      "text": "⫻"
+    },
+    {
+      "name": "slash.big",
+      "text": "⧸"
+    },
+    {
+      "name": "dots.h.c",
+      "text": "⋯"
+    },
+    {
+      "name": "dots.h",
+      "text": "…"
+    },
+    {
+      "name": "dots.v",
+      "text": "⋮"
+    },
+    {
+      "name": "dots.down",
+      "text": "⋱"
+    },
+    {
+      "name": "dots.up",
+      "text": "⋰"
+    },
+    {
+      "name": "tilde.op",
+      "text": "∼"
+    },
+    {
+      "name": "tilde.basic",
+      "text": "~"
+    },
+    {
+      "name": "tilde.dot",
+      "text": "⩪"
+    },
+    {
+      "name": "tilde.eq",
+      "text": "≃"
+    },
+    {
+      "name": "tilde.eq.not",
+      "text": "≄"
+    },
+    {
+      "name": "tilde.eq.rev",
+      "text": "⋍"
+    },
+    {
+      "name": "tilde.equiv",
+      "text": "≅"
+    },
+    {
+      "name": "tilde.equiv.not",
+      "text": "≇"
+    },
+    {
+      "name": "tilde.nequiv",
+      "text": "≆"
+    },
+    {
+      "name": "tilde.not",
+      "text": "≁"
+    },
+    {
+      "name": "tilde.rev",
+      "text": "∽"
+    },
+    {
+      "name": "tilde.rev.equiv",
+      "text": "≌"
+    },
+    {
+      "name": "tilde.triple",
+      "text": "≋"
+    },
+    {
+      "name": "acute",
+      "text": "´"
+    },
+    {
+      "name": "acute.double",
+      "text": "˝"
+    },
+    {
+      "name": "breve",
+      "text": "˘"
+    },
+    {
+      "name": "caret",
+      "text": "‸"
+    },
+    {
+      "name": "caron",
+      "text": "ˇ"
+    },
+    {
+      "name": "hat",
+      "text": "^"
+    },
+    {
+      "name": "diaer",
+      "text": "¨"
+    },
+    {
+      "name": "grave",
+      "text": "`"
+    },
+    {
+      "name": "macron",
+      "text": "¯"
+    },
+    {
+      "name": "quote.double",
+      "text": "\""
+    },
+    {
+      "name": "quote.single",
+      "text": "'"
+    },
+    {
+      "name": "quote.l.double",
+      "text": "“"
+    },
+    {
+      "name": "quote.l.single",
+      "text": "‘"
+    },
+    {
+      "name": "quote.r.double",
+      "text": "”"
+    },
+    {
+      "name": "quote.r.single",
+      "text": "’"
+    },
+    {
+      "name": "quote.chevron.l.double",
+      "text": "«"
+    },
+    {
+      "name": "quote.chevron.l.single",
+      "text": "‹"
+    },
+    {
+      "name": "quote.chevron.r.double",
+      "text": "»"
+    },
+    {
+      "name": "quote.chevron.r.single",
+      "text": "›"
+    },
+    {
+      "name": "quote.high.double",
+      "text": "‟"
+    },
+    {
+      "name": "quote.high.single",
+      "text": "‛"
+    },
+    {
+      "name": "quote.low.double",
+      "text": "„"
+    },
+    {
+      "name": "quote.low.single",
+      "text": "‚"
+    },
+    {
+      "name": "prime",
+      "text": "′"
+    },
+    {
+      "name": "prime.rev",
+      "text": "‵"
+    },
+    {
+      "name": "prime.double",
+      "text": "″"
+    },
+    {
+      "name": "prime.double.rev",
+      "text": "‶"
+    },
+    {
+      "name": "prime.triple",
+      "text": "‴"
+    },
+    {
+      "name": "prime.triple.rev",
+      "text": "‷"
+    },
+    {
+      "name": "prime.quad",
+      "text": "⁗"
+    },
+    {
+      "name": "plus",
+      "text": "+"
+    },
+    {
+      "name": "plus.o",
+      "text": "⊕"
+    },
+    {
+      "name": "plus.o.l",
+      "text": "⨭"
+    },
+    {
+      "name": "plus.o.r",
+      "text": "⨮"
+    },
+    {
+      "name": "plus.o.arrow",
+      "text": "⟴"
+    },
+    {
+      "name": "plus.o.big",
+      "text": "⨁"
+    },
+    {
+      "name": "plus.dot",
+      "text": "∔"
+    },
+    {
+      "name": "plus.double",
+      "text": "⧺"
+    },
+    {
+      "name": "plus.minus",
+      "text": "±"
+    },
+    {
+      "name": "plus.square",
+      "text": "⊞"
+    },
+    {
+      "name": "plus.triangle",
+      "text": "⨹"
+    },
+    {
+      "name": "plus.triple",
+      "text": "⧻"
+    },
+    {
+      "name": "plus.hat",
+      "text": "⨣"
+    },
+    {
+      "name": "minus",
+      "text": "−"
+    },
+    {
+      "name": "minus.o",
+      "text": "⊖"
+    },
+    {
+      "name": "minus.dot",
+      "text": "∸"
+    },
+    {
+      "name": "minus.plus",
+      "text": "∓"
+    },
+    {
+      "name": "minus.square",
+      "text": "⊟"
+    },
+    {
+      "name": "minus.tilde",
+      "text": "≂"
+    },
+    {
+      "name": "minus.triangle",
+      "text": "⨺"
+    },
+    {
+      "name": "div",
+      "text": "÷"
+    },
+    {
+      "name": "div.o",
+      "text": "⨸"
+    },
+    {
+      "name": "div.slanted.o",
+      "text": "⦼"
+    },
+    {
+      "name": "times",
+      "text": "×"
+    },
+    {
+      "name": "times.big",
+      "text": "⨉"
+    },
+    {
+      "name": "times.o",
+      "text": "⊗"
+    },
+    {
+      "name": "times.o.l",
+      "text": "⨴"
+    },
+    {
+      "name": "times.o.r",
+      "text": "⨵"
+    },
+    {
+      "name": "times.o.hat",
+      "text": "⨶"
+    },
+    {
+      "name": "times.o.big",
+      "text": "⨂"
+    },
+    {
+      "name": "times.div",
+      "text": "⋇"
+    },
+    {
+      "name": "times.three.l",
+      "text": "⋋"
+    },
+    {
+      "name": "times.three.r",
+      "text": "⋌"
+    },
+    {
+      "name": "times.l",
+      "text": "⋉"
+    },
+    {
+      "name": "times.r",
+      "text": "⋊"
+    },
+    {
+      "name": "times.square",
+      "text": "⊠"
+    },
+    {
+      "name": "times.triangle",
+      "text": "⨻"
+    },
+    {
+      "name": "ratio",
+      "text": "∶"
+    },
+    {
+      "name": "eq",
+      "text": "="
+    },
+    {
+      "name": "eq.ast",
+      "text": "⩮"
+    },
+    {
+      "name": "eq.star",
+      "text": "≛"
+    },
+    {
+      "name": "eq.o",
+      "text": "⊜"
+    },
+    {
+      "name": "eq.colon",
+      "text": "≕"
+    },
+    {
+      "name": "eq.dot",
+      "text": "≐"
+    },
+    {
+      "name": "eq.dots",
+      "text": "≑"
+    },
+    {
+      "name": "eq.dots.down",
+      "text": "≒"
+    },
+    {
+      "name": "eq.dots.up",
+      "text": "≓"
+    },
+    {
+      "name": "eq.def",
+      "text": "≝"
+    },
+    {
+      "name": "eq.delta",
+      "text": "≜"
+    },
+    {
+      "name": "eq.equi",
+      "text": "≚"
+    },
+    {
+      "name": "eq.est",
+      "text": "≙"
+    },
+    {
+      "name": "eq.gt",
+      "text": "⋝"
+    },
+    {
+      "name": "eq.lt",
+      "text": "⋜"
+    },
+    {
+      "name": "eq.m",
+      "text": "≞"
+    },
+    {
+      "name": "eq.not",
+      "text": "≠"
+    },
+    {
+      "name": "eq.prec",
+      "text": "⋞"
+    },
+    {
+      "name": "eq.quest",
+      "text": "≟"
+    },
+    {
+      "name": "eq.succ",
+      "text": "⋟"
+    },
+    {
+      "name": "eq.triple",
+      "text": "≡"
+    },
+    {
+      "name": "eq.triple.not",
+      "text": "≢"
+    },
+    {
+      "name": "eq.quad",
+      "text": "≣"
+    },
+    {
+      "name": "gt",
+      "text": ">"
+    },
+    {
+      "name": "gt.o",
+      "text": "⧁"
+    },
+    {
+      "name": "gt.dot",
+      "text": "⋗"
+    },
+    {
+      "name": "gt.quest",
+      "text": "⩼"
+    },
+    {
+      "name": "gt.approx",
+      "text": "⪆"
+    },
+    {
+      "name": "gt.arc",
+      "text": "⪧"
+    },
+    {
+      "name": "gt.arc.eq",
+      "text": "⪩"
+    },
+    {
+      "name": "gt.closed",
+      "text": "⊳"
+    },
+    {
+      "name": "gt.closed.eq",
+      "text": "⊵"
+    },
+    {
+      "name": "gt.closed.eq.not",
+      "text": "⋭"
+    },
+    {
+      "name": "gt.closed.not",
+      "text": "⋫"
+    },
+    {
+      "name": "gt.double",
+      "text": "≫"
+    },
+    {
+      "name": "gt.double.nested",
+      "text": "⪢"
+    },
+    {
+      "name": "gt.eq",
+      "text": "≥"
+    },
+    {
+      "name": "gt.eq.slant",
+      "text": "⩾"
+    },
+    {
+      "name": "gt.eq.lt",
+      "text": "⋛"
+    },
+    {
+      "name": "gt.eq.not",
+      "text": "≱"
+    },
+    {
+      "name": "gt.equiv",
+      "text": "≧"
+    },
+    {
+      "name": "gt.lt",
+      "text": "≷"
+    },
+    {
+      "name": "gt.lt.not",
+      "text": "≹"
+    },
+    {
+      "name": "gt.neq",
+      "text": "⪈"
+    },
+    {
+      "name": "gt.napprox",
+      "text": "⪊"
+    },
+    {
+      "name": "gt.nequiv",
+      "text": "≩"
+    },
+    {
+      "name": "gt.not",
+      "text": "≯"
+    },
+    {
+      "name": "gt.ntilde",
+      "text": "⋧"
+    },
+    {
+      "name": "gt.tilde",
+      "text": "≳"
+    },
+    {
+      "name": "gt.tilde.not",
+      "text": "≵"
+    },
+    {
+      "name": "gt.triple",
+      "text": "⋙"
+    },
+    {
+      "name": "gt.triple.nested",
+      "text": "⫸"
+    },
+    {
+      "name": "lt",
+      "text": "<"
+    },
+    {
+      "name": "lt.o",
+      "text": "⧀"
+    },
+    {
+      "name": "lt.dot",
+      "text": "⋖"
+    },
+    {
+      "name": "lt.quest",
+      "text": "⩻"
+    },
+    {
+      "name": "lt.approx",
+      "text": "⪅"
+    },
+    {
+      "name": "lt.arc",
+      "text": "⪦"
+    },
+    {
+      "name": "lt.arc.eq",
+      "text": "⪨"
+    },
+    {
+      "name": "lt.closed",
+      "text": "⊲"
+    },
+    {
+      "name": "lt.closed.eq",
+      "text": "⊴"
+    },
+    {
+      "name": "lt.closed.eq.not",
+      "text": "⋬"
+    },
+    {
+      "name": "lt.closed.not",
+      "text": "⋪"
+    },
+    {
+      "name": "lt.double",
+      "text": "≪"
+    },
+    {
+      "name": "lt.double.nested",
+      "text": "⪡"
+    },
+    {
+      "name": "lt.eq",
+      "text": "≤"
+    },
+    {
+      "name": "lt.eq.slant",
+      "text": "⩽"
+    },
+    {
+      "name": "lt.eq.gt",
+      "text": "⋚"
+    },
+    {
+      "name": "lt.eq.not",
+      "text": "≰"
+    },
+    {
+      "name": "lt.equiv",
+      "text": "≦"
+    },
+    {
+      "name": "lt.gt",
+      "text": "≶"
+    },
+    {
+      "name": "lt.gt.not",
+      "text": "≸"
+    },
+    {
+      "name": "lt.neq",
+      "text": "⪇"
+    },
+    {
+      "name": "lt.napprox",
+      "text": "⪉"
+    },
+    {
+      "name": "lt.nequiv",
+      "text": "≨"
+    },
+    {
+      "name": "lt.not",
+      "text": "≮"
+    },
+    {
+      "name": "lt.ntilde",
+      "text": "⋦"
+    },
+    {
+      "name": "lt.tilde",
+      "text": "≲"
+    },
+    {
+      "name": "lt.tilde.not",
+      "text": "≴"
+    },
+    {
+      "name": "lt.triple",
+      "text": "⋘"
+    },
+    {
+      "name": "lt.triple.nested",
+      "text": "⫷"
+    },
+    {
+      "name": "approx",
+      "text": "≈"
+    },
+    {
+      "name": "approx.eq",
+      "text": "≊"
+    },
+    {
+      "name": "approx.not",
+      "text": "≉"
+    },
+    {
+      "name": "approx.hat",
+      "text": "⩯"
+    },
+    {
+      "name": "prec",
+      "text": "≺"
+    },
+    {
+      "name": "prec.approx",
+      "text": "⪷"
+    },
+    {
+      "name": "prec.curly.eq",
+      "text": "≼"
+    },
+    {
+      "name": "prec.curly.eq.not",
+      "text": "⋠"
+    },
+    {
+      "name": "prec.double",
+      "text": "⪻"
+    },
+    {
+      "name": "prec.eq",
+      "text": "⪯"
+    },
+    {
+      "name": "prec.equiv",
+      "text": "⪳"
+    },
+    {
+      "name": "prec.napprox",
+      "text": "⪹"
+    },
+    {
+      "name": "prec.neq",
+      "text": "⪱"
+    },
+    {
+      "name": "prec.nequiv",
+      "text": "⪵"
+    },
+    {
+      "name": "prec.not",
+      "text": "⊀"
+    },
+    {
+      "name": "prec.ntilde",
+      "text": "⋨"
+    },
+    {
+      "name": "prec.tilde",
+      "text": "≾"
+    },
+    {
+      "name": "succ",
+      "text": "≻"
+    },
+    {
+      "name": "succ.approx",
+      "text": "⪸"
+    },
+    {
+      "name": "succ.curly.eq",
+      "text": "≽"
+    },
+    {
+      "name": "succ.curly.eq.not",
+      "text": "⋡"
+    },
+    {
+      "name": "succ.double",
+      "text": "⪼"
+    },
+    {
+      "name": "succ.eq",
+      "text": "⪰"
+    },
+    {
+      "name": "succ.equiv",
+      "text": "⪴"
+    },
+    {
+      "name": "succ.napprox",
+      "text": "⪺"
+    },
+    {
+      "name": "succ.neq",
+      "text": "⪲"
+    },
+    {
+      "name": "succ.nequiv",
+      "text": "⪶"
+    },
+    {
+      "name": "succ.not",
+      "text": "⊁"
+    },
+    {
+      "name": "succ.ntilde",
+      "text": "⋩"
+    },
+    {
+      "name": "succ.tilde",
+      "text": "≿"
+    },
+    {
+      "name": "equiv",
+      "text": "≡"
+    },
+    {
+      "name": "equiv.not",
+      "text": "≢"
+    },
+    {
+      "name": "smt",
+      "text": "⪪"
+    },
+    {
+      "name": "smt.eq",
+      "text": "⪬"
+    },
+    {
+      "name": "lat",
+      "text": "⪫"
+    },
+    {
+      "name": "lat.eq",
+      "text": "⪭"
+    },
+    {
+      "name": "prop",
+      "text": "∝"
+    },
+    {
+      "name": "original",
+      "text": "⊶"
+    },
+    {
+      "name": "image",
+      "text": "⊷"
+    },
+    {
+      "name": "asymp",
+      "text": "≍"
+    },
+    {
+      "name": "asymp.not",
+      "text": "≭"
+    },
+    {
+      "name": "emptyset",
+      "text": "∅"
+    },
+    {
+      "name": "emptyset.zero",
+      "text": "∅︀"
+    },
+    {
+      "name": "emptyset.arrow.r",
+      "text": "⦳"
+    },
+    {
+      "name": "emptyset.arrow.l",
+      "text": "⦴"
+    },
+    {
+      "name": "emptyset.bar",
+      "text": "⦱"
+    },
+    {
+      "name": "emptyset.circle",
+      "text": "⦲"
+    },
+    {
+      "name": "emptyset.rev",
+      "text": "⦰"
+    },
+    {
+      "name": "nothing",
+      "text": "∅"
+    },
+    {
+      "name": "nothing.zero",
+      "text": "∅︀"
+    },
+    {
+      "name": "nothing.arrow.r",
+      "text": "⦳"
+    },
+    {
+      "name": "nothing.arrow.l",
+      "text": "⦴"
+    },
+    {
+      "name": "nothing.bar",
+      "text": "⦱"
+    },
+    {
+      "name": "nothing.circle",
+      "text": "⦲"
+    },
+    {
+      "name": "nothing.rev",
+      "text": "⦰"
+    },
+    {
+      "name": "without",
+      "text": "∖"
+    },
+    {
+      "name": "complement",
+      "text": "∁"
+    },
+    {
+      "name": "in",
+      "text": "∈"
+    },
+    {
+      "name": "in.not",
+      "text": "∉"
+    },
+    {
+      "name": "in.rev",
+      "text": "∋"
+    },
+    {
+      "name": "in.rev.not",
+      "text": "∌"
+    },
+    {
+      "name": "in.rev.small",
+      "text": "∍"
+    },
+    {
+      "name": "in.small",
+      "text": "∊"
+    },
+    {
+      "name": "subset",
+      "text": "⊂"
+    },
+    {
+      "name": "subset.approx",
+      "text": "⫉"
+    },
+    {
+      "name": "subset.closed",
+      "text": "⫏"
+    },
+    {
+      "name": "subset.closed.eq",
+      "text": "⫑"
+    },
+    {
+      "name": "subset.dot",
+      "text": "⪽"
+    },
+    {
+      "name": "subset.double",
+      "text": "⋐"
+    },
+    {
+      "name": "subset.eq",
+      "text": "⊆"
+    },
+    {
+      "name": "subset.eq.dot",
+      "text": "⫃"
+    },
+    {
+      "name": "subset.eq.not",
+      "text": "⊈"
+    },
+    {
+      "name": "subset.eq.sq",
+      "text": "⊑"
+    },
+    {
+      "name": "subset.eq.sq.not",
+      "text": "⋢"
+    },
+    {
+      "name": "subset.equiv",
+      "text": "⫅"
+    },
+    {
+      "name": "subset.neq",
+      "text": "⊊"
+    },
+    {
+      "name": "subset.nequiv",
+      "text": "⫋"
+    },
+    {
+      "name": "subset.not",
+      "text": "⊄"
+    },
+    {
+      "name": "subset.plus",
+      "text": "⪿"
+    },
+    {
+      "name": "subset.sq",
+      "text": "⊏"
+    },
+    {
+      "name": "subset.sq.neq",
+      "text": "⋤"
+    },
+    {
+      "name": "subset.tilde",
+      "text": "⫇"
+    },
+    {
+      "name": "subset.times",
+      "text": "⫁"
+    },
+    {
+      "name": "supset",
+      "text": "⊃"
+    },
+    {
+      "name": "supset.approx",
+      "text": "⫊"
+    },
+    {
+      "name": "supset.closed",
+      "text": "⫐"
+    },
+    {
+      "name": "supset.closed.eq",
+      "text": "⫒"
+    },
+    {
+      "name": "supset.dot",
+      "text": "⪾"
+    },
+    {
+      "name": "supset.double",
+      "text": "⋑"
+    },
+    {
+      "name": "supset.eq",
+      "text": "⊇"
+    },
+    {
+      "name": "supset.eq.dot",
+      "text": "⫄"
+    },
+    {
+      "name": "supset.eq.not",
+      "text": "⊉"
+    },
+    {
+      "name": "supset.eq.sq",
+      "text": "⊒"
+    },
+    {
+      "name": "supset.eq.sq.not",
+      "text": "⋣"
+    },
+    {
+      "name": "supset.equiv",
+      "text": "⫆"
+    },
+    {
+      "name": "supset.neq",
+      "text": "⊋"
+    },
+    {
+      "name": "supset.nequiv",
+      "text": "⫌"
+    },
+    {
+      "name": "supset.not",
+      "text": "⊅"
+    },
+    {
+      "name": "supset.plus",
+      "text": "⫀"
+    },
+    {
+      "name": "supset.sq",
+      "text": "⊐"
+    },
+    {
+      "name": "supset.sq.neq",
+      "text": "⋥"
+    },
+    {
+      "name": "supset.tilde",
+      "text": "⫈"
+    },
+    {
+      "name": "supset.times",
+      "text": "⫂"
+    },
+    {
+      "name": "union",
+      "text": "∪"
+    },
+    {
+      "name": "union.serif",
+      "text": "∪︀"
+    },
+    {
+      "name": "union.arrow",
+      "text": "⊌"
+    },
+    {
+      "name": "union.big",
+      "text": "⋃"
+    },
+    {
+      "name": "union.dot",
+      "text": "⊍"
+    },
+    {
+      "name": "union.dot.big",
+      "text": "⨃"
+    },
+    {
+      "name": "union.double",
+      "text": "⋓"
+    },
+    {
+      "name": "union.minus",
+      "text": "⩁"
+    },
+    {
+      "name": "union.or",
+      "text": "⩅"
+    },
+    {
+      "name": "union.plus",
+      "text": "⊎"
+    },
+    {
+      "name": "union.plus.big",
+      "text": "⨄"
+    },
+    {
+      "name": "union.sq",
+      "text": "⊔"
+    },
+    {
+      "name": "union.sq.serif",
+      "text": "⊔︀"
+    },
+    {
+      "name": "union.sq.big",
+      "text": "⨆"
+    },
+    {
+      "name": "union.sq.double",
+      "text": "⩏"
+    },
+    {
+      "name": "inter",
+      "text": "∩"
+    },
+    {
+      "name": "inter.serif",
+      "text": "∩︀"
+    },
+    {
+      "name": "inter.and",
+      "text": "⩄"
+    },
+    {
+      "name": "inter.big",
+      "text": "⋂"
+    },
+    {
+      "name": "inter.dot",
+      "text": "⩀"
+    },
+    {
+      "name": "inter.double",
+      "text": "⋒"
+    },
+    {
+      "name": "inter.sq",
+      "text": "⊓"
+    },
+    {
+      "name": "inter.sq.serif",
+      "text": "⊓︀"
+    },
+    {
+      "name": "inter.sq.big",
+      "text": "⨅"
+    },
+    {
+      "name": "inter.sq.double",
+      "text": "⩎"
+    },
+    {
+      "name": "infinity",
+      "text": "∞"
+    },
+    {
+      "name": "infinity.bar",
+      "text": "⧞"
+    },
+    {
+      "name": "infinity.incomplete",
+      "text": "⧜"
+    },
+    {
+      "name": "infinity.tie",
+      "text": "⧝"
+    },
+    {
+      "name": "oo",
+      "text": "∞"
+    },
+    {
+      "name": "partial",
+      "text": "∂"
+    },
+    {
+      "name": "gradient",
+      "text": "∇"
+    },
+    {
+      "name": "nabla",
+      "text": "∇"
+    },
+    {
+      "name": "sum",
+      "text": "∑"
+    },
+    {
+      "name": "sum.integral",
+      "text": "⨋"
+    },
+    {
+      "name": "product",
+      "text": "∏"
+    },
+    {
+      "name": "product.co",
+      "text": "∐"
+    },
+    {
+      "name": "integral",
+      "text": "∫"
+    },
+    {
+      "name": "integral.arrow.hook",
+      "text": "⨗"
+    },
+    {
+      "name": "integral.ccw",
+      "text": "⨑"
+    },
+    {
+      "name": "integral.cont",
+      "text": "∮"
+    },
+    {
+      "name": "integral.cont.ccw",
+      "text": "∳"
+    },
+    {
+      "name": "integral.cont.cw",
+      "text": "∲"
+    },
+    {
+      "name": "integral.cw",
+      "text": "∱"
+    },
+    {
+      "name": "integral.dash",
+      "text": "⨍"
+    },
+    {
+      "name": "integral.dash.double",
+      "text": "⨎"
+    },
+    {
+      "name": "integral.double",
+      "text": "∬"
+    },
+    {
+      "name": "integral.quad",
+      "text": "⨌"
+    },
+    {
+      "name": "integral.inter",
+      "text": "⨙"
+    },
+    {
+      "name": "integral.slash",
+      "text": "⨏"
+    },
+    {
+      "name": "integral.square",
+      "text": "⨖"
+    },
+    {
+      "name": "integral.surf",
+      "text": "∯"
+    },
+    {
+      "name": "integral.times",
+      "text": "⨘"
+    },
+    {
+      "name": "integral.triple",
+      "text": "∭"
+    },
+    {
+      "name": "integral.union",
+      "text": "⨚"
+    },
+    {
+      "name": "integral.vol",
+      "text": "∰"
+    },
+    {
+      "name": "laplace",
+      "text": "∆"
+    },
+    {
+      "name": "forall",
+      "text": "∀"
+    },
+    {
+      "name": "exists",
+      "text": "∃"
+    },
+    {
+      "name": "exists.not",
+      "text": "∄"
+    },
+    {
+      "name": "top",
+      "text": "⊤"
+    },
+    {
+      "name": "bot",
+      "text": "⊥"
+    },
+    {
+      "name": "not",
+      "text": "¬"
+    },
+    {
+      "name": "and",
+      "text": "∧"
+    },
+    {
+      "name": "and.big",
+      "text": "⋀"
+    },
+    {
+      "name": "and.curly",
+      "text": "⋏"
+    },
+    {
+      "name": "and.dot",
+      "text": "⟑"
+    },
+    {
+      "name": "and.double",
+      "text": "⩓"
+    },
+    {
+      "name": "or",
+      "text": "∨"
+    },
+    {
+      "name": "or.big",
+      "text": "⋁"
+    },
+    {
+      "name": "or.curly",
+      "text": "⋎"
+    },
+    {
+      "name": "or.dot",
+      "text": "⟇"
+    },
+    {
+      "name": "or.double",
+      "text": "⩔"
+    },
+    {
+      "name": "xor",
+      "text": "⊕"
+    },
+    {
+      "name": "xor.big",
+      "text": "⨁"
+    },
+    {
+      "name": "models",
+      "text": "⊧"
+    },
+    {
+      "name": "forces",
+      "text": "⊩"
+    },
+    {
+      "name": "forces.not",
+      "text": "⊮"
+    },
+    {
+      "name": "therefore",
+      "text": "∴"
+    },
+    {
+      "name": "because",
+      "text": "∵"
+    },
+    {
+      "name": "qed",
+      "text": "∎"
+    },
+    {
+      "name": "mapsto",
+      "text": "↦"
+    },
+    {
+      "name": "mapsto.long",
+      "text": "⟼"
+    },
+    {
+      "name": "mapsfrom",
+      "text": "↤"
+    },
+    {
+      "name": "mapsfrom.long",
+      "text": "⟻"
+    },
+    {
+      "name": "compose",
+      "text": "∘"
+    },
+    {
+      "name": "compose.o",
+      "text": "⊚"
+    },
+    {
+      "name": "convolve",
+      "text": "∗"
+    },
+    {
+      "name": "convolve.o",
+      "text": "⊛"
+    },
+    {
+      "name": "multimap",
+      "text": "⊸"
+    },
+    {
+      "name": "multimap.double",
+      "text": "⧟"
+    },
+    {
+      "name": "tiny",
+      "text": "⧾"
+    },
+    {
+      "name": "miny",
+      "text": "⧿"
+    },
+    {
+      "name": "divides",
+      "text": "∣"
+    },
+    {
+      "name": "divides.not",
+      "text": "∤"
+    },
+    {
+      "name": "divides.not.rev",
+      "text": "⫮"
+    },
+    {
+      "name": "divides.struck",
+      "text": "⟊"
+    },
+    {
+      "name": "wreath",
+      "text": "≀"
+    },
+    {
+      "name": "angle",
+      "text": "∠"
+    },
+    {
+      "name": "angle.acute",
+      "text": "⦟"
+    },
+    {
+      "name": "angle.arc",
+      "text": "∡"
+    },
+    {
+      "name": "angle.arc.rev",
+      "text": "⦛"
+    },
+    {
+      "name": "angle.azimuth",
+      "text": "⍼"
+    },
+    {
+      "name": "angle.obtuse",
+      "text": "⦦"
+    },
+    {
+      "name": "angle.rev",
+      "text": "⦣"
+    },
+    {
+      "name": "angle.right",
+      "text": "∟"
+    },
+    {
+      "name": "angle.right.rev",
+      "text": "⯾"
+    },
+    {
+      "name": "angle.right.arc",
+      "text": "⊾"
+    },
+    {
+      "name": "angle.right.dot",
+      "text": "⦝"
+    },
+    {
+      "name": "angle.right.square",
+      "text": "⦜"
+    },
+    {
+      "name": "angle.s",
+      "text": "⦞"
+    },
+    {
+      "name": "angle.spatial",
+      "text": "⟀"
+    },
+    {
+      "name": "angle.spheric",
+      "text": "∢"
+    },
+    {
+      "name": "angle.spheric.rev",
+      "text": "⦠"
+    },
+    {
+      "name": "angle.spheric.t",
+      "text": "⦡"
+    },
+    {
+      "name": "angzarr",
+      "text": "⍼"
+    },
+    {
+      "name": "parallel",
+      "text": "∥"
+    },
+    {
+      "name": "parallel.struck",
+      "text": "⫲"
+    },
+    {
+      "name": "parallel.o",
+      "text": "⦷"
+    },
+    {
+      "name": "parallel.eq",
+      "text": "⋕"
+    },
+    {
+      "name": "parallel.equiv",
+      "text": "⩨"
+    },
+    {
+      "name": "parallel.not",
+      "text": "∦"
+    },
+    {
+      "name": "parallel.slanted.eq",
+      "text": "⧣"
+    },
+    {
+      "name": "parallel.slanted.eq.tilde",
+      "text": "⧤"
+    },
+    {
+      "name": "parallel.slanted.equiv",
+      "text": "⧥"
+    },
+    {
+      "name": "parallel.tilde",
+      "text": "⫳"
+    },
+    {
+      "name": "perp",
+      "text": "⟂"
+    },
+    {
+      "name": "perp.o",
+      "text": "⦹"
+    },
+    {
+      "name": "earth",
+      "text": "🜨"
+    },
+    {
+      "name": "earth.alt",
+      "text": "♁"
+    },
+    {
+      "name": "jupiter",
+      "text": "♃"
+    },
+    {
+      "name": "mars",
+      "text": "♂︎"
+    },
+    {
+      "name": "mercury",
+      "text": "☿"
+    },
+    {
+      "name": "neptune",
+      "text": "♆"
+    },
+    {
+      "name": "neptune.alt",
+      "text": "⯉"
+    },
+    {
+      "name": "saturn",
+      "text": "♄"
+    },
+    {
+      "name": "sun",
+      "text": "☉"
+    },
+    {
+      "name": "uranus",
+      "text": "⛢"
+    },
+    {
+      "name": "uranus.alt",
+      "text": "♅"
+    },
+    {
+      "name": "venus",
+      "text": "♀︎"
+    },
+    {
+      "name": "diameter",
+      "text": "⌀"
+    },
+    {
+      "name": "interleave",
+      "text": "⫴"
+    },
+    {
+      "name": "interleave.big",
+      "text": "⫼"
+    },
+    {
+      "name": "interleave.struck",
+      "text": "⫵"
+    },
+    {
+      "name": "bowtie.stroked",
+      "text": "⋈"
+    },
+    {
+      "name": "bowtie.stroked.big",
+      "text": "⨝"
+    },
+    {
+      "name": "bowtie.stroked.big.l",
+      "text": "⟕"
+    },
+    {
+      "name": "bowtie.stroked.big.r",
+      "text": "⟖"
+    },
+    {
+      "name": "bowtie.stroked.big.l.r",
+      "text": "⟗"
+    },
+    {
+      "name": "bowtie.filled",
+      "text": "⧓"
+    },
+    {
+      "name": "bowtie.filled.l",
+      "text": "⧑"
+    },
+    {
+      "name": "bowtie.filled.r",
+      "text": "⧒"
+    },
+    {
+      "name": "hourglass.stroked",
+      "text": "⧖"
+    },
+    {
+      "name": "hourglass.filled",
+      "text": "⧗"
+    },
+    {
+      "name": "degree",
+      "text": "°"
+    },
+    {
+      "name": "smash",
+      "text": "⨳"
+    },
+    {
+      "name": "power.standby",
+      "text": "⏻"
+    },
+    {
+      "name": "power.on",
+      "text": "⏽"
+    },
+    {
+      "name": "power.off",
+      "text": "⭘"
+    },
+    {
+      "name": "power.on.off",
+      "text": "⏼"
+    },
+    {
+      "name": "power.sleep",
+      "text": "⏾"
+    },
+    {
+      "name": "smile",
+      "text": "⌣"
+    },
+    {
+      "name": "frown",
+      "text": "⌢"
+    },
+    {
+      "name": "afghani",
+      "text": "؋"
+    },
+    {
+      "name": "baht",
+      "text": "฿"
+    },
+    {
+      "name": "bitcoin",
+      "text": "₿"
+    },
+    {
+      "name": "cedi",
+      "text": "₵"
+    },
+    {
+      "name": "cent",
+      "text": "¢"
+    },
+    {
+      "name": "currency",
+      "text": "¤"
+    },
+    {
+      "name": "dollar",
+      "text": "$"
+    },
+    {
+      "name": "dong",
+      "text": "₫"
+    },
+    {
+      "name": "dorome",
+      "text": "߾"
+    },
+    {
+      "name": "dram",
+      "text": "֏"
+    },
+    {
+      "name": "euro",
+      "text": "€"
+    },
+    {
+      "name": "guarani",
+      "text": "₲"
+    },
+    {
+      "name": "hryvnia",
+      "text": "₴"
+    },
+    {
+      "name": "kip",
+      "text": "₭"
+    },
+    {
+      "name": "lari",
+      "text": "₾"
+    },
+    {
+      "name": "lira",
+      "text": "₺"
+    },
+    {
+      "name": "manat",
+      "text": "₼"
+    },
+    {
+      "name": "naira",
+      "text": "₦"
+    },
+    {
+      "name": "pataca",
+      "text": "$"
+    },
+    {
+      "name": "peso",
+      "text": "$"
+    },
+    {
+      "name": "peso.philippine",
+      "text": "₱"
+    },
+    {
+      "name": "pound",
+      "text": "£"
+    },
+    {
+      "name": "riel",
+      "text": "៛"
+    },
+    {
+      "name": "riyal",
+      "text": "⃁"
+    },
+    {
+      "name": "ruble",
+      "text": "₽"
+    },
+    {
+      "name": "rupee.indian",
+      "text": "₹"
+    },
+    {
+      "name": "rupee.generic",
+      "text": "₨"
+    },
+    {
+      "name": "rupee.tamil",
+      "text": "௹"
+    },
+    {
+      "name": "rupee.wancho",
+      "text": "𞋿"
+    },
+    {
+      "name": "shekel",
+      "text": "₪"
+    },
+    {
+      "name": "som",
+      "text": "⃀"
+    },
+    {
+      "name": "taka",
+      "text": "৳"
+    },
+    {
+      "name": "taman",
+      "text": "߿"
+    },
+    {
+      "name": "tenge",
+      "text": "₸"
+    },
+    {
+      "name": "togrog",
+      "text": "₮"
+    },
+    {
+      "name": "won",
+      "text": "₩"
+    },
+    {
+      "name": "yen",
+      "text": "¥"
+    },
+    {
+      "name": "yuan",
+      "text": "¥"
+    },
+    {
+      "name": "ballot",
+      "text": "☐"
+    },
+    {
+      "name": "ballot.cross",
+      "text": "☒"
+    },
+    {
+      "name": "ballot.check",
+      "text": "☑︎"
+    },
+    {
+      "name": "ballot.check.heavy",
+      "text": "🗹"
+    },
+    {
+      "name": "checkmark",
+      "text": "✓"
+    },
+    {
+      "name": "checkmark.light",
+      "text": "🗸"
+    },
+    {
+      "name": "checkmark.heavy",
+      "text": "✔︎"
+    },
+    {
+      "name": "crossmark",
+      "text": "✗"
+    },
+    {
+      "name": "crossmark.heavy",
+      "text": "✘"
+    },
+    {
+      "name": "floral",
+      "text": "❦"
+    },
+    {
+      "name": "floral.l",
+      "text": "☙"
+    },
+    {
+      "name": "floral.r",
+      "text": "❧"
+    },
+    {
+      "name": "refmark",
+      "text": "※"
+    },
+    {
+      "name": "cc",
+      "text": "🅭"
+    },
+    {
+      "name": "cc.by",
+      "text": "🅯"
+    },
+    {
+      "name": "cc.nc",
+      "text": "🄏"
+    },
+    {
+      "name": "cc.nd",
+      "text": "⊜"
+    },
+    {
+      "name": "cc.public",
+      "text": "🅮"
+    },
+    {
+      "name": "cc.sa",
+      "text": "🄎"
+    },
+    {
+      "name": "cc.zero",
+      "text": "🄍"
+    },
+    {
+      "name": "copyright",
+      "text": "©︎"
+    },
+    {
+      "name": "copyright.sound",
+      "text": "℗"
+    },
+    {
+      "name": "copyleft",
+      "text": "🄯"
+    },
+    {
+      "name": "trademark",
+      "text": "™︎"
+    },
+    {
+      "name": "trademark.registered",
+      "text": "®︎"
+    },
+    {
+      "name": "trademark.service",
+      "text": "℠"
+    },
+    {
+      "name": "maltese",
+      "text": "✠"
+    },
+    {
+      "name": "suit.club.filled",
+      "text": "♣︎"
+    },
+    {
+      "name": "suit.club.stroked",
+      "text": "♧"
+    },
+    {
+      "name": "suit.diamond.filled",
+      "text": "♦︎"
+    },
+    {
+      "name": "suit.diamond.stroked",
+      "text": "♢"
+    },
+    {
+      "name": "suit.heart.filled",
+      "text": "♥︎"
+    },
+    {
+      "name": "suit.heart.stroked",
+      "text": "♡"
+    },
+    {
+      "name": "suit.spade.filled",
+      "text": "♠︎"
+    },
+    {
+      "name": "suit.spade.stroked",
+      "text": "♤"
+    },
+    {
+      "name": "chess.king.white",
+      "text": "♔"
+    },
+    {
+      "name": "chess.king.black",
+      "text": "♚"
+    },
+    {
+      "name": "chess.queen.white",
+      "text": "♕"
+    },
+    {
+      "name": "chess.queen.black",
+      "text": "♛"
+    },
+    {
+      "name": "chess.rook.white",
+      "text": "♖"
+    },
+    {
+      "name": "chess.rook.black",
+      "text": "♜"
+    },
+    {
+      "name": "chess.bishop.white",
+      "text": "♗"
+    },
+    {
+      "name": "chess.bishop.black",
+      "text": "♝"
+    },
+    {
+      "name": "chess.knight.white",
+      "text": "♘"
+    },
+    {
+      "name": "chess.knight.black",
+      "text": "♞"
+    },
+    {
+      "name": "chess.pawn.white",
+      "text": "♙"
+    },
+    {
+      "name": "chess.pawn.black",
+      "text": "♟︎"
+    },
+    {
+      "name": "note.up",
+      "text": "🎜"
+    },
+    {
+      "name": "note.down",
+      "text": "🎝"
+    },
+    {
+      "name": "note.whole",
+      "text": "𝅝"
+    },
+    {
+      "name": "note.half",
+      "text": "𝅗𝅥"
+    },
+    {
+      "name": "note.quarter",
+      "text": "𝅘𝅥"
+    },
+    {
+      "name": "note.quarter.alt",
+      "text": "♩"
+    },
+    {
+      "name": "note.eighth",
+      "text": "𝅘𝅥𝅮"
+    },
+    {
+      "name": "note.eighth.alt",
+      "text": "♪"
+    },
+    {
+      "name": "note.eighth.beamed",
+      "text": "♫"
+    },
+    {
+      "name": "note.sixteenth",
+      "text": "𝅘𝅥𝅯"
+    },
+    {
+      "name": "note.sixteenth.beamed",
+      "text": "♬"
+    },
+    {
+      "name": "note.grace",
+      "text": "𝆕"
+    },
+    {
+      "name": "note.grace.slash",
+      "text": "𝆔"
+    },
+    {
+      "name": "rest.whole",
+      "text": "𝄻"
+    },
+    {
+      "name": "rest.multiple",
+      "text": "𝄺"
+    },
+    {
+      "name": "rest.multiple.measure",
+      "text": "𝄩"
+    },
+    {
+      "name": "rest.half",
+      "text": "𝄼"
+    },
+    {
+      "name": "rest.quarter",
+      "text": "𝄽"
+    },
+    {
+      "name": "rest.eighth",
+      "text": "𝄾"
+    },
+    {
+      "name": "rest.sixteenth",
+      "text": "𝄿"
+    },
+    {
+      "name": "natural",
+      "text": "♮"
+    },
+    {
+      "name": "natural.t",
+      "text": "𝄮"
+    },
+    {
+      "name": "natural.b",
+      "text": "𝄯"
+    },
+    {
+      "name": "flat",
+      "text": "♭"
+    },
+    {
+      "name": "flat.t",
+      "text": "𝄬"
+    },
+    {
+      "name": "flat.b",
+      "text": "𝄭"
+    },
+    {
+      "name": "flat.double",
+      "text": "𝄫"
+    },
+    {
+      "name": "flat.quarter",
+      "text": "𝄳"
+    },
+    {
+      "name": "sharp",
+      "text": "♯"
+    },
+    {
+      "name": "sharp.t",
+      "text": "𝄰"
+    },
+    {
+      "name": "sharp.b",
+      "text": "𝄱"
+    },
+    {
+      "name": "sharp.double",
+      "text": "𝄪"
+    },
+    {
+      "name": "sharp.quarter",
+      "text": "𝄲"
+    },
+    {
+      "name": "bullet",
+      "text": "•"
+    },
+    {
+      "name": "bullet.op",
+      "text": "∙"
+    },
+    {
+      "name": "bullet.o",
+      "text": "⦿"
+    },
+    {
+      "name": "bullet.stroked",
+      "text": "◦"
+    },
+    {
+      "name": "bullet.stroked.o",
+      "text": "⦾"
+    },
+    {
+      "name": "bullet.hole",
+      "text": "◘"
+    },
+    {
+      "name": "bullet.hyph",
+      "text": "⁃"
+    },
+    {
+      "name": "bullet.tri",
+      "text": "‣"
+    },
+    {
+      "name": "bullet.l",
+      "text": "⁌"
+    },
+    {
+      "name": "bullet.r",
+      "text": "⁍"
+    },
+    {
+      "name": "circle.stroked",
+      "text": "○"
+    },
+    {
+      "name": "circle.stroked.tiny",
+      "text": "∘"
+    },
+    {
+      "name": "circle.stroked.small",
+      "text": "⚬"
+    },
+    {
+      "name": "circle.stroked.big",
+      "text": "◯"
+    },
+    {
+      "name": "circle.filled",
+      "text": "●"
+    },
+    {
+      "name": "circle.filled.tiny",
+      "text": "⦁"
+    },
+    {
+      "name": "circle.filled.small",
+      "text": "∙"
+    },
+    {
+      "name": "circle.filled.big",
+      "text": "⬤"
+    },
+    {
+      "name": "circle.dotted",
+      "text": "◌"
+    },
+    {
+      "name": "ellipse.stroked.h",
+      "text": "⬭"
+    },
+    {
+      "name": "ellipse.stroked.v",
+      "text": "⬯"
+    },
+    {
+      "name": "ellipse.filled.h",
+      "text": "⬬"
+    },
+    {
+      "name": "ellipse.filled.v",
+      "text": "⬮"
+    },
+    {
+      "name": "triangle.stroked.t",
+      "text": "△"
+    },
+    {
+      "name": "triangle.stroked.b",
+      "text": "▽"
+    },
+    {
+      "name": "triangle.stroked.r",
+      "text": "▷"
+    },
+    {
+      "name": "triangle.stroked.l",
+      "text": "◁"
+    },
+    {
+      "name": "triangle.stroked.bl",
+      "text": "◺"
+    },
+    {
+      "name": "triangle.stroked.br",
+      "text": "◿"
+    },
+    {
+      "name": "triangle.stroked.tl",
+      "text": "◸"
+    },
+    {
+      "name": "triangle.stroked.tr",
+      "text": "◹"
+    },
+    {
+      "name": "triangle.stroked.small.t",
+      "text": "▵"
+    },
+    {
+      "name": "triangle.stroked.small.b",
+      "text": "▿"
+    },
+    {
+      "name": "triangle.stroked.small.r",
+      "text": "▹"
+    },
+    {
+      "name": "triangle.stroked.small.l",
+      "text": "◃"
+    },
+    {
+      "name": "triangle.stroked.rounded",
+      "text": "🛆"
+    },
+    {
+      "name": "triangle.stroked.nested",
+      "text": "⟁"
+    },
+    {
+      "name": "triangle.stroked.dot",
+      "text": "◬"
+    },
+    {
+      "name": "triangle.filled.t",
+      "text": "▲"
+    },
+    {
+      "name": "triangle.filled.b",
+      "text": "▼"
+    },
+    {
+      "name": "triangle.filled.r",
+      "text": "▶︎"
+    },
+    {
+      "name": "triangle.filled.l",
+      "text": "◀︎"
+    },
+    {
+      "name": "triangle.filled.bl",
+      "text": "◣"
+    },
+    {
+      "name": "triangle.filled.br",
+      "text": "◢"
+    },
+    {
+      "name": "triangle.filled.tl",
+      "text": "◤"
+    },
+    {
+      "name": "triangle.filled.tr",
+      "text": "◥"
+    },
+    {
+      "name": "triangle.filled.small.t",
+      "text": "▴"
+    },
+    {
+      "name": "triangle.filled.small.b",
+      "text": "▾"
+    },
+    {
+      "name": "triangle.filled.small.r",
+      "text": "▸"
+    },
+    {
+      "name": "triangle.filled.small.l",
+      "text": "◂"
+    },
+    {
+      "name": "square.stroked",
+      "text": "□"
+    },
+    {
+      "name": "square.stroked.tiny",
+      "text": "▫︎"
+    },
+    {
+      "name": "square.stroked.small",
+      "text": "◽︎"
+    },
+    {
+      "name": "square.stroked.medium",
+      "text": "◻︎"
+    },
+    {
+      "name": "square.stroked.big",
+      "text": "⬜︎"
+    },
+    {
+      "name": "square.stroked.dotted",
+      "text": "⬚"
+    },
+    {
+      "name": "square.stroked.rounded",
+      "text": "▢"
+    },
+    {
+      "name": "square.filled",
+      "text": "■"
+    },
+    {
+      "name": "square.filled.tiny",
+      "text": "▪︎"
+    },
+    {
+      "name": "square.filled.small",
+      "text": "◾︎"
+    },
+    {
+      "name": "square.filled.medium",
+      "text": "◼︎"
+    },
+    {
+      "name": "square.filled.big",
+      "text": "⬛︎"
+    },
+    {
+      "name": "rect.stroked.h",
+      "text": "▭"
+    },
+    {
+      "name": "rect.stroked.v",
+      "text": "▯"
+    },
+    {
+      "name": "rect.filled.h",
+      "text": "▬"
+    },
+    {
+      "name": "rect.filled.v",
+      "text": "▮"
+    },
+    {
+      "name": "penta.stroked",
+      "text": "⬠"
+    },
+    {
+      "name": "penta.filled",
+      "text": "⬟"
+    },
+    {
+      "name": "hexa.stroked",
+      "text": "⬡"
+    },
+    {
+      "name": "hexa.filled",
+      "text": "⬢"
+    },
+    {
+      "name": "diamond.stroked",
+      "text": "◇"
+    },
+    {
+      "name": "diamond.stroked.small",
+      "text": "⋄"
+    },
+    {
+      "name": "diamond.stroked.medium",
+      "text": "⬦"
+    },
+    {
+      "name": "diamond.stroked.dot",
+      "text": "⟐"
+    },
+    {
+      "name": "diamond.filled",
+      "text": "◆"
+    },
+    {
+      "name": "diamond.filled.medium",
+      "text": "⬥"
+    },
+    {
+      "name": "diamond.filled.small",
+      "text": "⬩"
+    },
+    {
+      "name": "lozenge.stroked",
+      "text": "◊"
+    },
+    {
+      "name": "lozenge.stroked.small",
+      "text": "⬫"
+    },
+    {
+      "name": "lozenge.stroked.medium",
+      "text": "⬨"
+    },
+    {
+      "name": "lozenge.filled",
+      "text": "⧫"
+    },
+    {
+      "name": "lozenge.filled.small",
+      "text": "⬪"
+    },
+    {
+      "name": "lozenge.filled.medium",
+      "text": "⬧"
+    },
+    {
+      "name": "parallelogram.stroked",
+      "text": "▱"
+    },
+    {
+      "name": "parallelogram.filled",
+      "text": "▰"
+    },
+    {
+      "name": "star.op",
+      "text": "⋆"
+    },
+    {
+      "name": "star.stroked",
+      "text": "☆"
+    },
+    {
+      "name": "star.filled",
+      "text": "★"
+    },
+    {
+      "name": "arrow.r",
+      "text": "→"
+    },
+    {
+      "name": "arrow.r.long.bar",
+      "text": "⟼"
+    },
+    {
+      "name": "arrow.r.bar",
+      "text": "↦"
+    },
+    {
+      "name": "arrow.r.curve",
+      "text": "⤷"
+    },
+    {
+      "name": "arrow.r.turn",
+      "text": "⮎"
+    },
+    {
+      "name": "arrow.r.dashed",
+      "text": "⇢"
+    },
+    {
+      "name": "arrow.r.dotted",
+      "text": "⤑"
+    },
+    {
+      "name": "arrow.r.double",
+      "text": "⇒"
+    },
+    {
+      "name": "arrow.r.double.bar",
+      "text": "⤇"
+    },
+    {
+      "name": "arrow.r.double.long",
+      "text": "⟹"
+    },
+    {
+      "name": "arrow.r.double.long.bar",
+      "text": "⟾"
+    },
+    {
+      "name": "arrow.r.double.not",
+      "text": "⇏"
+    },
+    {
+      "name": "arrow.r.double.struck",
+      "text": "⤃"
+    },
+    {
+      "name": "arrow.r.filled",
+      "text": "➡︎"
+    },
+    {
+      "name": "arrow.r.hook",
+      "text": "↪︎"
+    },
+    {
+      "name": "arrow.r.long",
+      "text": "⟶"
+    },
+    {
+      "name": "arrow.r.long.squiggly",
+      "text": "⟿"
+    },
+    {
+      "name": "arrow.r.loop",
+      "text": "↬"
+    },
+    {
+      "name": "arrow.r.not",
+      "text": "↛"
+    },
+    {
+      "name": "arrow.r.quad",
+      "text": "⭆"
+    },
+    {
+      "name": "arrow.r.squiggly",
+      "text": "⇝"
+    },
+    {
+      "name": "arrow.r.stop",
+      "text": "⇥"
+    },
+    {
+      "name": "arrow.r.stroked",
+      "text": "⇨"
+    },
+    {
+      "name": "arrow.r.struck",
+      "text": "⇸"
+    },
+    {
+      "name": "arrow.r.dstruck",
+      "text": "⇻"
+    },
+    {
+      "name": "arrow.r.tail",
+      "text": "↣"
+    },
+    {
+      "name": "arrow.r.tail.struck",
+      "text": "⤔"
+    },
+    {
+      "name": "arrow.r.tail.dstruck",
+      "text": "⤕"
+    },
+    {
+      "name": "arrow.r.tilde",
+      "text": "⥲"
+    },
+    {
+      "name": "arrow.r.triple",
+      "text": "⇛"
+    },
+    {
+      "name": "arrow.r.twohead",
+      "text": "↠"
+    },
+    {
+      "name": "arrow.r.twohead.bar",
+      "text": "⤅"
+    },
+    {
+      "name": "arrow.r.twohead.struck",
+      "text": "⤀"
+    },
+    {
+      "name": "arrow.r.twohead.dstruck",
+      "text": "⤁"
+    },
+    {
+      "name": "arrow.r.twohead.tail",
+      "text": "⤖"
+    },
+    {
+      "name": "arrow.r.twohead.tail.struck",
+      "text": "⤗"
+    },
+    {
+      "name": "arrow.r.twohead.tail.dstruck",
+      "text": "⤘"
+    },
+    {
+      "name": "arrow.r.open",
+      "text": "⇾"
+    },
+    {
+      "name": "arrow.r.wave",
+      "text": "↝"
+    },
+    {
+      "name": "arrow.l",
+      "text": "←"
+    },
+    {
+      "name": "arrow.l.bar",
+      "text": "↤"
+    },
+    {
+      "name": "arrow.l.curve",
+      "text": "⤶"
+    },
+    {
+      "name": "arrow.l.turn",
+      "text": "⮌"
+    },
+    {
+      "name": "arrow.l.dashed",
+      "text": "⇠"
+    },
+    {
+      "name": "arrow.l.dotted",
+      "text": "⬸"
+    },
+    {
+      "name": "arrow.l.double",
+      "text": "⇐"
+    },
+    {
+      "name": "arrow.l.double.bar",
+      "text": "⤆"
+    },
+    {
+      "name": "arrow.l.double.long",
+      "text": "⟸"
+    },
+    {
+      "name": "arrow.l.double.long.bar",
+      "text": "⟽"
+    },
+    {
+      "name": "arrow.l.double.not",
+      "text": "⇍"
+    },
+    {
+      "name": "arrow.l.double.struck",
+      "text": "⤂"
+    },
+    {
+      "name": "arrow.l.filled",
+      "text": "⬅︎"
+    },
+    {
+      "name": "arrow.l.hook",
+      "text": "↩︎"
+    },
+    {
+      "name": "arrow.l.long",
+      "text": "⟵"
+    },
+    {
+      "name": "arrow.l.long.bar",
+      "text": "⟻"
+    },
+    {
+      "name": "arrow.l.long.squiggly",
+      "text": "⬳"
+    },
+    {
+      "name": "arrow.l.loop",
+      "text": "↫"
+    },
+    {
+      "name": "arrow.l.not",
+      "text": "↚"
+    },
+    {
+      "name": "arrow.l.quad",
+      "text": "⭅"
+    },
+    {
+      "name": "arrow.l.squiggly",
+      "text": "⇜"
+    },
+    {
+      "name": "arrow.l.stop",
+      "text": "⇤"
+    },
+    {
+      "name": "arrow.l.stroked",
+      "text": "⇦"
+    },
+    {
+      "name": "arrow.l.struck",
+      "text": "⇷"
+    },
+    {
+      "name": "arrow.l.dstruck",
+      "text": "⇺"
+    },
+    {
+      "name": "arrow.l.tail",
+      "text": "↢"
+    },
+    {
+      "name": "arrow.l.tail.struck",
+      "text": "⬹"
+    },
+    {
+      "name": "arrow.l.tail.dstruck",
+      "text": "⬺"
+    },
+    {
+      "name": "arrow.l.tilde",
+      "text": "⭉"
+    },
+    {
+      "name": "arrow.l.triple",
+      "text": "⇚"
+    },
+    {
+      "name": "arrow.l.twohead",
+      "text": "↞"
+    },
+    {
+      "name": "arrow.l.twohead.bar",
+      "text": "⬶"
+    },
+    {
+      "name": "arrow.l.twohead.struck",
+      "text": "⬴"
+    },
+    {
+      "name": "arrow.l.twohead.dstruck",
+      "text": "⬵"
+    },
+    {
+      "name": "arrow.l.twohead.tail",
+      "text": "⬻"
+    },
+    {
+      "name": "arrow.l.twohead.tail.struck",
+      "text": "⬼"
+    },
+    {
+      "name": "arrow.l.twohead.tail.dstruck",
+      "text": "⬽"
+    },
+    {
+      "name": "arrow.l.open",
+      "text": "⇽"
+    },
+    {
+      "name": "arrow.l.wave",
+      "text": "↜"
+    },
+    {
+      "name": "arrow.t",
+      "text": "↑"
+    },
+    {
+      "name": "arrow.t.bar",
+      "text": "↥"
+    },
+    {
+      "name": "arrow.t.curve",
+      "text": "⤴︎"
+    },
+    {
+      "name": "arrow.t.turn",
+      "text": "⮍"
+    },
+    {
+      "name": "arrow.t.dashed",
+      "text": "⇡"
+    },
+    {
+      "name": "arrow.t.double",
+      "text": "⇑"
+    },
+    {
+      "name": "arrow.t.filled",
+      "text": "⬆︎"
+    },
+    {
+      "name": "arrow.t.quad",
+      "text": "⟰"
+    },
+    {
+      "name": "arrow.t.stop",
+      "text": "⤒"
+    },
+    {
+      "name": "arrow.t.stroked",
+      "text": "⇧"
+    },
+    {
+      "name": "arrow.t.struck",
+      "text": "⤉"
+    },
+    {
+      "name": "arrow.t.dstruck",
+      "text": "⇞"
+    },
+    {
+      "name": "arrow.t.triple",
+      "text": "⤊"
+    },
+    {
+      "name": "arrow.t.twohead",
+      "text": "↟"
+    },
+    {
+      "name": "arrow.b",
+      "text": "↓"
+    },
+    {
+      "name": "arrow.b.bar",
+      "text": "↧"
+    },
+    {
+      "name": "arrow.b.curve",
+      "text": "⤵︎"
+    },
+    {
+      "name": "arrow.b.turn",
+      "text": "⮏"
+    },
+    {
+      "name": "arrow.b.dashed",
+      "text": "⇣"
+    },
+    {
+      "name": "arrow.b.double",
+      "text": "⇓"
+    },
+    {
+      "name": "arrow.b.filled",
+      "text": "⬇︎"
+    },
+    {
+      "name": "arrow.b.quad",
+      "text": "⟱"
+    },
+    {
+      "name": "arrow.b.stop",
+      "text": "⤓"
+    },
+    {
+      "name": "arrow.b.stroked",
+      "text": "⇩"
+    },
+    {
+      "name": "arrow.b.struck",
+      "text": "⤈"
+    },
+    {
+      "name": "arrow.b.dstruck",
+      "text": "⇟"
+    },
+    {
+      "name": "arrow.b.triple",
+      "text": "⤋"
+    },
+    {
+      "name": "arrow.b.twohead",
+      "text": "↡"
+    },
+    {
+      "name": "arrow.l.r",
+      "text": "↔︎"
+    },
+    {
+      "name": "arrow.l.r.double",
+      "text": "⇔"
+    },
+    {
+      "name": "arrow.l.r.double.long",
+      "text": "⟺"
+    },
+    {
+      "name": "arrow.l.r.double.not",
+      "text": "⇎"
+    },
+    {
+      "name": "arrow.l.r.double.struck",
+      "text": "⤄"
+    },
+    {
+      "name": "arrow.l.r.filled",
+      "text": "⬌"
+    },
+    {
+      "name": "arrow.l.r.long",
+      "text": "⟷"
+    },
+    {
+      "name": "arrow.l.r.not",
+      "text": "↮"
+    },
+    {
+      "name": "arrow.l.r.stroked",
+      "text": "⬄"
+    },
+    {
+      "name": "arrow.l.r.struck",
+      "text": "⇹"
+    },
+    {
+      "name": "arrow.l.r.dstruck",
+      "text": "⇼"
+    },
+    {
+      "name": "arrow.l.r.open",
+      "text": "⇿"
+    },
+    {
+      "name": "arrow.l.r.wave",
+      "text": "↭"
+    },
+    {
+      "name": "arrow.t.b",
+      "text": "↕︎"
+    },
+    {
+      "name": "arrow.t.b.double",
+      "text": "⇕"
+    },
+    {
+      "name": "arrow.t.b.filled",
+      "text": "⬍"
+    },
+    {
+      "name": "arrow.t.b.stroked",
+      "text": "⇳"
+    },
+    {
+      "name": "arrow.tr",
+      "text": "↗︎"
+    },
+    {
+      "name": "arrow.tr.bar",
+      "text": "🢹"
+    },
+    {
+      "name": "arrow.tr.double",
+      "text": "⇗"
+    },
+    {
+      "name": "arrow.tr.filled",
+      "text": "⬈"
+    },
+    {
+      "name": "arrow.tr.hook",
+      "text": "⤤"
+    },
+    {
+      "name": "arrow.tr.stroked",
+      "text": "⬀"
+    },
+    {
+      "name": "arrow.br",
+      "text": "↘︎"
+    },
+    {
+      "name": "arrow.br.bar",
+      "text": "🢺"
+    },
+    {
+      "name": "arrow.br.double",
+      "text": "⇘"
+    },
+    {
+      "name": "arrow.br.filled",
+      "text": "⬊"
+    },
+    {
+      "name": "arrow.br.hook",
+      "text": "⤥"
+    },
+    {
+      "name": "arrow.br.stroked",
+      "text": "⬂"
+    },
+    {
+      "name": "arrow.tl",
+      "text": "↖︎"
+    },
+    {
+      "name": "arrow.tl.bar",
+      "text": "🢸"
+    },
+    {
+      "name": "arrow.tl.double",
+      "text": "⇖"
+    },
+    {
+      "name": "arrow.tl.filled",
+      "text": "⬉"
+    },
+    {
+      "name": "arrow.tl.hook",
+      "text": "⤣"
+    },
+    {
+      "name": "arrow.tl.stroked",
+      "text": "⬁"
+    },
+    {
+      "name": "arrow.bl",
+      "text": "↙︎"
+    },
+    {
+      "name": "arrow.bl.bar",
+      "text": "🢻"
+    },
+    {
+      "name": "arrow.bl.double",
+      "text": "⇙"
+    },
+    {
+      "name": "arrow.bl.filled",
+      "text": "⬋"
+    },
+    {
+      "name": "arrow.bl.hook",
+      "text": "⤦"
+    },
+    {
+      "name": "arrow.bl.stroked",
+      "text": "⬃"
+    },
+    {
+      "name": "arrow.tl.br",
+      "text": "⤡"
+    },
+    {
+      "name": "arrow.tr.bl",
+      "text": "⤢"
+    },
+    {
+      "name": "arrow.ccw",
+      "text": "↺"
+    },
+    {
+      "name": "arrow.ccw.half",
+      "text": "↶"
+    },
+    {
+      "name": "arrow.cw",
+      "text": "↻"
+    },
+    {
+      "name": "arrow.cw.half",
+      "text": "↷"
+    },
+    {
+      "name": "arrow.zigzag",
+      "text": "↯"
+    },
+    {
+      "name": "arrows.rr",
+      "text": "⇉"
+    },
+    {
+      "name": "arrows.ll",
+      "text": "⇇"
+    },
+    {
+      "name": "arrows.tt",
+      "text": "⇈"
+    },
+    {
+      "name": "arrows.bb",
+      "text": "⇊"
+    },
+    {
+      "name": "arrows.lr",
+      "text": "⇆"
+    },
+    {
+      "name": "arrows.lr.stop",
+      "text": "↹"
+    },
+    {
+      "name": "arrows.rl",
+      "text": "⇄"
+    },
+    {
+      "name": "arrows.rl.long",
+      "text": "🣐"
+    },
+    {
+      "name": "arrows.tb",
+      "text": "⇅"
+    },
+    {
+      "name": "arrows.bt",
+      "text": "⇵"
+    },
+    {
+      "name": "arrows.rrr",
+      "text": "⇶"
+    },
+    {
+      "name": "arrows.lll",
+      "text": "⬱"
+    },
+    {
+      "name": "arrowhead.t",
+      "text": "⌃"
+    },
+    {
+      "name": "arrowhead.b",
+      "text": "⌄"
+    },
+    {
+      "name": "harpoon.rt",
+      "text": "⇀"
+    },
+    {
+      "name": "harpoon.rt.bar",
+      "text": "⥛"
+    },
+    {
+      "name": "harpoon.rt.stop",
+      "text": "⥓"
+    },
+    {
+      "name": "harpoon.rb",
+      "text": "⇁"
+    },
+    {
+      "name": "harpoon.rb.bar",
+      "text": "⥟"
+    },
+    {
+      "name": "harpoon.rb.stop",
+      "text": "⥗"
+    },
+    {
+      "name": "harpoon.lt",
+      "text": "↼"
+    },
+    {
+      "name": "harpoon.lt.bar",
+      "text": "⥚"
+    },
+    {
+      "name": "harpoon.lt.stop",
+      "text": "⥒"
+    },
+    {
+      "name": "harpoon.lb",
+      "text": "↽"
+    },
+    {
+      "name": "harpoon.lb.bar",
+      "text": "⥞"
+    },
+    {
+      "name": "harpoon.lb.stop",
+      "text": "⥖"
+    },
+    {
+      "name": "harpoon.tl",
+      "text": "↿"
+    },
+    {
+      "name": "harpoon.tl.bar",
+      "text": "⥠"
+    },
+    {
+      "name": "harpoon.tl.stop",
+      "text": "⥘"
+    },
+    {
+      "name": "harpoon.tr",
+      "text": "↾"
+    },
+    {
+      "name": "harpoon.tr.bar",
+      "text": "⥜"
+    },
+    {
+      "name": "harpoon.tr.stop",
+      "text": "⥔"
+    },
+    {
+      "name": "harpoon.bl",
+      "text": "⇃"
+    },
+    {
+      "name": "harpoon.bl.bar",
+      "text": "⥡"
+    },
+    {
+      "name": "harpoon.bl.stop",
+      "text": "⥙"
+    },
+    {
+      "name": "harpoon.br",
+      "text": "⇂"
+    },
+    {
+      "name": "harpoon.br.bar",
+      "text": "⥝"
+    },
+    {
+      "name": "harpoon.br.stop",
+      "text": "⥕"
+    },
+    {
+      "name": "harpoon.lt.rt",
+      "text": "⥎"
+    },
+    {
+      "name": "harpoon.lb.rb",
+      "text": "⥐"
+    },
+    {
+      "name": "harpoon.lb.rt",
+      "text": "⥋"
+    },
+    {
+      "name": "harpoon.lt.rb",
+      "text": "⥊"
+    },
+    {
+      "name": "harpoon.tl.bl",
+      "text": "⥑"
+    },
+    {
+      "name": "harpoon.tr.br",
+      "text": "⥏"
+    },
+    {
+      "name": "harpoon.tl.br",
+      "text": "⥍"
+    },
+    {
+      "name": "harpoon.tr.bl",
+      "text": "⥌"
+    },
+    {
+      "name": "harpoons.rtrb",
+      "text": "⥤"
+    },
+    {
+      "name": "harpoons.blbr",
+      "text": "⥥"
+    },
+    {
+      "name": "harpoons.bltr",
+      "text": "⥯"
+    },
+    {
+      "name": "harpoons.lbrb",
+      "text": "⥧"
+    },
+    {
+      "name": "harpoons.ltlb",
+      "text": "⥢"
+    },
+    {
+      "name": "harpoons.ltrb",
+      "text": "⇋"
+    },
+    {
+      "name": "harpoons.ltrt",
+      "text": "⥦"
+    },
+    {
+      "name": "harpoons.rblb",
+      "text": "⥩"
+    },
+    {
+      "name": "harpoons.rtlb",
+      "text": "⇌"
+    },
+    {
+      "name": "harpoons.rtlt",
+      "text": "⥨"
+    },
+    {
+      "name": "harpoons.tlbr",
+      "text": "⥮"
+    },
+    {
+      "name": "harpoons.tltr",
+      "text": "⥣"
+    },
+    {
+      "name": "tack.r",
+      "text": "⊢"
+    },
+    {
+      "name": "tack.r.not",
+      "text": "⊬"
+    },
+    {
+      "name": "tack.r.long",
+      "text": "⟝"
+    },
+    {
+      "name": "tack.r.short",
+      "text": "⊦"
+    },
+    {
+      "name": "tack.r.double",
+      "text": "⊩"
+    },
+    {
+      "name": "tack.r.double.not",
+      "text": "⊮"
+    },
+    {
+      "name": "tack.r.triple",
+      "text": "⊪"
+    },
+    {
+      "name": "tack.rr",
+      "text": "⊨"
+    },
+    {
+      "name": "tack.rr.not",
+      "text": "⊭"
+    },
+    {
+      "name": "tack.rr.short",
+      "text": "⊧"
+    },
+    {
+      "name": "tack.rr.double",
+      "text": "⊫"
+    },
+    {
+      "name": "tack.rr.double.not",
+      "text": "⊯"
+    },
+    {
+      "name": "tack.rrr",
+      "text": "⫢"
+    },
+    {
+      "name": "tack.l",
+      "text": "⊣"
+    },
+    {
+      "name": "tack.l.long",
+      "text": "⟞"
+    },
+    {
+      "name": "tack.l.short",
+      "text": "⫞"
+    },
+    {
+      "name": "tack.l.double",
+      "text": "⫣"
+    },
+    {
+      "name": "tack.ll",
+      "text": "⫤"
+    },
+    {
+      "name": "tack.ll.double",
+      "text": "⫥"
+    },
+    {
+      "name": "tack.t",
+      "text": "⊥"
+    },
+    {
+      "name": "tack.t.big",
+      "text": "⟘"
+    },
+    {
+      "name": "tack.t.short",
+      "text": "⫠"
+    },
+    {
+      "name": "tack.t.double.short",
+      "text": "⫨"
+    },
+    {
+      "name": "tack.tt",
+      "text": "⫫"
+    },
+    {
+      "name": "tack.b",
+      "text": "⊤"
+    },
+    {
+      "name": "tack.b.big",
+      "text": "⟙"
+    },
+    {
+      "name": "tack.b.short",
+      "text": "⫟"
+    },
+    {
+      "name": "tack.b.double.short",
+      "text": "⫧"
+    },
+    {
+      "name": "tack.bb",
+      "text": "⫪"
+    },
+    {
+      "name": "tack.l.r",
+      "text": "⟛"
+    },
+    {
+      "name": "zero",
+      "text": "0︎"
+    },
+    {
+      "name": "zero.slashed",
+      "text": "0︀"
+    },
+    {
+      "name": "alpha",
+      "text": "α"
+    },
+    {
+      "name": "beta",
+      "text": "β"
+    },
+    {
+      "name": "beta.alt",
+      "text": "ϐ"
+    },
+    {
+      "name": "chi",
+      "text": "χ"
+    },
+    {
+      "name": "delta",
+      "text": "δ"
+    },
+    {
+      "name": "digamma",
+      "text": "ϝ"
+    },
+    {
+      "name": "epsilon",
+      "text": "ε"
+    },
+    {
+      "name": "epsilon.alt",
+      "text": "ϵ"
+    },
+    {
+      "name": "epsilon.alt.rev",
+      "text": "϶"
+    },
+    {
+      "name": "eta",
+      "text": "η"
+    },
+    {
+      "name": "gamma",
+      "text": "γ"
+    },
+    {
+      "name": "iota",
+      "text": "ι"
+    },
+    {
+      "name": "iota.inv",
+      "text": "℩"
+    },
+    {
+      "name": "kappa",
+      "text": "κ"
+    },
+    {
+      "name": "kappa.alt",
+      "text": "ϰ"
+    },
+    {
+      "name": "lambda",
+      "text": "λ"
+    },
+    {
+      "name": "mu",
+      "text": "μ"
+    },
+    {
+      "name": "nu",
+      "text": "ν"
+    },
+    {
+      "name": "omega",
+      "text": "ω"
+    },
+    {
+      "name": "omicron",
+      "text": "ο"
+    },
+    {
+      "name": "phi",
+      "text": "φ"
+    },
+    {
+      "name": "phi.alt",
+      "text": "ϕ"
+    },
+    {
+      "name": "pi",
+      "text": "π"
+    },
+    {
+      "name": "pi.alt",
+      "text": "ϖ"
+    },
+    {
+      "name": "psi",
+      "text": "ψ"
+    },
+    {
+      "name": "rho",
+      "text": "ρ"
+    },
+    {
+      "name": "rho.alt",
+      "text": "ϱ"
+    },
+    {
+      "name": "sigma",
+      "text": "σ"
+    },
+    {
+      "name": "sigma.alt",
+      "text": "ς"
+    },
+    {
+      "name": "tau",
+      "text": "τ"
+    },
+    {
+      "name": "theta",
+      "text": "θ"
+    },
+    {
+      "name": "theta.alt",
+      "text": "ϑ"
+    },
+    {
+      "name": "upsilon",
+      "text": "υ"
+    },
+    {
+      "name": "xi",
+      "text": "ξ"
+    },
+    {
+      "name": "zeta",
+      "text": "ζ"
+    },
+    {
+      "name": "Alpha",
+      "text": "Α"
+    },
+    {
+      "name": "Beta",
+      "text": "Β"
+    },
+    {
+      "name": "Chi",
+      "text": "Χ"
+    },
+    {
+      "name": "Delta",
+      "text": "Δ"
+    },
+    {
+      "name": "Digamma",
+      "text": "Ϝ"
+    },
+    {
+      "name": "Epsilon",
+      "text": "Ε"
+    },
+    {
+      "name": "Eta",
+      "text": "Η"
+    },
+    {
+      "name": "Gamma",
+      "text": "Γ"
+    },
+    {
+      "name": "Iota",
+      "text": "Ι"
+    },
+    {
+      "name": "Kappa",
+      "text": "Κ"
+    },
+    {
+      "name": "Lambda",
+      "text": "Λ"
+    },
+    {
+      "name": "Mu",
+      "text": "Μ"
+    },
+    {
+      "name": "Nu",
+      "text": "Ν"
+    },
+    {
+      "name": "Omega",
+      "text": "Ω"
+    },
+    {
+      "name": "Omega.inv",
+      "text": "℧"
+    },
+    {
+      "name": "Omicron",
+      "text": "Ο"
+    },
+    {
+      "name": "Phi",
+      "text": "Φ"
+    },
+    {
+      "name": "Pi",
+      "text": "Π"
+    },
+    {
+      "name": "Psi",
+      "text": "Ψ"
+    },
+    {
+      "name": "Rho",
+      "text": "Ρ"
+    },
+    {
+      "name": "Sigma",
+      "text": "Σ"
+    },
+    {
+      "name": "Tau",
+      "text": "Τ"
+    },
+    {
+      "name": "Theta",
+      "text": "Θ"
+    },
+    {
+      "name": "Theta.alt",
+      "text": "ϴ"
+    },
+    {
+      "name": "Upsilon",
+      "text": "Υ"
+    },
+    {
+      "name": "Xi",
+      "text": "Ξ"
+    },
+    {
+      "name": "Zeta",
+      "text": "Ζ"
+    },
+    {
+      "name": "sha",
+      "text": "ш"
+    },
+    {
+      "name": "Sha",
+      "text": "Ш"
+    },
+    {
+      "name": "aleph",
+      "text": "א"
+    },
+    {
+      "name": "beth",
+      "text": "ב"
+    },
+    {
+      "name": "gimel",
+      "text": "ג"
+    },
+    {
+      "name": "daleth",
+      "text": "ד"
+    },
+    {
+      "name": "AA",
+      "text": "𝔸"
+    },
+    {
+      "name": "BB",
+      "text": "𝔹"
+    },
+    {
+      "name": "CC",
+      "text": "ℂ"
+    },
+    {
+      "name": "DD",
+      "text": "𝔻"
+    },
+    {
+      "name": "EE",
+      "text": "𝔼"
+    },
+    {
+      "name": "FF",
+      "text": "𝔽"
+    },
+    {
+      "name": "GG",
+      "text": "𝔾"
+    },
+    {
+      "name": "HH",
+      "text": "ℍ"
+    },
+    {
+      "name": "II",
+      "text": "𝕀"
+    },
+    {
+      "name": "JJ",
+      "text": "𝕁"
+    },
+    {
+      "name": "KK",
+      "text": "𝕂"
+    },
+    {
+      "name": "LL",
+      "text": "𝕃"
+    },
+    {
+      "name": "MM",
+      "text": "𝕄"
+    },
+    {
+      "name": "NN",
+      "text": "ℕ"
+    },
+    {
+      "name": "OO",
+      "text": "𝕆"
+    },
+    {
+      "name": "PP",
+      "text": "ℙ"
+    },
+    {
+      "name": "QQ",
+      "text": "ℚ"
+    },
+    {
+      "name": "RR",
+      "text": "ℝ"
+    },
+    {
+      "name": "SS",
+      "text": "𝕊"
+    },
+    {
+      "name": "TT",
+      "text": "𝕋"
+    },
+    {
+      "name": "UU",
+      "text": "𝕌"
+    },
+    {
+      "name": "VV",
+      "text": "𝕍"
+    },
+    {
+      "name": "WW",
+      "text": "𝕎"
+    },
+    {
+      "name": "XX",
+      "text": "𝕏"
+    },
+    {
+      "name": "YY",
+      "text": "𝕐"
+    },
+    {
+      "name": "ZZ",
+      "text": "ℤ"
+    },
+    {
+      "name": "angstrom",
+      "text": "Å"
+    },
+    {
+      "name": "ell",
+      "text": "ℓ"
+    },
+    {
+      "name": "pee",
+      "text": "℘"
+    },
+    {
+      "name": "planck",
+      "text": "ħ"
+    },
+    {
+      "name": "Re",
+      "text": "ℜ"
+    },
+    {
+      "name": "Im",
+      "text": "ℑ"
+    },
+    {
+      "name": "dotless.i",
+      "text": "ı"
+    },
+    {
+      "name": "dotless.j",
+      "text": "ȷ"
+    },
+    {
+      "name": "die.six",
+      "text": "⚅"
+    },
+    {
+      "name": "die.five",
+      "text": "⚄"
+    },
+    {
+      "name": "die.four",
+      "text": "⚃"
+    },
+    {
+      "name": "die.three",
+      "text": "⚂"
+    },
+    {
+      "name": "die.two",
+      "text": "⚁"
+    },
+    {
+      "name": "die.one",
+      "text": "⚀"
+    },
+    {
+      "name": "errorbar.square.stroked",
+      "text": "⧮"
+    },
+    {
+      "name": "errorbar.square.filled",
+      "text": "⧯"
+    },
+    {
+      "name": "errorbar.diamond.stroked",
+      "text": "⧰"
+    },
+    {
+      "name": "errorbar.diamond.filled",
+      "text": "⧱"
+    },
+    {
+      "name": "errorbar.circle.stroked",
+      "text": "⧲"
+    },
+    {
+      "name": "errorbar.circle.filled",
+      "text": "⧳"
+    },
+    {
+      "name": "spacebar",
+      "text": "␣"
+    },
+    {
+      "name": "gender.female",
+      "text": "♀︎"
+    },
+    {
+      "name": "gender.female.double",
+      "text": "⚢"
+    },
+    {
+      "name": "gender.female.male",
+      "text": "⚤"
+    },
+    {
+      "name": "gender.intersex",
+      "text": "⚥"
+    },
+    {
+      "name": "gender.male",
+      "text": "♂︎"
+    },
+    {
+      "name": "gender.male.double",
+      "text": "⚣"
+    },
+    {
+      "name": "gender.male.female",
+      "text": "⚤"
+    },
+    {
+      "name": "gender.male.stroke",
+      "text": "⚦"
+    },
+    {
+      "name": "gender.male.stroke.t",
+      "text": "⚨"
+    },
+    {
+      "name": "gender.male.stroke.r",
+      "text": "⚩"
+    },
+    {
+      "name": "gender.neuter",
+      "text": "⚲"
+    },
+    {
+      "name": "gender.trans",
+      "text": "⚧︎"
+    },
+    {
+      "name": "control.nul",
+      "text": "␀"
+    },
+    {
+      "name": "control.soh",
+      "text": "␁"
+    },
+    {
+      "name": "control.stx",
+      "text": "␂"
+    },
+    {
+      "name": "control.etx",
+      "text": "␃"
+    },
+    {
+      "name": "control.eot",
+      "text": "␄"
+    },
+    {
+      "name": "control.enq",
+      "text": "␅"
+    },
+    {
+      "name": "control.ack",
+      "text": "␆"
+    },
+    {
+      "name": "control.bel",
+      "text": "␇"
+    },
+    {
+      "name": "control.bs",
+      "text": "␈"
+    },
+    {
+      "name": "control.ht",
+      "text": "␉"
+    },
+    {
+      "name": "control.lf",
+      "text": "␊"
+    },
+    {
+      "name": "control.vt",
+      "text": "␋"
+    },
+    {
+      "name": "control.ff",
+      "text": "␌"
+    },
+    {
+      "name": "control.cr",
+      "text": "␍"
+    },
+    {
+      "name": "control.so",
+      "text": "␎"
+    },
+    {
+      "name": "control.si",
+      "text": "␏"
+    },
+    {
+      "name": "control.dle",
+      "text": "␐"
+    },
+    {
+      "name": "control.dc.one",
+      "text": "␑"
+    },
+    {
+      "name": "control.dc.two",
+      "text": "␒"
+    },
+    {
+      "name": "control.dc.three",
+      "text": "␓"
+    },
+    {
+      "name": "control.dc.four",
+      "text": "␔"
+    },
+    {
+      "name": "control.nak",
+      "text": "␕"
+    },
+    {
+      "name": "control.syn",
+      "text": "␖"
+    },
+    {
+      "name": "control.etb",
+      "text": "␗"
+    },
+    {
+      "name": "control.can",
+      "text": "␘"
+    },
+    {
+      "name": "control.em",
+      "text": "␙"
+    },
+    {
+      "name": "control.sub",
+      "text": "␚"
+    },
+    {
+      "name": "control.esc",
+      "text": "␛"
+    },
+    {
+      "name": "control.fs",
+      "text": "␜"
+    },
+    {
+      "name": "control.gs",
+      "text": "␝"
+    },
+    {
+      "name": "control.rs",
+      "text": "␞"
+    },
+    {
+      "name": "control.us",
+      "text": "␟"
+    },
+    {
+      "name": "control.sp",
+      "text": "␠"
+    },
+    {
+      "name": "control.del",
+      "text": "␡"
+    },
+    {
+      "name": "control.nl",
+      "text": "␤"
+    }
+  ],
+  "schemaID": "rerime.wanxiang-symbol-increment",
+  "schemaVersion": 1,
+  "source": {
+    "files": {
+      "lua/data/codex_sym.txt": "859ea5a9f63f24d336d4fd7cd73d621584aa549ea724ce65dbbc494e0d331f4c",
+      "wanxiang_symbols.yaml": "d176354b390c999f356a14a5ff07bfec0328fcff25c2089167f3b42c352ca810"
+    },
+    "licenseSPDX": "CC-BY-4.0",
+    "repository": "https://github.com/amzxyz/rime-wanxiang",
+    "revision": "3e0ab702725ffeec790bce5959fdd8319fe4bf64"
+  },
+  "staticRoutes": {
+    "/bd": [
+      "、",
+      "。",
+      "「",
+      "」",
+      "『",
+      "』",
+      "【",
+      "】",
+      "〈",
+      "〉",
+      "《",
+      "》",
+      "₋",
+      "⁻",
+      "―",
+      "˗",
+      "ˉ",
+      "＿",
+      "﹍",
+      "﹎",
+      "．",
+      "¡",
+      "‼",
+      "⁉",
+      "¿",
+      "؟",
+      "⁈",
+      "⁇",
+      "､",
+      "｡",
+      "〃",
+      "〄",
+      "々",
+      "〆",
+      "〇",
+      "〒",
+      "〓",
+      "〔",
+      "〕",
+      "〖",
+      "〗",
+      "〘",
+      "〙",
+      "〚",
+      "〛",
+      "〜",
+      "〝",
+      "〞",
+      "〟",
+      "〠",
+      "〰",
+      "〱",
+      "〲",
+      "〳",
+      "〴",
+      "〵",
+      "〶",
+      "〷",
+      "〻",
+      "〼",
+      "〽"
+    ],
+    "/bdz": [
+      "﹅",
+      "﹆",
+      "﹁",
+      "﹂",
+      "﹃",
+      "﹄",
+      "︙",
+      "︱",
+      "︻",
+      "︼",
+      "︗",
+      "︘",
+      "︵",
+      "︶",
+      "︷",
+      "︸",
+      "︹",
+      "︺",
+      "︿",
+      "﹀",
+      "︽",
+      "︾",
+      "︰",
+      "︲",
+      "︳",
+      "︴",
+      "﹉",
+      "﹊",
+      "﹋",
+      "﹌",
+      "﹍",
+      "﹎",
+      "﹏",
+      "﹇",
+      "﹈",
+      "︐",
+      "︑",
+      "︒",
+      "︔",
+      "︕",
+      "︖"
+    ],
+    "/dw": [
+      "Å",
+      "℃",
+      "％",
+      "‰",
+      "‱",
+      "°",
+      "℉",
+      "㏃",
+      "㏆",
+      "㎈",
+      "㏄",
+      "㏅",
+      "㎝",
+      "㎠",
+      "㎤",
+      "㏈",
+      "㎗",
+      "㎙",
+      "㎓",
+      "㎬",
+      "㏉",
+      "㏊",
+      "㏋",
+      "㎐",
+      "㏌",
+      "㎄",
+      "㎅",
+      "㎉",
+      "㎏",
+      "㎑",
+      "㏍",
+      "㎘",
+      "㎞",
+      "㏎",
+      "㎢",
+      "㎦",
+      "㎪",
+      "㏏",
+      "㎸",
+      "㎾",
+      "㏀",
+      "㏐",
+      "㏓",
+      "㎧",
+      "㎨",
+      "㎡",
+      "㎥",
+      "㎃",
+      "㏔",
+      "㎆",
+      "㎎",
+      "㎒",
+      "㏕",
+      "㎖",
+      "㎜",
+      "㎟",
+      "㎣",
+      "㏖",
+      "㎫",
+      "㎳",
+      "㎷",
+      "㎹",
+      "㎽",
+      "㎿",
+      "㏁",
+      "㎁",
+      "㎋",
+      "㎚",
+      "㎱",
+      "㎵",
+      "㎻",
+      "㏘",
+      "㎩",
+      "㎀",
+      "㎊",
+      "㏗",
+      "㏙",
+      "㏚",
+      "㎰",
+      "㎴",
+      "㎺",
+      "㎭",
+      "㎮",
+      "㎯",
+      "㏛",
+      "㏜",
+      "㎔",
+      "㏝",
+      "㎂",
+      "㎌",
+      "㎍",
+      "㎕",
+      "㎛",
+      "㎲",
+      "㎶",
+      "㎼"
+    ],
+    "/fh": [
+      "©",
+      "®",
+      "℗",
+      "℠",
+      "™",
+      "℡",
+      "℻",
+      "☇",
+      "☈",
+      "☉",
+      "☊",
+      "☋",
+      "☌",
+      "☍",
+      "☎",
+      "☏",
+      "☐",
+      "☑",
+      "☒",
+      "☓",
+      "☕",
+      "☖",
+      "☗",
+      "⛉",
+      "⛊",
+      "☘",
+      "☙",
+      "☚",
+      "☛",
+      "☜",
+      "☝",
+      "☞",
+      "☟",
+      "☠",
+      "☡",
+      "☢",
+      "☣",
+      "☤",
+      "☥",
+      "☦",
+      "☧",
+      "☨",
+      "☩",
+      "☪",
+      "☫",
+      "☬",
+      "☭",
+      "☮",
+      "☯",
+      "☸",
+      "♨",
+      "♰",
+      "♱",
+      "♲",
+      "♳",
+      "♴",
+      "♵",
+      "♶",
+      "♷",
+      "♸",
+      "♹",
+      "♺",
+      "♻",
+      "♼",
+      "♽",
+      "♾",
+      "♿",
+      "⚆",
+      "⚇",
+      "⚈",
+      "⚉",
+      "⚐",
+      "⚑",
+      "⚒",
+      "⚓",
+      "⚔",
+      "⚕",
+      "⚖",
+      "⚗",
+      "⚘",
+      "⚙",
+      "⚚",
+      "⚛",
+      "⚜",
+      "⚝",
+      "⚞",
+      "⚟",
+      "⚠",
+      "⚡",
+      "⚰",
+      "⚱",
+      "⚲",
+      "⚳",
+      "⚴",
+      "⚵",
+      "⚶",
+      "⚷",
+      "⚸",
+      "⚹",
+      "⚺",
+      "⚻",
+      "⚼",
+      "⚽",
+      "⚾",
+      "⚿",
+      "⛀",
+      "⛁",
+      "⛂",
+      "⛃",
+      "⛋",
+      "⛌",
+      "⛍",
+      "⛎",
+      "⛏",
+      "⛐",
+      "⛑",
+      "⛒",
+      "⛓",
+      "⛔",
+      "⛕",
+      "⛖",
+      "⛗",
+      "⛘",
+      "⛙",
+      "⛚",
+      "⛛",
+      "⛜",
+      "⛝",
+      "⛞",
+      "⛟",
+      "⛠",
+      "⛡",
+      "⛢",
+      "⛣",
+      "⛨",
+      "⛩",
+      "⛪",
+      "⛫",
+      "⛬",
+      "⛭",
+      "⛮",
+      "⛯",
+      "⛰",
+      "⛱",
+      "⛲",
+      "⛳",
+      "⛴",
+      "⛵",
+      "⛶",
+      "⛷",
+      "⛸",
+      "⛹",
+      "⛺",
+      "⛻",
+      "⛼",
+      "⛽",
+      "⛾",
+      "⛿"
+    ],
+    "/hb": [
+      "￥",
+      "¥",
+      "¤",
+      "￠",
+      "＄",
+      "$",
+      "￡",
+      "£",
+      "৳",
+      "฿",
+      "₠",
+      "₡",
+      "₢",
+      "₣",
+      "₤",
+      "₥",
+      "₦",
+      "₧",
+      "₩",
+      "₪",
+      "₫",
+      "€",
+      "₭",
+      "₮",
+      "₯",
+      "₰",
+      "₱",
+      "₲",
+      "₳",
+      "₴",
+      "₵",
+      "₶",
+      "₷",
+      "₸",
+      "₹",
+      "₺",
+      "₨",
+      "﷼"
+    ],
+    "/jt": [
+      "→",
+      "↑",
+      "↓",
+      "←",
+      "↕",
+      "↔",
+      "↖",
+      "↗",
+      "↙",
+      "↘",
+      "↚",
+      "↛",
+      "↮",
+      "↜",
+      "↝",
+      "↞",
+      "↟",
+      "↠",
+      "↡",
+      "↢",
+      "↣",
+      "↤",
+      "↥",
+      "↦",
+      "↧",
+      "↨",
+      "↩",
+      "↪",
+      "↫",
+      "↬",
+      "↭",
+      "↯",
+      "↰",
+      "↱",
+      "↲",
+      "↳",
+      "↴",
+      "↵",
+      "↶",
+      "↷",
+      "↸",
+      "↹",
+      "↺",
+      "↻",
+      "↼",
+      "↽",
+      "↾",
+      "↿",
+      "⇀",
+      "⇁",
+      "⇂",
+      "⇃",
+      "⇄",
+      "⇅",
+      "⇆",
+      "⇇",
+      "⇈",
+      "⇉",
+      "⇊",
+      "⇋",
+      "⇌",
+      "⇐",
+      "⇍",
+      "⇑",
+      "⇒",
+      "⇏",
+      "⇓",
+      "⇔",
+      "⇎",
+      "⇕",
+      "⇖",
+      "⇗",
+      "⇘",
+      "⇙",
+      "⇚",
+      "⇛",
+      "⇜",
+      "⇝",
+      "⇞",
+      "⇟",
+      "⇠",
+      "⇡",
+      "⇢",
+      "⇣",
+      "⇤",
+      "⇥",
+      "⇦",
+      "⇧",
+      "⇨",
+      "⇩",
+      "⇪",
+      "⇫",
+      "⇬",
+      "⇭",
+      "⇮",
+      "⇯",
+      "⇰",
+      "⇱",
+      "⇲",
+      "⇳",
+      "⇴",
+      "⇵",
+      "⇶",
+      "⇷",
+      "⇸",
+      "⇹",
+      "⇺",
+      "⇻",
+      "⇼",
+      "⇽",
+      "➔",
+      "➘",
+      "➙",
+      "➚",
+      "➛",
+      "➜",
+      "➝",
+      "➞",
+      "➟",
+      "➠",
+      "➡",
+      "➢",
+      "➣",
+      "➤",
+      "➥",
+      "➦",
+      "➧",
+      "➨",
+      "➩",
+      "➪",
+      "➫",
+      "➬",
+      "➭",
+      "➮",
+      "➱",
+      "➲",
+      "➳",
+      "➴",
+      "➵",
+      "➶",
+      "➷",
+      "➸",
+      "➹",
+      "➺",
+      "➻",
+      "➼",
+      "➽",
+      "➾"
+    ],
+    "/sx": [
+      "＋",
+      "－",
+      "×",
+      "÷",
+      "±",
+      "∈",
+      "∏",
+      "∑",
+      "＜",
+      "≮",
+      "＝",
+      "≠",
+      "＞",
+      "≯",
+      "∕",
+      "√",
+      "∝",
+      "∞",
+      "∟",
+      "∠",
+      "∥",
+      "∧",
+      "∨",
+      "∩",
+      "∪",
+      "∫",
+      "∮",
+      "∴",
+      "∵",
+      "∷",
+      "∽",
+      "≈",
+      "≌",
+      "≒",
+      "≡",
+      "≤",
+      "≥",
+      "≦",
+      "≧",
+      "⊕",
+      "⊙",
+      "⊥",
+      "⊿",
+      "㏑",
+      "㏒"
+    ],
+    "/sxc": [
+      "𝐀",
+      "𝐚",
+      "𝐁",
+      "𝐛",
+      "𝐂",
+      "𝐜",
+      "𝐃",
+      "𝐝",
+      "𝐄",
+      "𝐞",
+      "𝐅",
+      "𝐟",
+      "𝐆",
+      "𝐠",
+      "𝐇",
+      "𝐡",
+      "𝐈",
+      "𝐢",
+      "𝐉",
+      "𝐣",
+      "𝐊",
+      "𝐤",
+      "𝐋",
+      "𝐥",
+      "𝐌",
+      "𝐦",
+      "𝐍",
+      "𝐧",
+      "𝐎",
+      "𝐨",
+      "𝐏",
+      "𝐩",
+      "𝐐",
+      "𝐪",
+      "𝐑",
+      "𝐫",
+      "𝐒",
+      "𝐬",
+      "𝐓",
+      "𝐭",
+      "𝐔",
+      "𝐮",
+      "𝐕",
+      "𝐯",
+      "𝐖",
+      "𝐰",
+      "𝐗",
+      "𝐱",
+      "𝐘",
+      "𝐲",
+      "𝐙",
+      "𝐳",
+      "𝟎",
+      "𝟏",
+      "𝟐",
+      "𝟑",
+      "𝟒",
+      "𝟓",
+      "𝟔",
+      "𝟕",
+      "𝟖",
+      "𝟗"
+    ],
+    "/sxd": [
+      "𝙰",
+      "𝚊",
+      "𝙱",
+      "𝚋",
+      "𝙲",
+      "𝚌",
+      "𝙳",
+      "𝚍",
+      "𝙴",
+      "𝚎",
+      "𝙵",
+      "𝚏",
+      "𝙶",
+      "𝚐",
+      "𝙷",
+      "𝚑",
+      "𝙸",
+      "𝚒",
+      "𝙹",
+      "𝚓",
+      "𝙺",
+      "𝚔",
+      "𝙻",
+      "𝚕",
+      "𝙼",
+      "𝚖",
+      "𝙽",
+      "𝚗",
+      "𝙾",
+      "𝚘",
+      "𝙿",
+      "𝚙",
+      "𝚀",
+      "𝚚",
+      "𝚁",
+      "𝚛",
+      "𝚂",
+      "𝚜",
+      "𝚃",
+      "𝚝",
+      "𝚄",
+      "𝚞",
+      "𝚅",
+      "𝚟",
+      "𝚆",
+      "𝚠",
+      "𝚇",
+      "𝚡",
+      "𝚈",
+      "𝚢",
+      "𝚉",
+      "𝚣",
+      "𝟶",
+      "𝟷",
+      "𝟸",
+      "𝟹",
+      "𝟺",
+      "𝟻",
+      "𝟼",
+      "𝟽",
+      "𝟾",
+      "𝟿"
+    ],
+    "/sxg": [
+      "𝔄",
+      "𝔞",
+      "𝔅",
+      "𝔟",
+      "ℭ",
+      "𝔠",
+      "𝔇",
+      "𝔡",
+      "𝔈",
+      "𝔢",
+      "𝔉",
+      "𝔣",
+      "𝔊",
+      "𝔤",
+      "ℌ",
+      "𝔥",
+      "ℑ",
+      "𝔦",
+      "𝔍",
+      "𝔧",
+      "𝔎",
+      "𝔨",
+      "𝔏",
+      "𝔩",
+      "𝔐",
+      "𝔪",
+      "𝔑",
+      "𝔫",
+      "𝔒",
+      "𝔬",
+      "𝔓",
+      "𝔭",
+      "𝔔",
+      "𝔮",
+      "ℜ",
+      "𝔯",
+      "𝔖",
+      "𝔰",
+      "𝔗",
+      "𝔱",
+      "𝔘",
+      "𝔲",
+      "𝔙",
+      "𝔳",
+      "𝔚",
+      "𝔴",
+      "𝔛",
+      "𝔵",
+      "𝔜",
+      "𝔶",
+      "ℨ",
+      "𝔷"
+    ],
+    "/sxgc": [
+      "𝕬",
+      "𝖆",
+      "𝕭",
+      "𝖇",
+      "𝕮",
+      "𝖈",
+      "𝕯",
+      "𝖉",
+      "𝕰",
+      "𝖊",
+      "𝕱",
+      "𝖋",
+      "𝕲",
+      "𝖌",
+      "𝕳",
+      "𝖍",
+      "𝕴",
+      "𝖎",
+      "𝕵",
+      "𝖏",
+      "𝕶",
+      "𝖐",
+      "𝕷",
+      "𝖑",
+      "𝕸",
+      "𝖒",
+      "𝕹",
+      "𝖓",
+      "𝕺",
+      "𝖔",
+      "𝕻",
+      "𝖕",
+      "𝕼",
+      "𝖖",
+      "𝕽",
+      "𝖗",
+      "𝕾",
+      "𝖘",
+      "𝕿",
+      "𝖙",
+      "𝖀",
+      "𝖚",
+      "𝖁",
+      "𝖛",
+      "𝖂",
+      "𝖜",
+      "𝖃",
+      "𝖝",
+      "𝖄",
+      "𝖞",
+      "𝖅",
+      "𝖟"
+    ],
+    "/sxh": [
+      "𝒜",
+      "𝒶",
+      "ℬ",
+      "𝒷",
+      "𝒞",
+      "𝒸",
+      "𝒟",
+      "𝒹",
+      "ℰ",
+      "ℯ",
+      "ℱ",
+      "𝒻",
+      "𝒢",
+      "ℊ",
+      "ℋ",
+      "𝒽",
+      "ℐ",
+      "𝒾",
+      "𝒥",
+      "𝒿",
+      "𝒦",
+      "𝓀",
+      "ℒ",
+      "𝓁",
+      "ℳ",
+      "𝓂",
+      "𝒩",
+      "𝓃",
+      "𝒪",
+      "ℴ",
+      "𝒫",
+      "𝓅",
+      "𝒬",
+      "𝓆",
+      "ℛ",
+      "𝓇",
+      "𝒮",
+      "𝓈",
+      "𝒯",
+      "𝓉",
+      "𝒰",
+      "𝓊",
+      "𝒱",
+      "𝓋",
+      "𝒲",
+      "𝓌",
+      "𝒳",
+      "𝓍",
+      "𝒴",
+      "𝓎",
+      "𝒵",
+      "𝓏"
+    ],
+    "/sxhc": [
+      "𝓐",
+      "𝓪",
+      "𝓑",
+      "𝓫",
+      "𝓒",
+      "𝓬",
+      "𝓓",
+      "𝓭",
+      "𝓔",
+      "𝓮",
+      "𝓕",
+      "𝓯",
+      "𝓖",
+      "𝓰",
+      "𝓗",
+      "𝓱",
+      "𝓘",
+      "𝓲",
+      "𝓙",
+      "𝓳",
+      "𝓚",
+      "𝓴",
+      "𝓛",
+      "𝓵",
+      "𝓜",
+      "𝓶",
+      "𝓝",
+      "𝓷",
+      "𝓞",
+      "𝓸",
+      "𝓟",
+      "𝓹",
+      "𝓠",
+      "𝓺",
+      "𝓡",
+      "𝓻",
+      "𝓢",
+      "𝓼",
+      "𝓣",
+      "𝓽",
+      "𝓤",
+      "𝓾",
+      "𝓥",
+      "𝓿",
+      "𝓦",
+      "𝔀",
+      "𝓧",
+      "𝔁",
+      "𝓨",
+      "𝔂",
+      "𝓩",
+      "𝔃"
+    ],
+    "/sxs": [
+      "𝔸",
+      "𝕒",
+      "𝔹",
+      "𝕓",
+      "ℂ",
+      "𝕔",
+      "𝔻",
+      "𝕕",
+      "𝔼",
+      "𝕖",
+      "𝔽",
+      "𝕗",
+      "𝔾",
+      "𝕘",
+      "ℍ",
+      "𝕙",
+      "𝕀",
+      "𝕚",
+      "𝕁",
+      "𝕛",
+      "𝕂",
+      "𝕜",
+      "𝕃",
+      "𝕝",
+      "𝕄",
+      "𝕞",
+      "ℕ",
+      "𝕟",
+      "𝕆",
+      "𝕠",
+      "ℙ",
+      "𝕡",
+      "ℚ",
+      "𝕢",
+      "ℝ",
+      "𝕣",
+      "𝕊",
+      "𝕤",
+      "𝕋",
+      "𝕥",
+      "𝕌",
+      "𝕦",
+      "𝕍",
+      "𝕧",
+      "𝕎",
+      "𝕨",
+      "𝕏",
+      "𝕩",
+      "𝕐",
+      "𝕪",
+      "ℤ",
+      "𝕫",
+      "𝟘",
+      "𝟙",
+      "𝟚",
+      "𝟛",
+      "𝟜",
+      "𝟝",
+      "𝟞",
+      "𝟟",
+      "𝟠",
+      "𝟡"
+    ],
+    "/sxw": [
+      "𝖠",
+      "𝖺",
+      "𝖡",
+      "𝖻",
+      "𝖢",
+      "𝖼",
+      "𝖣",
+      "𝖽",
+      "𝖤",
+      "𝖾",
+      "𝖥",
+      "𝖿",
+      "𝖦",
+      "𝗀",
+      "𝖧",
+      "𝗁",
+      "𝖨",
+      "𝗂",
+      "𝖩",
+      "𝗃",
+      "𝖪",
+      "𝗄",
+      "𝖫",
+      "𝗅",
+      "𝖬",
+      "𝗆",
+      "𝖭",
+      "𝗇",
+      "𝖮",
+      "𝗈",
+      "𝖯",
+      "𝗉",
+      "𝖰",
+      "𝗊",
+      "𝖱",
+      "𝗋",
+      "𝖲",
+      "𝗌",
+      "𝖳",
+      "𝗍",
+      "𝖴",
+      "𝗎",
+      "𝖵",
+      "𝗏",
+      "𝖶",
+      "𝗐",
+      "𝖷",
+      "𝗑",
+      "𝖸",
+      "𝗒",
+      "𝖹",
+      "𝗓",
+      "𝟢",
+      "𝟣",
+      "𝟤",
+      "𝟥",
+      "𝟦",
+      "𝟧",
+      "𝟨",
+      "𝟩",
+      "𝟪",
+      "𝟫"
+    ],
+    "/sxwc": [
+      "𝗔",
+      "𝗮",
+      "𝗕",
+      "𝗯",
+      "𝗖",
+      "𝗰",
+      "𝗗",
+      "𝗱",
+      "𝗘",
+      "𝗲",
+      "𝗙",
+      "𝗳",
+      "𝗚",
+      "𝗴",
+      "𝗛",
+      "𝗵",
+      "𝗜",
+      "𝗶",
+      "𝗝",
+      "𝗷",
+      "𝗞",
+      "𝗸",
+      "𝗟",
+      "𝗹",
+      "𝗠",
+      "𝗺",
+      "𝗡",
+      "𝗻",
+      "𝗢",
+      "𝗼",
+      "𝗣",
+      "𝗽",
+      "𝗤",
+      "𝗾",
+      "𝗥",
+      "𝗿",
+      "𝗦",
+      "𝘀",
+      "𝗧",
+      "𝘁",
+      "𝗨",
+      "𝘂",
+      "𝗩",
+      "𝘃",
+      "𝗪",
+      "𝘄",
+      "𝗫",
+      "𝘅",
+      "𝗬",
+      "𝘆",
+      "𝗭",
+      "𝘇",
+      "𝟬",
+      "𝟭",
+      "𝟮",
+      "𝟯",
+      "𝟰",
+      "𝟱",
+      "𝟲",
+      "𝟳",
+      "𝟴",
+      "𝟵"
+    ],
+    "/sxwx": [
+      "𝘈",
+      "𝘢",
+      "𝘉",
+      "𝘣",
+      "𝘊",
+      "𝘤",
+      "𝘋",
+      "𝘥",
+      "𝘌",
+      "𝘦",
+      "𝘍",
+      "𝘧",
+      "𝘎",
+      "𝘨",
+      "𝘏",
+      "𝘩",
+      "𝘐",
+      "𝘪",
+      "𝘑",
+      "𝘫",
+      "𝘒",
+      "𝘬",
+      "𝘓",
+      "𝘭",
+      "𝘔",
+      "𝘮",
+      "𝘕",
+      "𝘯",
+      "𝘖",
+      "𝘰",
+      "𝘗",
+      "𝘱",
+      "𝘘",
+      "𝘲",
+      "𝘙",
+      "𝘳",
+      "𝘚",
+      "𝘴",
+      "𝘛",
+      "𝘵",
+      "𝘜",
+      "𝘶",
+      "𝘝",
+      "𝘷",
+      "𝘞",
+      "𝘸",
+      "𝘟",
+      "𝘹",
+      "𝘠",
+      "𝘺",
+      "𝘡",
+      "𝘻"
+    ],
+    "/sxwz": [
+      "𝘼",
+      "𝙖",
+      "𝘽",
+      "𝙗",
+      "𝘾",
+      "𝙘",
+      "𝘿",
+      "𝙙",
+      "𝙀",
+      "𝙚",
+      "𝙁",
+      "𝙛",
+      "𝙂",
+      "𝙜",
+      "𝙃",
+      "𝙝",
+      "𝙄",
+      "𝙞",
+      "𝙅",
+      "𝙟",
+      "𝙆",
+      "𝙠",
+      "𝙇",
+      "𝙡",
+      "𝙈",
+      "𝙢",
+      "𝙉",
+      "𝙣",
+      "𝙊",
+      "𝙤",
+      "𝙋",
+      "𝙥",
+      "𝙌",
+      "𝙦",
+      "𝙍",
+      "𝙧",
+      "𝙎",
+      "𝙨",
+      "𝙏",
+      "𝙩",
+      "𝙐",
+      "𝙪",
+      "𝙑",
+      "𝙫",
+      "𝙒",
+      "𝙬",
+      "𝙓",
+      "𝙭",
+      "𝙔",
+      "𝙮",
+      "𝙕",
+      "𝙯"
+    ],
+    "/sxx": [
+      "𝐴",
+      "𝑎",
+      "𝐵",
+      "𝑏",
+      "𝐶",
+      "𝑐",
+      "𝐷",
+      "𝑑",
+      "𝐸",
+      "𝑒",
+      "𝐹",
+      "𝑓",
+      "𝐺",
+      "𝑔",
+      "𝐻",
+      "ℎ",
+      "𝐼",
+      "𝑖",
+      "𝐽",
+      "𝑗",
+      "𝐾",
+      "𝑘",
+      "𝐿",
+      "𝑙",
+      "𝑀",
+      "𝑚",
+      "𝑁",
+      "𝑛",
+      "𝑂",
+      "𝑜",
+      "𝑃",
+      "𝑝",
+      "𝑄",
+      "𝑞",
+      "𝑅",
+      "𝑟",
+      "𝑆",
+      "𝑠",
+      "𝑇",
+      "𝑡",
+      "𝑈",
+      "𝑢",
+      "𝑉",
+      "𝑣",
+      "𝑊",
+      "𝑤",
+      "𝑋",
+      "𝑥",
+      "𝑌",
+      "𝑦",
+      "𝑍",
+      "𝑧"
+    ],
+    "/sxz": [
+      "𝑨",
+      "𝒂",
+      "𝑩",
+      "𝒃",
+      "𝑪",
+      "𝒄",
+      "𝑫",
+      "𝒅",
+      "𝑬",
+      "𝒆",
+      "𝑭",
+      "𝒇",
+      "𝑮",
+      "𝒈",
+      "𝑯",
+      "𝒉",
+      "𝑰",
+      "𝒊",
+      "𝑱",
+      "𝒋",
+      "𝑲",
+      "𝒌",
+      "𝑳",
+      "𝒍",
+      "𝑴",
+      "𝒎",
+      "𝑵",
+      "𝒏",
+      "𝑶",
+      "𝒐",
+      "𝑷",
+      "𝒑",
+      "𝑸",
+      "𝒒",
+      "𝑹",
+      "𝒓",
+      "𝑺",
+      "𝒔",
+      "𝑻",
+      "𝒕",
+      "𝑼",
+      "𝒖",
+      "𝑽",
+      "𝒗",
+      "𝑾",
+      "𝒘",
+      "𝑿",
+      "𝒙",
+      "𝒀",
+      "𝒚",
+      "𝒁",
+      "𝒛"
+    ],
+    "/ux": [
+      "＋",
+      "－",
+      "×",
+      "÷",
+      "±",
+      "∈",
+      "∏",
+      "∑",
+      "＜",
+      "≮",
+      "＝",
+      "≠",
+      "＞",
+      "≯",
+      "∕",
+      "√",
+      "∝",
+      "∞",
+      "∟",
+      "∠",
+      "∥",
+      "∧",
+      "∨",
+      "∩",
+      "∪",
+      "∫",
+      "∮",
+      "∴",
+      "∵",
+      "∷",
+      "∽",
+      "≈",
+      "≌",
+      "≒",
+      "≡",
+      "≤",
+      "≥",
+      "≦",
+      "≧",
+      "⊕",
+      "⊙",
+      "⊥",
+      "⊿",
+      "㏑",
+      "㏒"
+    ],
+    "/uxc": [
+      "𝐀",
+      "𝐚",
+      "𝐁",
+      "𝐛",
+      "𝐂",
+      "𝐜",
+      "𝐃",
+      "𝐝",
+      "𝐄",
+      "𝐞",
+      "𝐅",
+      "𝐟",
+      "𝐆",
+      "𝐠",
+      "𝐇",
+      "𝐡",
+      "𝐈",
+      "𝐢",
+      "𝐉",
+      "𝐣",
+      "𝐊",
+      "𝐤",
+      "𝐋",
+      "𝐥",
+      "𝐌",
+      "𝐦",
+      "𝐍",
+      "𝐧",
+      "𝐎",
+      "𝐨",
+      "𝐏",
+      "𝐩",
+      "𝐐",
+      "𝐪",
+      "𝐑",
+      "𝐫",
+      "𝐒",
+      "𝐬",
+      "𝐓",
+      "𝐭",
+      "𝐔",
+      "𝐮",
+      "𝐕",
+      "𝐯",
+      "𝐖",
+      "𝐰",
+      "𝐗",
+      "𝐱",
+      "𝐘",
+      "𝐲",
+      "𝐙",
+      "𝐳",
+      "𝟎",
+      "𝟏",
+      "𝟐",
+      "𝟑",
+      "𝟒",
+      "𝟓",
+      "𝟔",
+      "𝟕",
+      "𝟖",
+      "𝟗"
+    ],
+    "/uxd": [
+      "𝙰",
+      "𝚊",
+      "𝙱",
+      "𝚋",
+      "𝙲",
+      "𝚌",
+      "𝙳",
+      "𝚍",
+      "𝙴",
+      "𝚎",
+      "𝙵",
+      "𝚏",
+      "𝙶",
+      "𝚐",
+      "𝙷",
+      "𝚑",
+      "𝙸",
+      "𝚒",
+      "𝙹",
+      "𝚓",
+      "𝙺",
+      "𝚔",
+      "𝙻",
+      "𝚕",
+      "𝙼",
+      "𝚖",
+      "𝙽",
+      "𝚗",
+      "𝙾",
+      "𝚘",
+      "𝙿",
+      "𝚙",
+      "𝚀",
+      "𝚚",
+      "𝚁",
+      "𝚛",
+      "𝚂",
+      "𝚜",
+      "𝚃",
+      "𝚝",
+      "𝚄",
+      "𝚞",
+      "𝚅",
+      "𝚟",
+      "𝚆",
+      "𝚠",
+      "𝚇",
+      "𝚡",
+      "𝚈",
+      "𝚢",
+      "𝚉",
+      "𝚣",
+      "𝟶",
+      "𝟷",
+      "𝟸",
+      "𝟹",
+      "𝟺",
+      "𝟻",
+      "𝟼",
+      "𝟽",
+      "𝟾",
+      "𝟿"
+    ],
+    "/uxg": [
+      "𝔄",
+      "𝔞",
+      "𝔅",
+      "𝔟",
+      "ℭ",
+      "𝔠",
+      "𝔇",
+      "𝔡",
+      "𝔈",
+      "𝔢",
+      "𝔉",
+      "𝔣",
+      "𝔊",
+      "𝔤",
+      "ℌ",
+      "𝔥",
+      "ℑ",
+      "𝔦",
+      "𝔍",
+      "𝔧",
+      "𝔎",
+      "𝔨",
+      "𝔏",
+      "𝔩",
+      "𝔐",
+      "𝔪",
+      "𝔑",
+      "𝔫",
+      "𝔒",
+      "𝔬",
+      "𝔓",
+      "𝔭",
+      "𝔔",
+      "𝔮",
+      "ℜ",
+      "𝔯",
+      "𝔖",
+      "𝔰",
+      "𝔗",
+      "𝔱",
+      "𝔘",
+      "𝔲",
+      "𝔙",
+      "𝔳",
+      "𝔚",
+      "𝔴",
+      "𝔛",
+      "𝔵",
+      "𝔜",
+      "𝔶",
+      "ℨ",
+      "𝔷"
+    ],
+    "/uxgc": [
+      "𝕬",
+      "𝖆",
+      "𝕭",
+      "𝖇",
+      "𝕮",
+      "𝖈",
+      "𝕯",
+      "𝖉",
+      "𝕰",
+      "𝖊",
+      "𝕱",
+      "𝖋",
+      "𝕲",
+      "𝖌",
+      "𝕳",
+      "𝖍",
+      "𝕴",
+      "𝖎",
+      "𝕵",
+      "𝖏",
+      "𝕶",
+      "𝖐",
+      "𝕷",
+      "𝖑",
+      "𝕸",
+      "𝖒",
+      "𝕹",
+      "𝖓",
+      "𝕺",
+      "𝖔",
+      "𝕻",
+      "𝖕",
+      "𝕼",
+      "𝖖",
+      "𝕽",
+      "𝖗",
+      "𝕾",
+      "𝖘",
+      "𝕿",
+      "𝖙",
+      "𝖀",
+      "𝖚",
+      "𝖁",
+      "𝖛",
+      "𝖂",
+      "𝖜",
+      "𝖃",
+      "𝖝",
+      "𝖄",
+      "𝖞",
+      "𝖅",
+      "𝖟"
+    ],
+    "/uxh": [
+      "𝒜",
+      "𝒶",
+      "ℬ",
+      "𝒷",
+      "𝒞",
+      "𝒸",
+      "𝒟",
+      "𝒹",
+      "ℰ",
+      "ℯ",
+      "ℱ",
+      "𝒻",
+      "𝒢",
+      "ℊ",
+      "ℋ",
+      "𝒽",
+      "ℐ",
+      "𝒾",
+      "𝒥",
+      "𝒿",
+      "𝒦",
+      "𝓀",
+      "ℒ",
+      "𝓁",
+      "ℳ",
+      "𝓂",
+      "𝒩",
+      "𝓃",
+      "𝒪",
+      "ℴ",
+      "𝒫",
+      "𝓅",
+      "𝒬",
+      "𝓆",
+      "ℛ",
+      "𝓇",
+      "𝒮",
+      "𝓈",
+      "𝒯",
+      "𝓉",
+      "𝒰",
+      "𝓊",
+      "𝒱",
+      "𝓋",
+      "𝒲",
+      "𝓌",
+      "𝒳",
+      "𝓍",
+      "𝒴",
+      "𝓎",
+      "𝒵",
+      "𝓏"
+    ],
+    "/uxhc": [
+      "𝓐",
+      "𝓪",
+      "𝓑",
+      "𝓫",
+      "𝓒",
+      "𝓬",
+      "𝓓",
+      "𝓭",
+      "𝓔",
+      "𝓮",
+      "𝓕",
+      "𝓯",
+      "𝓖",
+      "𝓰",
+      "𝓗",
+      "𝓱",
+      "𝓘",
+      "𝓲",
+      "𝓙",
+      "𝓳",
+      "𝓚",
+      "𝓴",
+      "𝓛",
+      "𝓵",
+      "𝓜",
+      "𝓶",
+      "𝓝",
+      "𝓷",
+      "𝓞",
+      "𝓸",
+      "𝓟",
+      "𝓹",
+      "𝓠",
+      "𝓺",
+      "𝓡",
+      "𝓻",
+      "𝓢",
+      "𝓼",
+      "𝓣",
+      "𝓽",
+      "𝓤",
+      "𝓾",
+      "𝓥",
+      "𝓿",
+      "𝓦",
+      "𝔀",
+      "𝓧",
+      "𝔁",
+      "𝓨",
+      "𝔂",
+      "𝓩",
+      "𝔃"
+    ],
+    "/uxs": [
+      "𝔸",
+      "𝕒",
+      "𝔹",
+      "𝕓",
+      "ℂ",
+      "𝕔",
+      "𝔻",
+      "𝕕",
+      "𝔼",
+      "𝕖",
+      "𝔽",
+      "𝕗",
+      "𝔾",
+      "𝕘",
+      "ℍ",
+      "𝕙",
+      "𝕀",
+      "𝕚",
+      "𝕁",
+      "𝕛",
+      "𝕂",
+      "𝕜",
+      "𝕃",
+      "𝕝",
+      "𝕄",
+      "𝕞",
+      "ℕ",
+      "𝕟",
+      "𝕆",
+      "𝕠",
+      "ℙ",
+      "𝕡",
+      "ℚ",
+      "𝕢",
+      "ℝ",
+      "𝕣",
+      "𝕊",
+      "𝕤",
+      "𝕋",
+      "𝕥",
+      "𝕌",
+      "𝕦",
+      "𝕍",
+      "𝕧",
+      "𝕎",
+      "𝕨",
+      "𝕏",
+      "𝕩",
+      "𝕐",
+      "𝕪",
+      "ℤ",
+      "𝕫",
+      "𝟘",
+      "𝟙",
+      "𝟚",
+      "𝟛",
+      "𝟜",
+      "𝟝",
+      "𝟞",
+      "𝟟",
+      "𝟠",
+      "𝟡"
+    ],
+    "/uxw": [
+      "𝖠",
+      "𝖺",
+      "𝖡",
+      "𝖻",
+      "𝖢",
+      "𝖼",
+      "𝖣",
+      "𝖽",
+      "𝖤",
+      "𝖾",
+      "𝖥",
+      "𝖿",
+      "𝖦",
+      "𝗀",
+      "𝖧",
+      "𝗁",
+      "𝖨",
+      "𝗂",
+      "𝖩",
+      "𝗃",
+      "𝖪",
+      "𝗄",
+      "𝖫",
+      "𝗅",
+      "𝖬",
+      "𝗆",
+      "𝖭",
+      "𝗇",
+      "𝖮",
+      "𝗈",
+      "𝖯",
+      "𝗉",
+      "𝖰",
+      "𝗊",
+      "𝖱",
+      "𝗋",
+      "𝖲",
+      "𝗌",
+      "𝖳",
+      "𝗍",
+      "𝖴",
+      "𝗎",
+      "𝖵",
+      "𝗏",
+      "𝖶",
+      "𝗐",
+      "𝖷",
+      "𝗑",
+      "𝖸",
+      "𝗒",
+      "𝖹",
+      "𝗓",
+      "𝟢",
+      "𝟣",
+      "𝟤",
+      "𝟥",
+      "𝟦",
+      "𝟧",
+      "𝟨",
+      "𝟩",
+      "𝟪",
+      "𝟫"
+    ],
+    "/uxwc": [
+      "𝗔",
+      "𝗮",
+      "𝗕",
+      "𝗯",
+      "𝗖",
+      "𝗰",
+      "𝗗",
+      "𝗱",
+      "𝗘",
+      "𝗲",
+      "𝗙",
+      "𝗳",
+      "𝗚",
+      "𝗴",
+      "𝗛",
+      "𝗵",
+      "𝗜",
+      "𝗶",
+      "𝗝",
+      "𝗷",
+      "𝗞",
+      "𝗸",
+      "𝗟",
+      "𝗹",
+      "𝗠",
+      "𝗺",
+      "𝗡",
+      "𝗻",
+      "𝗢",
+      "𝗼",
+      "𝗣",
+      "𝗽",
+      "𝗤",
+      "𝗾",
+      "𝗥",
+      "𝗿",
+      "𝗦",
+      "𝘀",
+      "𝗧",
+      "𝘁",
+      "𝗨",
+      "𝘂",
+      "𝗩",
+      "𝘃",
+      "𝗪",
+      "𝘄",
+      "𝗫",
+      "𝘅",
+      "𝗬",
+      "𝘆",
+      "𝗭",
+      "𝘇",
+      "𝟬",
+      "𝟭",
+      "𝟮",
+      "𝟯",
+      "𝟰",
+      "𝟱",
+      "𝟲",
+      "𝟳",
+      "𝟴",
+      "𝟵"
+    ],
+    "/uxwx": [
+      "𝘈",
+      "𝘢",
+      "𝘉",
+      "𝘣",
+      "𝘊",
+      "𝘤",
+      "𝘋",
+      "𝘥",
+      "𝘌",
+      "𝘦",
+      "𝘍",
+      "𝘧",
+      "𝘎",
+      "𝘨",
+      "𝘏",
+      "𝘩",
+      "𝘐",
+      "𝘪",
+      "𝘑",
+      "𝘫",
+      "𝘒",
+      "𝘬",
+      "𝘓",
+      "𝘭",
+      "𝘔",
+      "𝘮",
+      "𝘕",
+      "𝘯",
+      "𝘖",
+      "𝘰",
+      "𝘗",
+      "𝘱",
+      "𝘘",
+      "𝘲",
+      "𝘙",
+      "𝘳",
+      "𝘚",
+      "𝘴",
+      "𝘛",
+      "𝘵",
+      "𝘜",
+      "𝘶",
+      "𝘝",
+      "𝘷",
+      "𝘞",
+      "𝘸",
+      "𝘟",
+      "𝘹",
+      "𝘠",
+      "𝘺",
+      "𝘡",
+      "𝘻"
+    ],
+    "/uxwz": [
+      "𝘼",
+      "𝙖",
+      "𝘽",
+      "𝙗",
+      "𝘾",
+      "𝙘",
+      "𝘿",
+      "𝙙",
+      "𝙀",
+      "𝙚",
+      "𝙁",
+      "𝙛",
+      "𝙂",
+      "𝙜",
+      "𝙃",
+      "𝙝",
+      "𝙄",
+      "𝙞",
+      "𝙅",
+      "𝙟",
+      "𝙆",
+      "𝙠",
+      "𝙇",
+      "𝙡",
+      "𝙈",
+      "𝙢",
+      "𝙉",
+      "𝙣",
+      "𝙊",
+      "𝙤",
+      "𝙋",
+      "𝙥",
+      "𝙌",
+      "𝙦",
+      "𝙍",
+      "𝙧",
+      "𝙎",
+      "𝙨",
+      "𝙏",
+      "𝙩",
+      "𝙐",
+      "𝙪",
+      "𝙑",
+      "𝙫",
+      "𝙒",
+      "𝙬",
+      "𝙓",
+      "𝙭",
+      "𝙔",
+      "𝙮",
+      "𝙕",
+      "𝙯"
+    ],
+    "/uxx": [
+      "𝐴",
+      "𝑎",
+      "𝐵",
+      "𝑏",
+      "𝐶",
+      "𝑐",
+      "𝐷",
+      "𝑑",
+      "𝐸",
+      "𝑒",
+      "𝐹",
+      "𝑓",
+      "𝐺",
+      "𝑔",
+      "𝐻",
+      "ℎ",
+      "𝐼",
+      "𝑖",
+      "𝐽",
+      "𝑗",
+      "𝐾",
+      "𝑘",
+      "𝐿",
+      "𝑙",
+      "𝑀",
+      "𝑚",
+      "𝑁",
+      "𝑛",
+      "𝑂",
+      "𝑜",
+      "𝑃",
+      "𝑝",
+      "𝑄",
+      "𝑞",
+      "𝑅",
+      "𝑟",
+      "𝑆",
+      "𝑠",
+      "𝑇",
+      "𝑡",
+      "𝑈",
+      "𝑢",
+      "𝑉",
+      "𝑣",
+      "𝑊",
+      "𝑤",
+      "𝑋",
+      "𝑥",
+      "𝑌",
+      "𝑦",
+      "𝑍",
+      "𝑧"
+    ],
+    "/uxz": [
+      "𝑨",
+      "𝒂",
+      "𝑩",
+      "𝒃",
+      "𝑪",
+      "𝒄",
+      "𝑫",
+      "𝒅",
+      "𝑬",
+      "𝒆",
+      "𝑭",
+      "𝒇",
+      "𝑮",
+      "𝒈",
+      "𝑯",
+      "𝒉",
+      "𝑰",
+      "𝒊",
+      "𝑱",
+      "𝒋",
+      "𝑲",
+      "𝒌",
+      "𝑳",
+      "𝒍",
+      "𝑴",
+      "𝒎",
+      "𝑵",
+      "𝒏",
+      "𝑶",
+      "𝒐",
+      "𝑷",
+      "𝒑",
+      "𝑸",
+      "𝒒",
+      "𝑹",
+      "𝒓",
+      "𝑺",
+      "𝒔",
+      "𝑻",
+      "𝒕",
+      "𝑼",
+      "𝒖",
+      "𝑽",
+      "𝒗",
+      "𝑾",
+      "𝒘",
+      "𝑿",
+      "𝒙",
+      "𝒀",
+      "𝒚",
+      "𝒁",
+      "𝒛"
+    ],
+    "/xlc": [
+      "𝚨",
+      "𝛂",
+      "𝚩",
+      "𝛃",
+      "𝚪",
+      "𝛄",
+      "𝚫",
+      "𝛅",
+      "𝚬",
+      "𝛆",
+      "𝚭",
+      "𝛇",
+      "𝚮",
+      "𝛈",
+      "𝚯",
+      "𝛉",
+      "𝚰",
+      "𝛊",
+      "𝚱",
+      "𝛋",
+      "𝚲",
+      "𝛌",
+      "𝚳",
+      "𝛍",
+      "𝚴",
+      "𝛎",
+      "𝚵",
+      "𝛏",
+      "𝚶",
+      "𝛐",
+      "𝚷",
+      "𝛑",
+      "𝚸",
+      "𝛒",
+      "𝚺",
+      "𝛔",
+      "𝛓",
+      "𝚻",
+      "𝛕",
+      "𝚼",
+      "𝛖",
+      "𝚽",
+      "𝛗",
+      "𝚾",
+      "𝛘",
+      "𝚿",
+      "𝛙",
+      "𝛀",
+      "𝛚",
+      "𝛁",
+      "𝛛",
+      "𝛜",
+      "𝛝",
+      "𝛞",
+      "𝛟",
+      "𝛠",
+      "𝛡",
+      "𝟊",
+      "𝟋"
+    ],
+    "/xlwc": [
+      "𝝖",
+      "𝝰",
+      "𝝗",
+      "𝝱",
+      "𝝘",
+      "𝝲",
+      "𝝙",
+      "𝝳",
+      "𝝚",
+      "𝝴",
+      "𝝛",
+      "𝝵",
+      "𝝜",
+      "𝝶",
+      "𝝝",
+      "𝝷",
+      "𝝞",
+      "𝝸",
+      "𝝟",
+      "𝝹",
+      "𝝠",
+      "𝝺",
+      "𝝡",
+      "𝝻",
+      "𝝢",
+      "𝝼",
+      "𝝣",
+      "𝝽",
+      "𝝤",
+      "𝝾",
+      "𝝥",
+      "𝝿",
+      "𝝦",
+      "𝞀",
+      "𝝧",
+      "𝞁",
+      "𝝨",
+      "𝞂",
+      "𝞁",
+      "𝝩",
+      "𝞃",
+      "𝝪",
+      "𝞄",
+      "𝝫",
+      "𝞅",
+      "𝝬",
+      "𝞆",
+      "𝝭",
+      "𝞇",
+      "𝝮",
+      "𝞈",
+      "𝝯",
+      "𝞉",
+      "𝞊",
+      "𝞋",
+      "𝞌",
+      "𝞍",
+      "𝞎",
+      "𝞏"
+    ],
+    "/xlwz": [
+      "𝞐",
+      "𝞪",
+      "𝞑",
+      "𝞫",
+      "𝞒",
+      "𝞬",
+      "𝞓",
+      "𝞭",
+      "𝞔",
+      "𝞮",
+      "𝞕",
+      "𝞯",
+      "𝞖",
+      "𝞰",
+      "𝞗",
+      "𝞱",
+      "𝞘",
+      "𝞲",
+      "𝞙",
+      "𝞳",
+      "𝞚",
+      "𝞴",
+      "𝞛",
+      "𝞵",
+      "𝞜",
+      "𝞶",
+      "𝞝",
+      "𝞷",
+      "𝞞",
+      "𝞸",
+      "𝞟",
+      "𝞹",
+      "𝞠",
+      "𝞺",
+      "𝞡",
+      "𝞻",
+      "𝞢",
+      "𝞼",
+      "𝞻",
+      "𝞣",
+      "𝞽",
+      "𝞤",
+      "𝞾",
+      "𝞥",
+      "𝞿",
+      "𝞦",
+      "𝟀",
+      "𝞧",
+      "𝟁",
+      "𝞨",
+      "𝟂",
+      "𝞩",
+      "𝟃",
+      "𝟄",
+      "𝟅",
+      "𝟆",
+      "𝟇",
+      "𝟈",
+      "𝟉"
+    ],
+    "/xlx": [
+      "𝛢",
+      "𝛼",
+      "𝛣",
+      "𝛽",
+      "𝛤",
+      "𝛾",
+      "𝛥",
+      "𝛿",
+      "𝛦",
+      "𝜀",
+      "𝛧",
+      "𝜁",
+      "𝛨",
+      "𝜂",
+      "𝛩",
+      "𝜃",
+      "𝛪",
+      "𝜄",
+      "𝛫",
+      "𝜅",
+      "𝛬",
+      "𝜆",
+      "𝛭",
+      "𝜇",
+      "𝛮",
+      "𝜈",
+      "𝛯",
+      "𝜉",
+      "𝛰",
+      "𝜊",
+      "𝛱",
+      "𝜋",
+      "𝛲",
+      "𝜌",
+      "𝛴",
+      "𝜎",
+      "𝜍",
+      "𝛵",
+      "𝜏",
+      "𝛶",
+      "𝜐",
+      "𝛷",
+      "𝜑",
+      "𝛸",
+      "𝜒",
+      "𝛹",
+      "𝜓",
+      "𝛺",
+      "𝜔",
+      "𝛻",
+      "𝜕",
+      "𝜖",
+      "𝜗",
+      "𝜘",
+      "𝜙",
+      "𝜚",
+      "𝜛"
+    ],
+    "/xlz": [
+      "𝜜",
+      "𝜶",
+      "𝜝",
+      "𝜷",
+      "𝜞",
+      "𝜸",
+      "𝜟",
+      "𝜹",
+      "𝜠",
+      "𝜺",
+      "𝜡",
+      "𝜻",
+      "𝜢",
+      "𝜼",
+      "𝜣",
+      "𝜽",
+      "𝜤",
+      "𝜾",
+      "𝜥",
+      "𝜿",
+      "𝜦",
+      "𝝀",
+      "𝜧",
+      "𝝁",
+      "𝜨",
+      "𝝂",
+      "𝜩",
+      "𝝃",
+      "𝜪",
+      "𝝄",
+      "𝜫",
+      "𝝅",
+      "𝜬",
+      "𝝆",
+      "𝜭",
+      "𝝈",
+      "𝝇",
+      "𝜮",
+      "𝝉",
+      "𝜯",
+      "𝝊",
+      "𝜰",
+      "𝝋",
+      "𝜱",
+      "𝝌",
+      "𝜲",
+      "𝝍",
+      "𝜳",
+      "𝝎",
+      "𝜵",
+      "𝝏",
+      "𝝐",
+      "𝝑",
+      "𝝒",
+      "𝝓",
+      "𝝔",
+      "𝝕"
+    ],
+    "/yb": [
+      "i:",
+      "ɪ",
+      "e",
+      "æ",
+      "ɑ:",
+      "ɒ",
+      "ɔ:",
+      "ʊ",
+      "u:",
+      "ʌ",
+      "ɜ:",
+      "ə",
+      "eɪ",
+      "aɪ",
+      "ɔɪ",
+      "əʊ",
+      "aʊ",
+      "ɪə",
+      "eə",
+      "ʊə",
+      "p",
+      "b",
+      "t",
+      "d",
+      "k",
+      "g",
+      "f",
+      "v",
+      "θ",
+      "ð",
+      "s",
+      "z",
+      "ʃ",
+      "ʒ",
+      "h",
+      "m",
+      "n",
+      "ŋ",
+      "l",
+      "r",
+      "j",
+      "w",
+      "tʃ",
+      "dʒ",
+      "tr",
+      "dr",
+      "ts",
+      "dz"
+    ],
+    "/yy": [
+      "𝄞",
+      "♩",
+      "♪",
+      "♫",
+      "♬",
+      "♭",
+      "♮",
+      "♯",
+      "𝅝",
+      "𝅗𝅥",
+      "𝅘𝅥𝅯",
+      "𝄻",
+      "𝄼",
+      "𝄽",
+      "𝄾",
+      "𝄿",
+      "𝄢",
+      "𝄀",
+      "𝄂"
+    ]
+  }
+}

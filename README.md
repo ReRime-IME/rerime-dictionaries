@@ -11,8 +11,8 @@ before activating the update. The keyboard operates offline.
 ## Build contract
 
 The first compatibility profile is `wanxiang-ios-arm64-rime1161-v1`: the pinned
-LibrimeKit-iOS v0.1.0 engine (Rime 1.16.1), arm64, Xcode 26.6 build 17F113 and iOS
-26.5 Simulator glyph qualification. A different OS or engine requires new evidence
+LibrimeKit-iOS v0.1.0 engine (Rime 1.16.1), arm64, Xcode 27.0 build 27A266a and iOS
+27.0 Simulator glyph qualification. A different OS or engine requires new evidence
 and explicit client compatibility support. Fixed filenames and schemas live in
 `contract/`; exact engine and recipe identities live in `locks/`.
 
@@ -25,7 +25,7 @@ word-triggered Emoji resources and their provenance.
 
 ## Local verification
 
-Use an existing iOS 26.5 Simulator on a macOS arm64 host with the pinned Xcode.
+Use an existing iOS 27.0 Simulator on a macOS arm64 host with the pinned Xcode.
 The build scripts do not create, reset or install apps on local Simulators. Start
 and manage the selected device with your own host's approved Simulator workflow.
 
@@ -74,7 +74,8 @@ These initial manual runs remain historical evidence.
 ## Licenses
 
 New build tools use Apache-2.0 (`LICENSE`). Wanxiang data and spelling rules use
-CC BY 4.0; derived Rime Ice symbol/Emoji resources retain GPL-3.0-only; OpenCC data
+CC BY 4.0. The active recipe uses Wanxiang auxiliary inputs only; historical signed
+fixtures retain their original Ice notices. OpenCC data
 retains Apache-2.0. See `recipe/wanxiang-v1/NOTICE.md` and the included original
 license files. Every release includes corresponding editable dictionary and recipe
 sources and the public build tools used to produce it. These distinct licenses must
@@ -136,3 +137,18 @@ The [App-authenticated verification](https://github.com/ReRime-IME/rerime-dictio
 succeeded under `rerime-dictionary-watcher[bot]` and was reconciled on the server.
 See [watcher operations](docs/release-watcher.md) and
 [PLAN+TASK and rollout status](docs/release-watcher-plan.md).
+
+## Local Wanxiang auxiliary-source migration (IME-182)
+
+The new recipe replaces Ice Emoji/alias tables and symbol inputs with pinned
+Wanxiang data. The original word remains selectable; alternatives retain Wanxiang
+order. ReRime regional additions remain applied and independently tested. Active
+runtime inventory drops `opencc/others.txt` and `LICENSE-rime-ice.txt`; the recipe
+digest selects this inventory. Legacy signed fixtures are accepted only with their
+original inventory. Source archives include original auxiliary inputs, adaptation
+metadata and native glyph evidence.
+
+The engine ABI is unchanged. The current local producer requires Xcode 27 and
+iOS 27 glyph evidence; old iOS 26 qualification must not be copied onto new bytes.
+Remote watcher, workflow execution, channel promotion and release remain unchanged
+until an explicitly authorized rollout. A local candidate is not a published release.

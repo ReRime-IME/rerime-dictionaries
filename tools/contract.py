@@ -10,9 +10,12 @@ PROFILE = 'wanxiang-ios-arm64-rime1161-v1'
 ENGINE_SHA = 'd123d38b004d60548eef21c2688c17a9b988c8565dd8aee334a8fe215f273bd5'
 SCHEMAS = ('wanxiang', 'wanxiang_english', 'wanxiang_mixedcode')
 RUNTIME = sorted(['default.yaml', 'build/default.yaml', 'opencc/s2t.json', 'opencc/STCharacters.ocd2',
-    'opencc/STPhrases.ocd2', 'opencc/LICENSE', 'opencc/emoji.json', 'opencc/emoji.txt', 'opencc/others.txt',
-    'LICENSE', 'NOTICE.md', 'LICENSE-rime-ice.txt', 'upstream-lock.json', 'qualification.json', 'build-receipt.json'] +
+    'opencc/STPhrases.ocd2', 'opencc/LICENSE', 'opencc/emoji.json', 'opencc/emoji.txt',
+    'LICENSE', 'NOTICE.md', 'upstream-lock.json', 'qualification.json', 'build-receipt.json'] +
     [f'build/{name}.{suffix}' for name in SCHEMAS for suffix in ('schema.yaml','table.bin','prism.bin','reverse.bin')])
+LEGACY_RECIPE = 'c21dbaec7e43052ea95de8729e59ed3bc80902413cb6d8f57bd2bbc94dbe98d8'
+LEGACY_RUNTIME = sorted(RUNTIME + ['opencc/others.txt', 'LICENSE-rime-ice.txt'])
+
 MAX_ZIP = 512 * 1024 * 1024
 MAX_EXPANDED = 1024 * 1024 * 1024
 
@@ -87,15 +90,16 @@ def validate(value, schema):
 
 def validate_manifest(value):
     validate(value,json.loads((ROOT/'contract/package-v4.schema.json').read_text()))
-    if [f['path'] for f in value['files']] != RUNTIME: raise ValueError('runtime-file-set')
+    expected = LEGACY_RUNTIME if value['recipe_sha256'] == LEGACY_RECIPE else RUNTIME
+    if [f['path'] for f in value['files']] != expected: raise ValueError('runtime-file-set')
     if sum(f['size'] for f in value['files']) > MAX_EXPANDED: raise ValueError('expanded-size')
     if value['release_id'] != f"wanxiang-precompiled-{value['package_revision']}-{value['upstream_revision'][:12]}": raise ValueError('release-id')
-    if value['recipe_sha256'] != json.loads((ROOT/'locks/recipe.json').read_text())['sha256']: raise ValueError('recipe')
+    if value['recipe_sha256'] not in {LEGACY_RECIPE, json.loads((ROOT/'locks/recipe.json').read_text())['sha256']}: raise ValueError('recipe')
     receipt = next(f for f in value['files'] if f['path']=='build-receipt.json')
     if receipt['sha256'] != value['build_receipt_sha256']: raise ValueError('receipt-hash')
 
-def validate_compatibility(value, app_version='0.6.1', app_build=21, system_version='26.5'):
-    if system_version not in value['qualified_os'] or system_version != '26.5': raise ValueError('qualified-os')
+def validate_compatibility(value, app_version='0.6.1', app_build=21, system_version='27.0'):
+    if system_version not in value['qualified_os'] or system_version not in {'26.5','27.0'}: raise ValueError('qualified-os')
     current=tuple(map(int,app_version.split('.'))); minimum=tuple(map(int,value['minimum_app_version'].split('.')))
     if current<minimum or app_build<value['minimum_app_build']: raise ValueError('minimum-app')
 

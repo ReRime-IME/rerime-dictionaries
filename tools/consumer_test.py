@@ -12,6 +12,9 @@ CASES += [('taiwan-flag','wanxiang','taiwan','🇹🇼','simplified'),
   ('hongkong-flag','wanxiang','xianggang','🇭🇰','simplified'),
   ('taiwan-flag-traditional','wanxiang','taiwanqizhi','🇹🇼','traditional'),
   ('hongkong-flag-traditional','wanxiang','xianggangquqi','🇭🇰','traditional')]
+CASES += [('emoji-happy','wanxiang','haha','😄','simplified'),
+          ('emoji-cry','wanxiang','daku','😭','simplified'),
+          ('emoji-laugh-cry','wanxiang','xiaoku','😂','simplified')]
 PERSONAL_EDIT_CASE=('personal-edit','wanxiang','xinghexingongzuoshi','星河新工作室','simplified')
 CONSUMER_CASES=[case[0] for case in [*CASES, PERSONAL_EDIT_CASE]]
 

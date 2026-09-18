@@ -2,34 +2,26 @@
   "counts": {
     "opencc/emoji.txt": {
       "excluded": 0,
-      "total": 10341
-    },
-    "opencc/others.txt": {
-      "excluded": 208,
-      "total": 3376
+      "total": 10838
     }
   },
-  "evidenceSHA256": "b00b07cc038d293cf71c5e83cde14960a9735dd055afea27511e1cec3e711944",
-  "excludedStringCount": 207,
+  "evidenceSHA256": "b1f3771979e15010b0383775210b6529661e04453760a2e590befb46c3b3d3b6",
+  "excludedStringCount": 0,
   "files": {
     "opencc/emoji.json": {
-      "sha256": "79fe3b878625d8f96d70aeb6c4d1929ab2a582f8b935d309125b6ccffd799602",
-      "size": 352
+      "sha256": "4477b92db74c7b1dec0a173c6cef78a14b9677bb5f7401a6be5ee14d0de389b9",
+      "size": 277
     },
     "opencc/emoji.txt": {
-      "sha256": "f3e13962289eedccbe92f6d4c5df97db03357c5ad94abdad3d5910aba556705a",
-      "size": 132898
-    },
-    "opencc/others.txt": {
-      "sha256": "ee0567d012533316c125f0ab54aa3e21d39e8ec3d0de59619e2d685db45133a7",
-      "size": 44603
+      "sha256": "81235902825bdf4044d282f2f36d3a06c787c55626f3b9720ea66ab88945d75d",
+      "size": 136620
     }
   },
-  "inputSHA256": "1548c7820c0f518fccaf45ce8f244ac1b87d805373de13613585e5fc5002500f",
+  "inputSHA256": "a888b7f706c1cc4d60d3c1290dd0135f0f8df5f581ba73e223ca101cae929456",
   "platform": "iOS Simulator",
   "policyVersion": 1,
   "schema": "rerime.ios-emoji-qualification.v1",
-  "sourceSHA256": "eda74c0f0ecfe5092b11b8861f3c67a073aa58c556dcd82cbb1dcf9fa21103c5",
-  "stringCount": 9481,
-  "systemVersion": "26.5"
+  "sourceSHA256": "521a653b47caa1ca3ead54fb6af6687d1a19e96b351ad2a1b04b129dee820700",
+  "stringCount": 7024,
+  "systemVersion": "27.0"
 }

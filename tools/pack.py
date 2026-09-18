@@ -58,13 +58,13 @@ def prepare(work, output, revision, adapter_revision, app_build):
         recipe_sha256=json.loads((ROOT/'locks/recipe.json').read_text())['sha256'],engine_archive_sha256=ENGINE_SHA)))
     receipt=dict(format_version=1,compatibility_id=PROFILE,engine_archive_sha256=ENGINE_SHA,engine_version='1.16.1',
         adapter_revision=adapter_revision,recipe_sha256=json.loads((ROOT/'locks/recipe.json').read_text())['sha256'],
-        upstream_revision=source['revision'],source_digest=source['source_digest'],qualified_os=['26.5'],
-        xcode_version='26.6',xcode_build='17F113',deployment_calls=1,runtime_files=runtime,
+        upstream_revision=source['revision'],source_digest=source['source_digest'],qualified_os=['27.0'],
+        xcode_version='27.0',xcode_build='27A266a',deployment_calls=1,runtime_files=runtime,
         source_git_digest=source_git_digest,tool_digest=tool_digest,input_identity=input_identity)
     (root/'build-receipt.json').write_bytes(canonical(receipt))
     manifest=dict(format_version=4,payload_kind='precompiled-rime-v1',profile='mobile_wanxiang_full',package_revision=revision,
         release_id=release,compatibility_id=PROFILE,engine_archive_sha256=ENGINE_SHA,recipe_sha256=receipt['recipe_sha256'],
-        minimum_app_version='0.6.1',minimum_app_build=app_build,qualified_os=['26.5'],glyph_policy_version=1,
+        minimum_app_version='0.6.1',minimum_app_build=app_build,qualified_os=['27.0'],glyph_policy_version=1,
         upstream_revision=source['revision'],adapter_revision=adapter_revision,source_digest=source['source_digest'],
         build_receipt_sha256=file_sha(root/'build-receipt.json'),source_archive_sha256=file_sha(source_archive),
         english_learning_version=1,files=fingerprints(root,RUNTIME))
@@ -74,7 +74,7 @@ def prepare(work, output, revision, adapter_revision, app_build):
     zip_files(output/'runtime-unsigned.zip',{'payload/'+p:root/p for p in RUNTIME})
     for path in ['qualification.json','build-receipt.json','upstream-lock.json']:shutil.copyfile(root/path,output/path)
     (output/'build-environment.json').write_bytes(canonical(dict(format_version=1,image_version=os.environ.get('ImageVersion','local'),
-        xcode_version='26.6',xcode_build='17F113',qualified_os=['26.5'],adapter_revision=adapter_revision)))
+        xcode_version='27.0',xcode_build='27A266a',qualified_os=['27.0'],adapter_revision=adapter_revision)))
     print(json.dumps(dict(stage='packed-unsigned',release_id=release,files=len(RUNTIME),source_sha256=manifest['source_archive_sha256'])),flush=True)
 
 def sign(output,key,key_id):

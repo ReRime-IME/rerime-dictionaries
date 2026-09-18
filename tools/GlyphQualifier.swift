@@ -64,7 +64,7 @@ final class Glyphs {
         let started = ProcessInfo.processInfo.systemUptime
         guard CommandLine.arguments.count == 3 else { throw QualificationError.arguments }
         let version = UIDevice.current.systemVersion.split(separator: ".").prefix(2).joined(separator: ".")
-        guard version == "26.5" else { throw QualificationError.runtime }
+        guard version == "27.0" else { throw QualificationError.runtime }
         let source = URL(fileURLWithPath: CommandLine.arguments[1], isDirectory: true)
         let destination = URL(fileURLWithPath: CommandLine.arguments[2], isDirectory: true)
         try FileManager.default.copyItem(at: source, to: destination)

@@ -2,15 +2,10 @@
   "repository": "https://github.com/amzxyz/rime-wanxiang",
   "revision": "3e0ab702725ffeec790bce5959fdd8319fe4bf64",
   "licenseSPDX": "CC-BY-4.0",
-  "adaptation": "Original-word passthrough plus ordered Wanxiang alternatives; no Ice aliases.",
-  "upstreamFiles": {
+  "files": {
     "lua/data/emoji.txt": "d086f31388b9dfbd5e68204e6805170bac34a263d31772823deed213ecb88337",
     "lua/data/codex_sym.txt": "859ea5a9f63f24d336d4fd7cd73d621584aa549ea724ce65dbbc494e0d331f4c",
     "wanxiang_symbols.yaml": "d176354b390c999f356a14a5ff07bfec0328fcff25c2089167f3b42c352ca810",
     "LICENSE": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94"
-  },
-  "files": {
-    "opencc/emoji.txt": "81235902825bdf4044d282f2f36d3a06c787c55626f3b9720ea66ab88945d75d",
-    "opencc/emoji.json": "4477b92db74c7b1dec0a173c6cef78a14b9677bb5f7401a6be5ee14d0de389b9"
   }
 }
