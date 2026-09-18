@@ -1,6 +1,6 @@
 {
   "format_version": 1,
-  "sha256": "b413fa34637ed6d14bd4a43f12a5a2ede200ab035c20c60ec69be4f38b77e8e6",
+  "sha256": "9630235fe1c5a48a08063ecea08c7c5eb3d6e03ae825025251cdfe2afb8d0ca2",
   "files": [
     {
       "path": "LICENSE",
@@ -20,22 +20,22 @@
     {
       "path": "emoji-glyph-evidence.json",
       "size": 27018,
-      "sha256": "b1f3771979e15010b0383775210b6529661e04453760a2e590befb46c3b3d3b6"
+      "sha256": "9c5f4973a41c8e4b743ca90126e3e6388e886626658afecd2eb4a08bf21e0a2a"
     },
     {
       "path": "emoji-source-lock.json",
       "size": 846,
-      "sha256": "ba105a62c2a2dcbde4d7622b7e426e3c1aedfda17761486bb1f278de24713e7a"
+      "sha256": "8e89cb7632bc8f99b7c6ce8dec0ef18843e3bdb3f6cd15e834a787cfc95fabf3"
     },
     {
       "path": "ios-emoji-qualification.json",
       "size": 826,
-      "sha256": "f243f1e66b0a9e3420dd45ba08eb54509a5a4f6597d81e54ccf244afed50db50"
+      "sha256": "78e5974d1f006786718bd5b3b100ba9d0d154b74ddec780ddd0f86f7a07398dd"
     },
     {
       "path": "ios-symbol-qualification.json",
       "size": 5080,
-      "sha256": "2dd5f234127dfffcdf89b3276672732fd57f70ede7721b4ad73a7e7bbb9595a0"
+      "sha256": "bf5e4432f4a3412efc8e67fc3a4a8e766284f3c4476be0809b32614d6586fd30"
     },
     {
       "path": "opencc/LICENSE",
@@ -59,8 +59,8 @@
     },
     {
       "path": "opencc/emoji.txt",
-      "size": 136620,
-      "sha256": "81235902825bdf4044d282f2f36d3a06c787c55626f3b9720ea66ab88945d75d"
+      "size": 136556,
+      "sha256": "6bf3fb7193c319c352f37d5b77bbd0d22e324f749ad38dd31231fde0b93fe62b"
     },
     {
       "path": "opencc/s2t.json",
@@ -74,8 +74,8 @@
     },
     {
       "path": "rerime_symbols.yaml",
-      "size": 1241283,
-      "sha256": "c148fddf88152d86fa0c9e8cafae09c23c7c898a5596348960c0274f7c1e4aee"
+      "size": 1241211,
+      "sha256": "fd26e667a3272c6e8339dd78f5df25ddddc167a58ee85b9d8645d2bad10657ca"
     },
     {
       "path": "symbol-generation/pairs-v1.json",

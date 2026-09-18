@@ -22,9 +22,6 @@ concurrency:
   group: dictionary-channel-v1
   cancel-in-progress: false
 
-env:
-  DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
-
 jobs:
   check:
     if: github.repository == 'ReRime-IME/rerime-dictionaries' && github.ref == 'refs/heads/main'
@@ -40,6 +37,8 @@ jobs:
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
+      - name: Resolve the exact Xcode lock without a host-specific path
+        run: python3 scripts/select-xcode.py
       - name: Compile the trusted signature verifier
         run: |
           mkdir -p .build/bin
@@ -73,6 +72,8 @@ jobs:
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
+      - name: Resolve the exact Xcode lock without a host-specific path
+        run: python3 scripts/select-xcode.py
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: checked-input
@@ -119,6 +120,8 @@ jobs:
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
+      - name: Resolve the exact Xcode lock without a host-specific path
+        run: python3 scripts/select-xcode.py
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: checked-input

@@ -1,4 +1,3 @@
-# Generated from pinned Wanxiang lua/data/emoji.txt; CC-BY-4.0.
 菊花	菊花 🌼
 美元	美元 $ 💵 💲
 美刀	美刀 $
