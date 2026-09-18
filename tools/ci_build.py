@@ -12,6 +12,7 @@ def main():
     started=time.monotonic()
     subprocess.run(['bash','scripts/build-local.sh','--locked'],cwd=ROOT,check=True)
     subprocess.run(['bash','scripts/test-consumer.sh','--no-deploy'],cwd=ROOT,check=True)
+    subprocess.run(['python3','scripts/test-qualification-cache.py'],cwd=ROOT,check=True)
     resources={name:json.loads((work/'qualified'/(name+'-resources.json')).read_text()) for name in ['qualifier','builder']}
     if any(not 0<value['peak_resident_bytes']<=4*1024**3 for value in resources.values()):raise ValueError('native-stage-resource-bound')
     resources.update(format_version=1,total_elapsed_ms=int((time.monotonic()-started)*1000),
