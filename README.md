@@ -153,3 +153,9 @@ iOS 27 glyph evidence; old iOS 26 qualification must not be copied onto new byte
 The Owner authorized remote rollout on 2026-09-18. See
 [source-unification rollout](docs/source-unification-rollout.md) for the current
 server/cloud acceptance receipt. A local candidate is not a published release.
+
+## Automatic incremental updates
+
+Unchanged dictionary shards reuse qualified build results. Compatible Apps can use
+optional deltas to reconstruct the same signed full package, with automatic full
+download fallback. See [behavior, limits and rollout](docs/automatic-incremental-updates.md).
