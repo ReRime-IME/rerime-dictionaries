@@ -59,7 +59,7 @@ def prepare(archive=None):
         run(['xcrun','--sdk','iphonesimulator','clang++','-target','arm64-apple-ios17.0-simulator','-isysroot',sdk,
              '-std=c++17','-O2','-I',include,ROOT/'tools'/(tool+'.cc'),*libraries,'-lc++','-liconv','-lz','-o',output/tool])
     run(['xcrun','--sdk','iphonesimulator','swiftc','-target','arm64-apple-ios17.0-simulator','-sdk',sdk,'-O','-parse-as-library',
-         '-import-objc-header',opencc/'opencc/opencc.h',ROOT/'tools/GlyphQualifier.swift',libraries[-2],libraries[-3],'-lc++','-o',output/'GlyphQualifier'])
+         '-import-objc-header',opencc/'opencc/opencc.h',ROOT/'tools/GlyphQualifier.swift',ROOT/'tools/GlyphQualificationCache.swift',libraries[-2],libraries[-3],'-lc++','-o',output/'GlyphQualifier'])
     print('PASS pinned engine and native build tools')
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--archive',type=Path);args=p.parse_args();prepare(args.archive)

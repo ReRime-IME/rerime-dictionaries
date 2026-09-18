@@ -82,6 +82,11 @@ jobs:
         with:
           path: .build/engine/Frameworks.tgz
           key: public-engine-${{ hashFiles('locks/engine.json') }}
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .build/qualification-cache
+          key: glyph-v1-${{ hashFiles('tools/Glyph*.swift', 'locks/engine.json') }}-${{ github.run_id }}
+          restore-keys: glyph-v1-${{ hashFiles('tools/Glyph*.swift', 'locks/engine.json') }}-
       - name: Select the pinned runtime on the ephemeral runner
         run: python3 scripts/ci-simulator.py
       - name: Qualify, compile and test the source-free consumer

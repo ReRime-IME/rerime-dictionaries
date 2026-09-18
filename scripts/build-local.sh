@@ -15,6 +15,16 @@ python3 tools/adapt.py --work "$RERIME_BUILD_WORK" ${RERIME_UPSTREAM_REVISION:+-
 if [[ -n "${RERIME_CHECK_PLAN:-}" ]]; then
   python3 tools/check_release.py verify-source --plan "$RERIME_CHECK_PLAN" --work "$RERIME_BUILD_WORK"
 fi
+export SIMCTL_CHILD_RERIME_QUALIFICATION_CACHE="${RERIME_QUALIFICATION_CACHE:-$PWD/.build/qualification-cache}"
+export SIMCTL_CHILD_RERIME_QUALIFICATION_CONTEXT="$(python3 - <<'CACHEPY'
+import hashlib
+from pathlib import Path
+h=hashlib.sha256()
+for p in sorted([*Path('tools').glob('Glyph*.swift'),Path('locks/engine.json')]):
+ h.update(p.name.encode());h.update(p.read_bytes())
+print(h.hexdigest())
+CACHEPY
+)"
 xcrun simctl spawn "$RERIME_SIMULATOR_UDID" "$PWD/.build/bin/GlyphQualifier" "$RERIME_BUILD_WORK/adapted" "$RERIME_BUILD_WORK/qualified"
 python3 - "$RERIME_BUILD_WORK/qualified" <<'PY'
 from pathlib import Path

@@ -65,19 +65,26 @@ final class Glyphs {
         guard CommandLine.arguments.count == 3 else { throw QualificationError.arguments }
         let version = UIDevice.current.systemVersion.split(separator: ".").prefix(2).joined(separator: ".")
         guard version == "27.0" else { throw QualificationError.runtime }
-        let source = URL(fileURLWithPath: CommandLine.arguments[1], isDirectory: true)
+        let source = URL(fileURLWithPath: CommandLine.arguments[1], isDirectory: true).resolvingSymlinksInPath()
         let destination = URL(fileURLWithPath: CommandLine.arguments[2], isDirectory: true)
         try FileManager.default.copyItem(at: source, to: destination)
         guard let converter = opencc_open(source.appendingPathComponent("opencc/s2t.json").path),
               converter != UnsafeMutableRawPointer(bitPattern: -1) else { throw QualificationError.conversion }
         defer { opencc_close(converter) }
         let glyphs = Glyphs()
-        guard let enumeration = FileManager.default.enumerator(at: source, includingPropertiesForKeys: [.isRegularFileKey]) else { throw QualificationError.shape }
-        let files = enumeration.compactMap { $0 as? URL }.filter { $0.lastPathComponent.hasSuffix(".dict.yaml") }.sorted { $0.path < $1.path }
+        let diskCache = try GlyphQualificationCache(source: source)
+        guard let enumeration = FileManager.default.enumerator(atPath: source.path) else { throw QualificationError.shape }
+        let files = enumeration.compactMap { $0 as? String }.filter { $0.hasSuffix(".dict.yaml") }.sorted()
         var report: [[String: Any]] = [], total = 0, excludedTotal = 0
-        for file in files {
-            let path = String(file.path.dropFirst(source.path.count + 1))
+        for path in files {
+            let file = source.appendingPathComponent(path)
             let target = destination.appendingPathComponent(path)
+            if let cached = diskCache.restore(source: file, target: target, path: path) {
+                report.append(cached); total += cached["rows"] as! Int; excludedTotal += cached["excluded"] as! Int
+                continue
+            }
+            // A failed optional restore may have removed the copied target.
+            if !FileManager.default.fileExists(atPath: target.path) { FileManager.default.createFile(atPath: target.path, contents: nil) }
             let output = try FileHandle(forWritingTo: target); try output.truncate(atOffset: 0)
             var header = true, rows = 0, excluded = 0, buffer = Data()
             try lines(file) { data in
@@ -102,6 +109,7 @@ final class Glyphs {
             try output.write(contentsOf: buffer); try output.close()
             guard !header, rows == 0 || rows > excluded else { throw QualificationError.glyphs }
             report.append(["path": path, "rows": rows, "excluded": excluded, "sha256": try digest(target)])
+            diskCache.store(source: file, qualified: target, report: report.last!)
             total += rows; excludedTotal += excluded
             print("qualified files=\(report.count) rows=\(total) excluded=\(excludedTotal)")
         }
@@ -113,7 +121,7 @@ final class Glyphs {
         var usage = rusage()
         guard getrusage(RUSAGE_SELF, &usage) == 0, usage.ru_maxrss > 0 else { throw QualificationError.runtime }
         let resources = ["elapsed_ms": Int((ProcessInfo.processInfo.systemUptime - started) * 1000),
-                         "peak_resident_bytes": Int(usage.ru_maxrss)]
+                         "peak_resident_bytes": Int(usage.ru_maxrss), "cache_hits": diskCache.hits, "cache_misses": diskCache.misses]
         try JSONSerialization.data(withJSONObject: resources, options: [.sortedKeys]).write(to:
             destination.appendingPathComponent("qualifier-resources.json"))
     }
