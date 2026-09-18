@@ -95,15 +95,19 @@ def check(output,operation="release",release_id=None):
         return maintenance(output,old,now,public_policy,'renew',None)
     release=resolve_release(release_id)
     revision=release['revision']
+    tools_digest=sha(canonical(relevant_tools()))
     if old:
         relation=release_relation(old['manifest']['upstream_revision'],revision)
         if relation in ('behind','diverged'):
-            # Preserve existing data; record that an official Release was checked.
-            return maintenance(output,old,now,public_policy,'release-'+relation,release)
+            # Never roll dictionaries back. A producer migration may rebuild the
+            # already authenticated current source even when the official tag lags.
+            if old['receipt'].get('tool_digest') == tools_digest:
+                return maintenance(output,old,now,public_policy,'release-'+relation,release)
+            revision=old['manifest']['upstream_revision']
     tree=api(f'repos/amzxyz/rime-wanxiang/git/trees/{revision}?recursive=1')
     root_data={schema+'.dict.yaml':read(f'https://raw.githubusercontent.com/amzxyz/rime-wanxiang/{revision}/{schema}.dict.yaml',16384) for schema in SCHEMAS}
     sources=source_snapshot(revision,tree,root_data)
-    source_digest=sha(canonical(sources));tools_digest=sha(canonical(relevant_tools()))
+    source_digest=sha(canonical(sources))
     recipe=json.loads((ROOT/'locks/recipe.json').read_text())['sha256']
     identity=sha(canonical(dict(source_git_digest=source_digest,tool_digest=tools_digest,recipe_sha256=recipe,engine_archive_sha256=ENGINE_SHA)))
     releases=[]

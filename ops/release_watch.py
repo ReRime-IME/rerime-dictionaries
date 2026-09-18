@@ -3,6 +3,7 @@
 import argparse
 import base64
 import fcntl
+import hashlib
 import json
 import os
 import re
@@ -148,6 +149,25 @@ def release_identity(value):
     return str(value['id'])
 
 
+def producer_identity(tree):
+    """Scheduling hint only; cloud verification binds actual bytes and signatures."""
+    if tree.get('truncated') is not False or not isinstance(tree.get('tree'), list):
+        raise ValueError('producer-tree')
+    selected = []
+    for item in tree['tree']:
+        path = item.get('path', '')
+        if not path.startswith(('tools/', 'recipe/', 'locks/', 'contract/', 'scripts/', 'keys/', '.github/workflows/')):
+            continue
+        if item.get('type') == 'tree':
+            continue
+        if item.get('type') != 'blob' or not re.fullmatch('[0-9a-f]{40}', item.get('sha', '')):
+            raise ValueError('producer-entry')
+        selected.append((path, item['sha']))
+    if not selected or len(selected) != len({path for path, _ in selected}):
+        raise ValueError('producer-inputs')
+    return hashlib.sha256(json.dumps(sorted(selected), separators=(',', ':')).encode()).hexdigest()
+
+
 def channel_expiry(value):
     # Advisory scheduling only. Cloud producer verifies signature before any write.
     envelope = json.loads(base64.b64decode(value['content']))
@@ -192,6 +212,8 @@ def reconcile(api, state, now):
     if run['conclusion'] == 'success':
         if pending['operation'] == 'release':
             state['completed_release'] = pending['release_id']
+        if pending.get('producer_identity'):
+            state['completed_producer'] = pending['producer_identity']
         state['attempts'] = 0
         state['next_channel_check'] = 0
         return 'completed'
@@ -220,13 +242,24 @@ def tick(api, state, now, persist):
             state['release_etag'] = etag
         state['next_release_check'] = now + DAY
         persist()
+    if now >= state.get('next_producer_check', 0):
+        tree, etag = api.request(f'repos/{REPO}/git/trees/main?recursive=1', etag=state.get('producer_etag'))
+        if tree is not None:
+            identity = producer_identity(tree)
+            if identity != state.get('observed_producer'):
+                state['attempts'] = 0
+            state['observed_producer'] = identity
+            state['producer_etag'] = etag
+        state['next_producer_check'] = now + DAY
+        persist()
     if now >= state.get('next_channel_check', 0):
         channel, _ = api.request(CHANNEL)
         state['expires_at'] = channel_expiry(channel)
         state['next_channel_check'] = now + DAY
         persist()
     operation = None
-    if state.get('observed_release') and state['observed_release'] != state.get('completed_release'):
+    if state.get('observed_release') and (state['observed_release'] != state.get('completed_release') or
+            state.get('observed_producer') != state.get('completed_producer')):
         operation = 'release'
     elif state['expires_at'] - now <= 10 * DAY:
         operation = 'renew'
@@ -235,7 +268,8 @@ def tick(api, state, now, persist):
     if not api.token:
         return 'credential-required'
     pending = dict(operation=operation, release_id=state['observed_release'] if operation == 'release' else '',
-                   request_id=uuid.uuid4().hex, created_at=now)
+                   request_id=uuid.uuid4().hex, created_at=now,
+                   producer_identity=state.get('observed_producer'))
     state['pending'] = pending
     state['attempts'] = state.get('attempts', 0) + 1
     persist()  # A crash or ambiguous POST must reconcile; never blindly resend.

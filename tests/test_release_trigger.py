@@ -50,9 +50,10 @@ class ReleaseTriggerTests(unittest.TestCase):
 
     def test_old_release_never_fetches_or_compiles_old_source(self):
         from check_release import check
-        old = {'manifest': {'upstream_revision': 'a'*40}}
+        from contract import sha, canonical
+        old = {'manifest': {'upstream_revision': 'a'*40}, 'receipt': {'tool_digest':sha(canonical([]))}}
         for relation in ('behind', 'diverged'):
-            with tempfile.TemporaryDirectory() as tmp, patch('check_release.policy', return_value={}), \
+            with tempfile.TemporaryDirectory() as tmp, patch('check_release.policy', return_value={}), patch('check_release.relevant_tools', return_value=[]), \
                  patch('check_release.previous', return_value=old), \
                  patch('check_release.resolve_release', return_value={'revision':'b'*40}), \
                  patch('check_release.release_relation', return_value=relation), \
@@ -60,3 +61,20 @@ class ReleaseTriggerTests(unittest.TestCase):
                 check(Path(tmp)/'out')
                 api.assert_not_called()
                 self.assertEqual(maintain.call_args.args[4], 'release-'+relation)
+
+
+class ProducerRebuildTests(unittest.TestCase):
+    def test_changed_recipe_rebuilds_current_source_not_older_release(self):
+        from check_release import check
+        old={'manifest':{'upstream_revision':'a'*40},'receipt':{'tool_digest':'old'}}
+        for relation in ('behind','diverged'):
+            with tempfile.TemporaryDirectory() as tmp, patch('check_release.policy',return_value={}), \
+                 patch('check_release.previous',return_value=old), \
+                 patch('check_release.relevant_tools',return_value=[]), \
+                 patch('check_release.resolve_release',return_value={'revision':'b'*40}), \
+                 patch('check_release.release_relation',return_value=relation), \
+                 patch('check_release.maintenance') as maintenance, \
+                 patch('check_release.api',side_effect=RuntimeError('reached-tree')) as api:
+                with self.assertRaisesRegex(RuntimeError,'reached-tree'):check(Path(tmp)/'out')
+                self.assertIn('/trees/'+ 'a'*40,api.call_args.args[0])
+                maintenance.assert_not_called()

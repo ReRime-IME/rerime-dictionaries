@@ -13,6 +13,9 @@ be added to this repository, workflow inputs, run names, artifacts or public log
 - Cloud code compares the current package's upstream commit against that Release.
   A behind/diverged Release cannot roll data backward. Same/ahead Releases retain
   relevant-file identity comparison before building.
+- Compare relevant producer blobs daily, with conditional requests. Recipe/tool
+  changes trigger a check even without a new upstream Release; docs-only commits
+  do not. Cloud validation still decides whether compilation is necessary.
 - A 15-minute systemd timer reconciles pending runs. When no work is pending and
   daily checks are not due it performs no HTTP requests. It is not a 15-minute
   upstream poll or a continuously running process.

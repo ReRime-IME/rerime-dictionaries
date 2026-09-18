@@ -61,7 +61,7 @@ class AppAuthTests(unittest.TestCase):
 
     def test_idle_tick_neither_signs_nor_requests_token(self):
         state = {'completed_release':'42', 'observed_release':'42',
-                 'next_release_check':self.now+100, 'next_channel_check':self.now+100,
+                 'next_release_check':self.now+100, 'next_producer_check':self.now+100, 'next_channel_check':self.now+100,
                  'expires_at':self.now+30*86400}
         with patch.object(AppCredential, 'jwt', side_effect=AssertionError('idle auth')), patch.object(
                 GitHub, 'request', side_effect=AssertionError('idle request')):

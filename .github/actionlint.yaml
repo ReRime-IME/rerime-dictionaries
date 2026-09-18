@@ -1,0 +1,5 @@
+# GitHub-hosted public-preview label, documented by actions/runner-images.
+# Compatibility for actionlint versions predating this official label.
+self-hosted-runner:
+  labels:
+    - xcode-27

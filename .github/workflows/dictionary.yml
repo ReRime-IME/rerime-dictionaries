@@ -25,7 +25,7 @@ concurrency:
 jobs:
   check:
     if: github.repository == 'ReRime-IME/rerime-dictionaries' && github.ref == 'refs/heads/main'
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 10
     outputs:
       mode: ${{ steps.check.outputs.mode }}
@@ -65,7 +65,7 @@ jobs:
   build:
     needs: check
     if: needs.check.outputs.mode == 'build'
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -110,7 +110,7 @@ jobs:
       always() && github.repository == 'ReRime-IME/rerime-dictionaries' && github.ref == 'refs/heads/main' &&
       needs.check.result == 'success' &&
       ((needs.check.outputs.mode == 'build' && needs.build.result == 'success') || needs.check.outputs.mode == 'refresh')
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 15
     environment: dictionary-release
     permissions:

@@ -5,8 +5,11 @@ import sys
 import unittest
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'ops'))
-from release_watch import tick, DAY, REPO, RequestError, release_identity
+from release_watch import tick, DAY, REPO, RequestError, release_identity, producer_identity
 
+
+TREE = {'truncated':False, 'tree':[{'path':'recipe/emoji.txt','type':'blob','sha':'a'*40}]}
+IDENTITY = producer_identity(TREE)
 
 class FakeAPI:
     token = 'test-only'
@@ -20,6 +23,8 @@ class FakeAPI:
         if method=='POST':
             if self.fail_post: raise self.fail_post
             return None,None
+        if '/git/trees/' in path:
+            return (None,'producer-etag') if etag else (TREE,'producer-etag')
         if '/releases/latest' in path:
             return (None,'etag') if etag else (dict(id=42,draft=False,prerelease=False,published_at='date'),'etag')
         if '/contents/' in path:
@@ -33,13 +38,13 @@ class FakeAPI:
 
 class WatcherTests(unittest.TestCase):
     def test_daily_poll_etag_and_no_dispatch_when_unchanged(self):
-        api=FakeAPI();state={'completed_release':'42'}
+        api=FakeAPI();state={'completed_release':'42', 'completed_producer':IDENTITY}
         self.assertEqual(tick(api,state,0,lambda:None),'unchanged')
-        self.assertEqual(len(api.calls),2)
+        self.assertEqual(len(api.calls),3)
         tick(api,state,900,lambda:None)
-        self.assertEqual(len(api.calls),2)
+        self.assertEqual(len(api.calls),3)
         tick(api,state,DAY,lambda:None)
-        self.assertEqual(api.calls[2][3],'etag')
+        self.assertEqual(api.calls[3][3],'etag')
         self.assertFalse(any(call[1]=='POST' for call in api.calls))
 
     def test_dispatch_persisted_before_post_and_complete_after_success(self):
@@ -76,7 +81,7 @@ class WatcherTests(unittest.TestCase):
         self.assertNotIn('pending',state)
 
     def test_renew_only_near_expiry(self):
-        api=FakeAPI(expires=9*DAY);state={'completed_release':'42'}
+        api=FakeAPI(expires=9*DAY);state={'completed_release':'42', 'completed_producer':IDENTITY}
         tick(api,state,0,lambda:None)
         inputs=api.calls[-1][2]['inputs']
         self.assertEqual(inputs['operation'],'renew')
@@ -88,3 +93,28 @@ class WatcherTests(unittest.TestCase):
         self.assertEqual(tick(api,{},0,lambda:None),'credential-required')
         self.assertFalse(any(c[1]=='POST' for c in api.calls))
         with self.assertRaises(ValueError):release_identity(dict(id=1,draft=False,prerelease=True,published_at='date'))
+
+
+class ProducerWatcherTests(unittest.TestCase):
+    def test_recipe_change_dispatches_without_new_upstream_release(self):
+        api=FakeAPI();state={'completed_release':'42','completed_producer':'old'}
+        self.assertEqual(tick(api,state,0,lambda:None),'dispatched')
+        self.assertEqual(state['pending']['producer_identity'],IDENTITY)
+        api.run=dict(id=8,display_title='Dictionary '+state['pending']['request_id'],status='completed',conclusion='success')
+        tick(api,state,900,lambda:None)
+        self.assertEqual(state['completed_producer'],IDENTITY)
+        self.assertEqual(tick(api,state,1800,lambda:None),'unchanged')
+
+    def test_failed_run_does_not_accept_new_producer(self):
+        api=FakeAPI();state={'completed_release':'42','completed_producer':'old'}
+        tick(api,state,0,lambda:None)
+        api.run=dict(id=8,display_title='Dictionary '+state['pending']['request_id'],status='completed',conclusion='failure')
+        tick(api,state,900,lambda:None)
+        self.assertEqual(state['completed_producer'],'old')
+
+    def test_documentation_does_not_change_identity_and_partial_tree_rejected(self):
+        tree=copy.deepcopy(TREE)
+        tree['tree'].append({'path':'docs/readme.md','type':'blob','sha':'b'*40})
+        self.assertEqual(producer_identity(tree),IDENTITY)
+        tree['truncated']=True
+        with self.assertRaises(ValueError):producer_identity(tree)

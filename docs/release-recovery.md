@@ -13,8 +13,9 @@ Older clients may consequently show their 72-hour freshness advisory during a qu
 upstream period; it does not invalidate installed dictionaries. Server polling does
 not by itself update signed public metadata or claim a new dictionary release.
 
-All jobs use the standard public-repository `macos-26` runner. The producer requires
-Xcode 26.6 (17F113), arm64 and an existing iOS 26.5 iPhone 17 Pro Simulator. An image
+All jobs use the standard public-repository `xcode-27` runner (public preview).
+The producer requires Xcode 27.0 (27A266a), arm64 and an existing iOS 27.0
+iPhone from the explicit selector allowlist. An image
 change that removes this combination fails qualification; it does not silently
 approve another OS. Check/build jobs have read-only repository access. Only the
 main-only `dictionary-release` environment provides the signing secret to the final
@@ -51,3 +52,5 @@ published assets and current client installations.
 A configured timer or HTTP dispatch response is not proof of completion. Record
 the correlated successful cloud run and server reconciliation separately. The
 initial server round trip is documented in the [rollout plan](release-watcher-plan.md).
+
+Producer/auxiliary changes and current rollout: [source unification](source-unification-rollout.md).

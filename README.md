@@ -150,5 +150,6 @@ metadata and native glyph evidence.
 
 The engine ABI is unchanged. The current local producer requires Xcode 27 and
 iOS 27 glyph evidence; old iOS 26 qualification must not be copied onto new bytes.
-Remote watcher, workflow execution, channel promotion and release remain unchanged
-until an explicitly authorized rollout. A local candidate is not a published release.
+The Owner authorized remote rollout on 2026-09-18. See
+[source-unification rollout](docs/source-unification-rollout.md) for the current
+server/cloud acceptance receipt. A local candidate is not a published release.

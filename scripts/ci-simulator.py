@@ -7,7 +7,7 @@ LOCK=json.loads((Path(__file__).resolve().parents[1]/"locks/engine.json").read_t
 
 def select(devices):
     runtime='com.apple.CoreSimulator.SimRuntime.iOS-'+LOCK['ios'].replace('.','-')
-    choices=[item for item in devices.get('devices',{}).get(runtime,[]) if item.get('isAvailable') and item.get('deviceTypeIdentifier')=='com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro']
+    choices=[item for item in devices.get('devices',{}).get(runtime,[]) if item.get('isAvailable') and item.get('deviceTypeIdentifier') in {'com.apple.CoreSimulator.SimDeviceType.iPhone-17', 'com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro', 'com.apple.CoreSimulator.SimDeviceType.iPhone-18-Pro'}]
     if not choices:raise ValueError('qualified-simulator-missing')
     return sorted(choices,key=lambda item:item['udid'])[0]
 
@@ -19,6 +19,6 @@ def main():
     if device['state']=='Shutdown':subprocess.run(['xcrun','simctl','boot',device['udid']],check=True)
     subprocess.run(['xcrun','simctl','bootstatus',device['udid'],'-b'],check=True)
     with open(os.environ['GITHUB_ENV'],'a') as stream:stream.write('RERIME_SIMULATOR_UDID='+device['udid']+'\n')
-    print(json.dumps(dict(stage='qualified-simulator',model='iPhone 17 Pro',runtime=LOCK['ios'],udid=device['udid'])))
+    print(json.dumps(dict(stage='qualified-simulator',model=device['name'],runtime=LOCK['ios'],udid=device['udid'])))
 
 if __name__=='__main__':main()

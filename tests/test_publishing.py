@@ -68,7 +68,7 @@ class PublishingTests(unittest.TestCase):
         self.assertEqual(commit['parents'],['a'*40])
     def test_workflow_secret_and_cost_scope(self):
         value=(ROOT/'.github/workflows/dictionary.yml').read_text()
-        self.assertEqual(set(re.findall(r'runs-on: (\S+)',value)),{'macos-26'})
+        self.assertEqual(set(re.findall(r'runs-on: (\S+)',value)),{'xcode-27'})
         self.assertNotIn('pull_request_target',value)
         self.assertEqual(value.count('secrets.RERIME_SIGNING_KEY'),1)
         self.assertNotIn('secrets.',value.split('  promote:')[0])

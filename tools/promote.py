@@ -24,6 +24,13 @@ def require_plan(plan,now):
     if plan['tool_commit']!=actual or os.environ.get('GITHUB_SHA',actual)!=actual:raise ValueError('trusted-tool-commit')
     if sha(canonical(relevant_tools()))!=plan['tool_digest']:raise ValueError('trusted-tool-digest')
 
+def validate_qualification(qualification):
+    expected_os = json.loads((ROOT/'locks/engine.json').read_text())['ios']
+    if (qualification.get('qualified_os') != [expected_os] or
+            qualification.get('glyph_policy_version') != 1 or qualification.get('rows', 0) <= 0):
+        raise ValueError('candidate-qualification')
+
+
 def verify_candidate(output,plan,public_policy):
     files=list(output.iterdir())
     if len(files)>32:raise ValueError('artifact-count')
@@ -42,8 +49,7 @@ def verify_candidate(output,plan,public_policy):
     for name in ['qualification.json','build-receipt.json','upstream-lock.json']:
         if file_sha(output/name)!=expected_files[name]['sha256']:raise ValueError('candidate-receipt')
     qualification=json.loads((output/'qualification.json').read_text())
-    if qualification.get('qualified_os')!=['26.5'] or qualification.get('glyph_policy_version')!=1 or qualification.get('rows',0)<=0:
-        raise ValueError('candidate-qualification')
+    validate_qualification(qualification)
     consumer=json.loads((output/'consumer-receipt.json').read_text())
     if consumer.get('cases')!=[dict(case=name,exit=0) for name in CONSUMER_CASES]:raise ValueError('consumer-cases')
     if any(consumer.get(key)!=value for key,value in dict(deployment_calls=0,dictionary_sources_absent=1,missing_table_rejected=1,public_hashes_unchanged=1).items()):

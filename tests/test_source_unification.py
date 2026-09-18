@@ -25,3 +25,11 @@ class SourceUnificationTests(unittest.TestCase):
         actual = fingerprints(recipe,[p.relative_to(recipe).as_posix() for p in recipe.rglob('*') if p.is_file()])
         self.assertEqual(actual,lock['files'])
         self.assertEqual(sha(canonical(actual)),lock['sha256'])
+
+    def test_promotion_requires_current_os_evidence(self):
+        from promote import validate_qualification
+        validate_qualification({'qualified_os':['27.0'],'glyph_policy_version':1,'rows':1})
+        for value in (['26.5'], ['26.5','27.0'], [], ['27.0']):
+            with self.assertRaises(ValueError):
+                validate_qualification({'qualified_os':value,'glyph_policy_version':1,
+                                        'rows':0 if value == ['27.0'] else 1})
