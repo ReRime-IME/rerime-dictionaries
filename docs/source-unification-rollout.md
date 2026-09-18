@@ -71,4 +71,29 @@ Current Taiwan/Hong Kong regional data and global channel remain unchanged.
 
 ## Rollout receipt
 
-Pending real server-to-cloud round trip. Update this section with observed results.
+Verified on 2026-09-18. Main producer and deployed watcher code:
+`e1ffeb764af2fe0196408523da5209813b913d8e`. All 44 local tests and workflow lint pass.
+The actual server-triggered [run 35395400030](https://github.com/ReRime-IME/rerime-dictionaries/actions/runs/35395400030)
+passed check, native build/14 source-free consumer cases, signing, ten anonymous
+asset downloads and channel promotion. Release `wanxiang-precompiled-13-64c9c8c10524`
+and channel sequence13 are live; channel commit is
+`00cd34def870c2944a000d769d9f2ec3c3c248fa`.
+
+Published archive: 41,683,912 bytes, SHA-256
+`4a5ce926a65f46828bfd96d7ffe94a2605a67b6d4138e98b1472fdd18a7579f4`.
+The server reconciled the exact run successfully with no pending/blocked state;
+its timer remains active. A subsequent tick returned `unchanged`. An independent
+check against the live signed channel returned `noop`, skipping native compilation.
+
+Cloud glyph qualification took 259,560 ms, Rime compilation 13,365 ms, and the
+native pipeline including setup 500,990 ms. These measurements support prioritizing
+future glyph-cache investigation; no incremental transport or cache is claimed.
+
+The App workspace now bundles the exact published signed bytes, with descriptor
+hashes aligned. Its real native installation bridge passed 13 checks without
+compilation; App/extension Debug build and built-resource identity checks passed.
+This does not publish the App or qualify iOS 26. Existing clients need matching
+recipe trust, and package OS qualification remains iOS 27 only.
+
+The previous server code and private state backup remain available privately for
+rollback. This document contains no host addresses or credentials.
