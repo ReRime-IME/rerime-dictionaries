@@ -38,7 +38,8 @@ target archive. The existing signed installer alone owns schema validation, pers
 layer preservation and atomic activation. No table patching or compilation on phones.
 
 The App keeps at most one successful public ZIP in its disposable Caches directory;
-its bundled ZIP is another read-only base. Missing/mismatched base or malformed,
+its bundled ZIP is another read-only base. An exact authenticated local target is
+reused without another archive download. Missing/mismatched base or malformed,
 unavailable or damaged delta falls back once to full download. Explicit cancellation
 stops the whole operation and does not trigger fallback. Old clients and old releases
 keep working through full downloads. The download starts under the existing user
@@ -63,6 +64,21 @@ Preserve immutable releases/channel floors, existing data and credentials.
 
 ## Rollout
 
-Local producer tests, native cache parity, Python-to-Swift real ZIP reconstruction,
-and App fallback/cancellation tests pass. Remote rollout receipt is added after the
-actual server-triggered run completes; code availability is not a published result.
+The actual server-triggered run
+[35402857564](https://github.com/ReRime-IME/rerime-dictionaries/actions/runs/35402857564)
+succeeded at producer969537445ec08f3c9a3a713ebc5745efc2908d85. Native consumer
+and cache parity/invalidation checks passed before promotion; the first cold run
+saved the bounded cloud cache for subsequent builds. Full cloud qualification took
+196,836 ms (22 misses); total native pipeline407,081 ms. No second warm cloud
+build is claimed; warm behavior is established by the parity tests and local full run.
+
+Revision14/channel14 was promoted at ccd308c580d8a2366c16c39685145edc495f1ff1
+after all12 immutable assets passed anonymous download verification. Full ZIP is
+41,683,918 bytes with SHA256
+`41bd0f394e27d10891508acbab7f0e0602021994f0792534357c0bc0a48bc79c`.
+The production App catalog/downloader verified the live signed channel and downloaded
+only delta.json + delta.bin (8,532 bytes), then reconstructed that exact ZIP from
+published revision13. Only manifest/build-receipt bytes changed in this pair; runtime
+payload bytes are identical, so this is not a typical new-vocabulary savings claim.
+The existing watcher reconciled the same run as successful. Client optimization still
+requires shipping the updated App; dictionary publication does not update App code.
