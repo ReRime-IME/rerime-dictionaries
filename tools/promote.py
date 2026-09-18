@@ -60,12 +60,14 @@ def verify_candidate(output,plan,public_policy):
     if {file.name for file in output.iterdir()}!=allowed:raise ValueError('unsigned-artifact-allowlist')
     return manifest
 
-def files_for_release(output,manifest,staging):
+def files_for_release(output,manifest,staging,delta_directory=None):
     release=manifest['release_id'];staging.mkdir(exist_ok=False)
     mapping={'ReRime-'+release+'.zip':output/(release+'.zip'),release+'-source.zip':output/(release+'-source.zip')}
     for name in ['manifest.json','qualification.json','build-receipt.json','upstream-lock.json',
                  'build-environment.json','consumer-receipt.json','build-resources.json']:
         mapping[name]=output/name
+    if delta_directory and (delta_directory/'delta.json').is_file():
+        mapping.update({name:delta_directory/name for name in ('delta.json','delta.bin')})
     for name,source in mapping.items():
         if not source.is_file() or source.is_symlink():raise ValueError('release-file')
         shutil.copyfile(source,staging/name)
@@ -139,6 +141,28 @@ def write_channel(envelope,expected_hash):
     else:api(f'repos/{REPO}/git/refs','POST',dict(ref='refs/heads/channel',sha=commit['sha']))
     return commit['sha']
 
+def prepare_delta(live,target,scratch):
+    """Optimization is optional; a verified full package always remains publishable."""
+    if not live:return None
+    directory=scratch/'delta'
+    try:
+        from delta import generate
+        base=scratch/'delta-base.zip';channel=live['channel']
+        download(channel['package_url'],base,min(MAX_ZIP,channel['package_size']))
+        if base.stat().st_size!=channel['package_size'] or file_sha(base)!=channel['package_sha256']:
+            raise ValueError('delta-base-integrity')
+        zip_shape(base,live['manifest'])
+        result=generate(base,target,directory)
+        if result:
+            print(json.dumps(dict(stage='delta-ready',base_sha256=result['base_sha256'],
+                target_size=result['target_size'],patch_size=result['patch_size'])),flush=True)
+            return directory
+        print('{"stage":"delta-skipped","reason":"no-material-saving"}',flush=True)
+    except Exception:
+        print('{"stage":"delta-skipped","reason":"optional-base-or-patch-unavailable"}',flush=True)
+    return None
+
+
 def promote(plan_path,output):
     now=int(time.time());plan=json.loads(plan_path.read_text());require_plan(plan,now)
     if plan['mode']=='noop':print('No promotion required');return
@@ -157,7 +181,8 @@ def promote(plan_path,output):
             manifest=verify_candidate(output,plan,public_policy)
             sign(output,'environment',public_policy['key_id'])
             verify(output,ROOT/public_policy['public_key_file'],public_policy['key_id'])
-            staging=scratch/'assets';records=files_for_release(output,manifest,staging)
+            delta_directory=prepare_delta(live,output/(manifest['release_id']+'.zip'),scratch)
+            staging=scratch/'assets';records=files_for_release(output,manifest,staging,delta_directory)
             release=publish_assets(manifest['release_id'],plan['tool_commit'],staging,records)
             readback=scratch/'readback';readback.mkdir()
             anonymous_assets(manifest['release_id'],records,readback)
