@@ -8,7 +8,8 @@ class DeltaTests(unittest.TestCase):
         shared=os.urandom(200_000)
         for name,value in [('base',b'old'),('target',b'new')]:
             with zipfile.ZipFile(root/(name+'.zip'),'w',compression=zipfile.ZIP_DEFLATED) as z:
-                z.writestr('stable.bin',shared);z.writestr('changed.txt',value)
+                z.writestr(zipfile.ZipInfo('stable.bin',(2026,1,1,0,0,0)),shared,compress_type=zipfile.ZIP_DEFLATED)
+                z.writestr(zipfile.ZipInfo('changed.txt',(2026,1,1,0,0,0)),value,compress_type=zipfile.ZIP_DEFLATED)
         return root/'base.zip',root/'target.zip'
     def test_exact_round_trip_and_saving(self):
         with tempfile.TemporaryDirectory() as tmp:
