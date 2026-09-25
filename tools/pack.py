@@ -39,6 +39,7 @@ def prepare(work, output, revision, adapter_revision, app_build):
             if path.is_file():source_files[f'{prefix}/{path.relative_to(directory).as_posix()}']=path
     source_files['source-receipt.json']=work/'source-receipt.json'
     source_files['local-additions-receipt.json']=work/'local-additions-receipt.json'
+    source_files['recipe-corrections-receipt.json']=work/'recipe-corrections-receipt.json'
     for path in sorted((ROOT/'tools').glob('*')):
         if path.is_file(): source_files['build-tools/'+path.name]=path
     source_files['build-tools-LICENSE']=ROOT/'LICENSE'
