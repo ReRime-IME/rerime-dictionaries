@@ -8,6 +8,7 @@ import urllib.request
 from pathlib import Path
 from contract import ROOT, SCHEMAS, canonical, fingerprints, sha
 from local_additions import apply as apply_local_additions
+from recipe_corrections import apply as apply_recipe_corrections
 
 MAX_FILE = 80 * 1024 * 1024
 TABLE = re.compile(r'dicts/[a-z_]{1,40}')
@@ -97,6 +98,7 @@ def build(work,revision):
     for entry in actual:
         target=destination/entry['path'];target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copyfile(recipe/entry['path'],target)
+    apply_recipe_corrections(destination)
     paths=[];tables={};rows={}
     def fetch(path):
         download(f'https://raw.githubusercontent.com/amzxyz/rime-wanxiang/{revision}/{path}',source/path)

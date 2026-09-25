@@ -1,0 +1,13 @@
+{
+  "format_version": 1,
+  "corrections": [
+    {
+      "id": "tei-is-a-syllable",
+      "file": "wanxiang_full_pinyin.yaml",
+      "find": "  - derive/([wtfghkz])ei$/$1ie/\n",
+      "replace": "  - derive/([wfghkz])ei$/$1ie/  # ReRime: tei (忒) is a real syllable; typed tie must not also read tei\n",
+      "reason": "The typo derivation turns tei into tie, so a correct tie (铁, 贴) silently also offers 忒 with no correction mark. It is the only one of the 38 typo derivations that collides with a real syllable.",
+      "evidence": "re_rime IME-231I, tools/input-intelligence/audit_typo_derivations.py (schema SHA-256 188326c8...)"
+    }
+  ]
+}

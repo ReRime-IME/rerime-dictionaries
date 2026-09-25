@@ -120,6 +120,14 @@ coverage does not guarantee identical rendering on every device.
 See [regional additions and verification](docs/regional-emoji-additions.md) for
 the sync-preservation mechanism, release evidence, and older-client advisory caveat.
 
+## ReRime corrections to Wanxiang spelling rules
+
+`tools/recipe_corrections.json` replaces exact upstream rule lines in the adapted
+copy on every build. The locked recipe and its hash stay unchanged, so installed
+Apps accept the package. A rule that no longer matches stops the build for
+review. The first correction stops typed `tie` from also reading as `tei` (忒). See
+[recipe corrections](docs/recipe-corrections.md).
+
 ## Official-release watcher migration
 
 The producer now resolves official upstream Releases to exact commits and rejects
