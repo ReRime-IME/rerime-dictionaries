@@ -13,7 +13,7 @@ from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from contract import ROOT, SCHEMAS, PROFILE, PROFILE_V2, PROFILES, canonical, recipe_sha, sha
 from channel import validate_channel
-from check_release import (channel_path, check, minimum_app_build, policy, release_profile, verify_source,
+from check_release import (channel_path, check, continuation, minimum_app_build, policy, release_profile, verify_source,
                            CHANNEL_PATH)
 from consumer_test import CONSUMER_CASES, T9_CONSUMER_CASES, consumer_cases
 from promote import publish_assets, require_plan, write_channel
@@ -205,7 +205,7 @@ def published(revision, profile, draft=False):
 
 
 class ProfileCheckTests(unittest.TestCase):
-    def run_check(self, profile, releases, old=None):
+    def run_check(self, profile, releases, old=None, floors=(0, 0)):
         roots = {name + '.dict.yaml': f'---\nname: {name}\nversion: x\nsort: by_weight\nimport_tables:\n - dicts/{name}\n...\n'.encode()
                  for name in SCHEMAS}
         paths = ['LICENSE', *roots, *['dicts/' + name + '.dict.yaml' for name in SCHEMAS]]
@@ -223,6 +223,7 @@ class ProfileCheckTests(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmp, \
                 patch('check_release.previous', return_value=old) as previous, \
+                patch('check_release.continuation', return_value=floors), \
                 patch('check_release.resolve_release', return_value={'revision': 'b' * 40}), \
                 patch('check_release.relevant_tools', return_value=[]), \
                 patch('check_release.subprocess.check_output', return_value='d' * 40), \
@@ -230,6 +231,19 @@ class ProfileCheckTests(unittest.TestCase):
             check(Path(tmp) / 'out', profile=profile)
             self.assertEqual(previous.call_args.args[3], profile)
             return json.loads((Path(tmp) / 'out/check.json').read_text())
+
+    def test_first_channel_continues_above_the_previous_repository(self):
+        # The floors in locks/release.json, with no release or channel in this repository yet.
+        self.assertEqual(continuation(policy(), PROFILE), (26, 22))
+        self.assertEqual(continuation(policy(), PROFILE_V2), (26, 3))
+        self.assertEqual(self.run_check(PROFILE, [], floors=(26, 22))['package_revision'], 27)
+        # Existing releases above the floor still win.
+        self.assertEqual(self.run_check(PROFILE, [published(30, PROFILE_V2)], floors=(26, 22))['package_revision'], 31)
+        value = json.loads((ROOT / 'locks/release.json').read_text())
+        for floors in [{'package_revision': -1}, {'channel_sequence': {'unknown-profile': 1}}, {'other': 1}]:
+            with self.subTest(floors=floors), patch('check_release.json.loads', return_value=dict(value, continuation=floors)):
+                with self.assertRaisesRegex(ValueError, 'release-policy-continuation'):
+                    policy()
 
     def test_first_v2_check_coexists_with_published_v1_releases(self):
         releases = [published(19, PROFILE), published(18, PROFILE)]

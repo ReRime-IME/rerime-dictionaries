@@ -6,5 +6,12 @@
   "minimum_app_build": 51,
   "profile_minimum_app_build": {
     "wanxiang-ios-arm64-rime1161-v2": 62
+  },
+  "continuation": {
+    "package_revision": 26,
+    "channel_sequence": {
+      "wanxiang-ios-arm64-rime1161-v1": 22,
+      "wanxiang-ios-arm64-rime1161-v2": 3
+    }
   }
 }

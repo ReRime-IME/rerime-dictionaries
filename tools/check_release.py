@@ -29,6 +29,13 @@ def minimum_app_build(public_policy,profile=PROFILE):
     if type(value) is not int or value<floor:raise ValueError('release-policy-app-build')
     return value
 
+def continuation(public_policy,profile=PROFILE):
+    """Floors carried over from the previous distribution repository. Installed Apps
+    reject a lower package revision or channel sequence, so a first channel here
+    continues above them instead of starting at 1."""
+    value=public_policy.get('continuation',{})
+    return value.get('package_revision',0),value.get('channel_sequence',{}).get(profile,0)
+
 def policy():
     value=json.loads((ROOT/'locks/release.json').read_text())
     if value['format_version']!=1 or value['repository']!=REPO or not re.fullmatch('[a-z0-9-]{1,64}',value['key_id']):
@@ -36,6 +43,10 @@ def policy():
     if value['public_key_file']!=f"keys/{value['key_id']}.pub":raise ValueError('release-key-path')
     if set(value.get('profile_minimum_app_build',{}))-set(PROFILES):raise ValueError('release-policy-profile')
     for profile in PROFILES:minimum_app_build(value,profile)
+    floors=value.get('continuation',{})
+    if set(floors)-{'package_revision','channel_sequence'} or set(floors.get('channel_sequence',{}))-set(PROFILES) or \
+            any(type(number) is not int or number<0 for number in [floors.get('package_revision',0),*floors.get('channel_sequence',{}).values()]):
+        raise ValueError('release-policy-continuation')
     return value
 
 def verify_envelope(data,domain,public_policy,scratch):
@@ -145,7 +156,7 @@ def check(output,operation="release",release_id=None,profile=None):
     # release tags (the App-validated `wanxiang-precompiled-<revision>-<commit>`)
     # never collide; each profile's own revisions remain strictly increasing.
     revisions=[int(match.group(1)) for release in releases if (match:=re.fullmatch(r'wanxiang-precompiled-([1-9][0-9]*)-[0-9a-f]{12}',release['tag_name']))]
-    next_revision=max([0,*revisions,old['channel']['package_revision'] if old else 0])+1
+    next_revision=max([0,*revisions,old['channel']['package_revision'] if old else 0,continuation(public_policy,profile)[0]])+1
     mode=decide(identity,old,now)
     plan=dict(format_version=1,mode=mode,checked_at=now,upstream_checked_at=now,upstream_release=release,
         operation="release",upstream_revision=revision,source_files=sources,

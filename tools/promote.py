@@ -4,7 +4,7 @@ import argparse,base64,json,os,re,shutil,subprocess,tempfile,time,zipfile
 from pathlib import Path
 from contract import ROOT,PROFILE,PROFILE_V2,PROFILES,MAX_ZIP,build_profile,canonical,sha,file_sha,strict_json,validate_manifest
 from channel import validate_channel
-from check_release import policy,previous,current_channel,channel_path,relevant_tools,release_profile,minimum_app_build
+from check_release import policy,previous,current_channel,channel_path,relevant_tools,release_profile,minimum_app_build,continuation
 from release_http import REPO,api,download,read
 from pack import sign
 from verify import verify,zip_shape
@@ -210,7 +210,7 @@ def promote(plan_path,output,profile=None):
             if not live or live['receipt'].get('input_identity')!=plan['input_identity']:raise ValueError('refresh-input-changed')
             channel=dict(live['channel'])
         issued=int(time.time())
-        channel.update(sequence=live['channel']['sequence']+1 if live else 1,issued_at=issued,
+        channel.update(sequence=live['channel']['sequence']+1 if live else continuation(public_policy,profile)[1]+1,issued_at=issued,
             expires_at=issued+30*86400,upstream_checked_at=plan.get('upstream_checked_at',plan['checked_at']))
         validate_channel(channel,issued,profile)
         payload=scratch/'channel-payload.json';payload.write_bytes(canonical(channel));envelope=scratch/'channel.json'

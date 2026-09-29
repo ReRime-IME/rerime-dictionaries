@@ -59,7 +59,10 @@ The versioned package contract separates package revisions from signed channel
 sequences. Releases contain runtime and editable source archives, signed manifest,
 glyph qualification and build receipts. Only after complete anonymous download
 verification may a signed channel point at the new release. Failed builds retain the
-previous channel. A watcher checks official upstream Releases daily and dispatches
+previous channel. `continuation` in `locks/release.json` records the package revision
+and per-profile channel sequences reached before this repository, so a first channel
+here continues above what installed Apps already accept. A watcher checks official
+upstream Releases daily and dispatches
 the `Public dictionaries` workflow only when needed; manual dispatch remains
 available. The producer resolves official upstream Releases to exact commits and
 never rolls back to an older or diverged release. Channel renewal near expiry keeps
