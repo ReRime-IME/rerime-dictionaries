@@ -1,0 +1,27 @@
+{
+  "counts": {
+    "opencc/emoji.txt": {
+      "excluded": 0,
+      "total": 10838
+    }
+  },
+  "evidenceSHA256": "9c5f4973a41c8e4b743ca90126e3e6388e886626658afecd2eb4a08bf21e0a2a",
+  "excludedStringCount": 0,
+  "files": {
+    "opencc/emoji.json": {
+      "sha256": "4477b92db74c7b1dec0a173c6cef78a14b9677bb5f7401a6be5ee14d0de389b9",
+      "size": 277
+    },
+    "opencc/emoji.txt": {
+      "sha256": "6bf3fb7193c319c352f37d5b77bbd0d22e324f749ad38dd31231fde0b93fe62b",
+      "size": 136556
+    }
+  },
+  "inputSHA256": "5231a0d87f2f7704c81154a634094c63f170b994aed1c3e0ec15bbf56b2ae8dd",
+  "platform": "iOS Simulator",
+  "policyVersion": 1,
+  "schema": "rerime.ios-emoji-qualification.v1",
+  "sourceSHA256": "7f35b7d926fb550289beb4f7677a2bc28404ea3915340c63dc4f28f93052e220",
+  "stringCount": 7024,
+  "systemVersion": "27.0"
+}

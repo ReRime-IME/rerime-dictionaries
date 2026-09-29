@@ -1,0 +1,13 @@
+config_version: '1.0'
+schema_list:
+  - schema: wanxiang
+  - schema: wanxiang_english
+menu:
+  page_size: 9
+switcher:
+  save_options: [traditionalization]
+  hotkeys: []
+key_binder:
+  bindings:
+    - {when: has_menu, accept: minus, send: Page_Up}
+    - {when: has_menu, accept: equal, send: Page_Down}

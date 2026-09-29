@@ -1,0 +1,28 @@
+{
+  "schemaID": "rerime.ios-symbol-pairs",
+  "schemaVersion": 1,
+  "pairs": [
+    {"opening": "<", "closing": ">"},
+    {"opening": "（", "closing": "）"},
+    {"opening": "［", "closing": "］"},
+    {"opening": "｛", "closing": "｝"},
+    {"opening": "「", "closing": "」"},
+    {"opening": "『", "closing": "』"},
+    {"opening": "〈", "closing": "〉"},
+    {"opening": "《", "closing": "》"},
+    {"opening": "【", "closing": "】"},
+    {"opening": "〔", "closing": "〕"},
+    {"opening": "〖", "closing": "〗"},
+    {"opening": "〘", "closing": "〙"},
+    {"opening": "〚", "closing": "〛"},
+    {"opening": "⁅", "closing": "⁆"},
+    {"opening": "︵", "closing": "︶"},
+    {"opening": "︷", "closing": "︸"},
+    {"opening": "︹", "closing": "︺"},
+    {"opening": "︻", "closing": "︼"},
+    {"opening": "︽", "closing": "︾"},
+    {"opening": "︿", "closing": "﹀"},
+    {"opening": "﹁", "closing": "﹂"},
+    {"opening": "﹃", "closing": "﹄"}
+  ]
+}

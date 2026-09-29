@@ -1,0 +1,90 @@
+# From pinned Wanxiang Base algebra; CC BY 4.0.
+algebra:
+  - xform/Ⅰ//  #用于Lua判断输入类型的标记
+  - xform/^([a-z]+)$/$1④/
+  - xform/ā([a-z]*)$/a$1①/
+  - xform/á([a-z]*)$/a$1②/
+  - xform/ǎ([a-z]*)$/a$1③/
+  - xform/à([a-z]*)$/a$1④/
+  - xform/ō([a-z]*)$/o$1①/
+  - xform/ó([a-z]*)$/o$1②/
+  - xform/ǒ([a-z]*)$/o$1③/
+  - xform/ò([a-z]*)$/o$1④/
+  - xform/ē([a-z]*)$/e$1①/
+  - xform/é([a-z]*)$/e$1②/
+  - xform/ě([a-z]*)$/e$1③/
+  - xform/è([a-z]*)$/e$1④/
+  - xform/ī([a-z]*)$/i$1①/
+  - xform/í([a-z]*)$/i$1②/
+  - xform/ǐ([a-z]*)$/i$1③/
+  - xform/ì([a-z]*)$/i$1④/
+  - xform/ū([a-z]*)$/u$1①/
+  - xform/ú([a-z]*)$/u$1②/
+  - xform/ǔ([a-z]*)$/u$1③/
+  - xform/ù([a-z]*)$/u$1④/
+  - xform/ǖ([a-z]*)$/v$1①/
+  - xform/ǘ([a-z]*)$/v$1②/
+  - xform/ǚ([a-z]*)$/v$1③/
+  - xform/ǜ([a-z]*)$/v$1④/
+  - xform/ü/v/
+  - xform/ń([a-z]*)$/n$1②/
+  - xform/ň([a-z]*)$/n$1③/
+  - xform/ǹ([a-z]*)$/n$1④/
+  - xform/m̄([a-z]*)$/m$1①/
+  - xform/m̄([a-z]*)$/m$1①/
+  - xform/ḿ([a-z]*)$/m$1②/
+  - xform/m̀([a-z]*)$/m$1④/
+  - xlit/①②③④/7890
+  - derive/^ng(\d)$/eng$1/
+  - abbrev/^ng(\d)$/ng/
+  - erase/^ng(\d)$/
+  - xform/^n(\d)/en$1/
+  - xform/^m(\d)/me$1/
+  - abbrev/^([zcs]h).+$/$1/  #zh ch sh作为整体
+  - abbrev/^([zcs]h).+(\d)$/$1$2/  #zh ch sh作为整体
+  - derive/([nl])ve(\d)/$1ue$2/  #让üè兼容ue
+  - derive/^([jqxy])v(\d)$/$1u$2/
+  - derive/^([jqxy])u(\d)$/$1v$2/
+  - abbrev/^([qwrtypsdfghjklzxcbnm]).+$/$1/  #不携带元音的声母派生出首字母简码来
+  - abbrev/^([qwrtypsdfghjklzxcbnm]).+(\d)$/$1$2/  #不携带元音的声母派生出首字母简码来+数字声调
+  - abbrev/^([aoe])([ioun])(\d)$/$1/  #携带两个字符的元音首字母派生出简码来
+  - abbrev/^([aoe])([ioun])(\d)$/$1$3/  #携带两个字符的元音首字母派生出简码来+数字声调
+  - derive/(.+)(\d)/$1/
+  - derive/([zcs])h(a|e|i|u|ai|ei|an|en|ou|uo|ua|un|ui|uan|uai|uang|ang|eng|ong)$/h$1$2/  # hzi → zhi
+  - derive/([zcs])h([aeiu])$/$1$2h/  # zih → zhi
+  - derive/^([wghk])ai$/$1ia/  # wia → wai
+  - derive/([qjx])ia$/$1ai/  # qai → qia
+  - derive/([wtfghkz])ei$/$1ie/
+  - derive/([jqx])ie$/$1ei/
+  - derive/([rtypsdghklzcbnm])ao$/$1oa/
+  - derive/([ypfm])ou$/$1uo/
+  - derive/([wrtypsdfghklzcbnm])ang$/$1nag/
+  - derive/([wrtypsdfghklzcbnm])ang$/$1agn/
+  - derive/([wrtpsdfghklzcbnm])eng$/$1wng/
+  - derive/([wrtpsdfghklzcbnm])eng$/$1neg/
+  - derive/([wrtpsdfghklzcbnm])eng$/$1egn/
+  - derive/([qtypdjlxbnm])ing$/$1nig/
+  - derive/([qtypdjlxbnm])ing$/$1ign/
+  - derive/([rtysdghklzcn])ong$/$1nog/
+  - derive/([rtysdghklzcn])ong$/$1ogn/
+  - derive/([qtpdjlxbnm])iao$/$1ioa/
+  - derive/([qtpdjlxbnm])iao$/$1oia/
+  - derive/([rtsghkzc])ui$/$1iu/
+  - derive/([qjlxnm])iu$/$1ui/
+  - derive/([qjlxn])iang$/$1aing/
+  - derive/([qjlxn])iang$/$1inag/
+  - derive/([g|k|h|zh|sh])ua$/$1au/
+  - derive/([g|h|k|zh|ch|sh])uai$/$1aui/
+  - derive/([g|h|k|zh|ch|sh])uai$/$1uia/
+  - derive/([qrtysdghjklzxc])un$/$1nu/
+  - derive/([nlyjqx])ue$/$1eu/
+  - derive/([g|h|k|zh|ch|sh])uang$/$1aung/
+  - derive/([g|h|k|zh|ch|sh])uang$/$1uagn/
+  - derive/([g|h|k|zh|ch|sh])uang$/$1unag/
+  - derive/([g|h|k|zh|ch|sh])uang$/$1augn/
+  - derive/([jqx])iong$/$1inog/
+  - derive/([jqx])iong$/$1oing/
+  - derive/([jqx])iong$/$1iogn/
+  - derive/([jqx])iong$/$1oign/
+  - derive/ong$/on/  # lon → long
+  - derive/([tl])eng$/$1en/  # ten → teng

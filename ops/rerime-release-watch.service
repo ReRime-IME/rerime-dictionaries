@@ -1,0 +1,33 @@
+[Unit]
+Description=ReRime official release watcher
+Wants=network-online.target
+After=network-online.target
+ConditionPathExists=/etc/rerime-release-watch/github-token
+
+[Service]
+Type=oneshot
+DynamicUser=yes
+StateDirectory=rerime-release-watch
+StateDirectoryMode=0700
+LoadCredential=github-token:/etc/rerime-release-watch/github-token
+ExecStart=/usr/bin/python3 -I /opt/rerime-release-watch/current/release_watch.py --state /var/lib/rerime-release-watch/state.json
+TimeoutStartSec=180
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+RestrictSUIDSGID=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+MemoryMax=96M
+CPUQuota=10%

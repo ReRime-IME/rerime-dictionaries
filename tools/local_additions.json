@@ -1,0 +1,17 @@
+{
+  "format_version": 1,
+  "entries": [
+    {"text": "台湾", "pinyin": "tai wan", "emoji": "🇹🇼"},
+    {"text": "臺灣", "pinyin": "tai wan", "emoji": "🇹🇼"},
+    {"text": "台灣", "pinyin": "tai wan", "emoji": "🇹🇼"},
+    {"text": "台湾旗帜", "pinyin": "tai wan qi zhi", "emoji": "🇹🇼"},
+    {"text": "臺灣旗幟", "pinyin": "tai wan qi zhi", "emoji": "🇹🇼"},
+    {"text": "香港", "pinyin": "xiang gang", "emoji": "🇭🇰"},
+    {"text": "香港旗帜", "pinyin": "xiang gang qi zhi", "emoji": "🇭🇰"},
+    {"text": "香港旗幟", "pinyin": "xiang gang qi zhi", "emoji": "🇭🇰"},
+    {"text": "香港区旗", "pinyin": "xiang gang qu qi", "emoji": "🇭🇰"},
+    {"text": "香港區旗", "pinyin": "xiang gang qu qi", "emoji": "🇭🇰"},
+    {"text": "紫荆花旗", "pinyin": "zi jing hua qi", "emoji": "🇭🇰"},
+    {"text": "紫荊花旗", "pinyin": "zi jing hua qi", "emoji": "🇭🇰"}
+  ]
+}

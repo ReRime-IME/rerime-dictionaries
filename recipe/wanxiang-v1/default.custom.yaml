@@ -1,0 +1,4 @@
+# ReRime profile v2 only (locks/recipe-v2.json): also deploy the nine-key schema.
+patch:
+  schema_list/+:
+    - schema: wanxiang_t9

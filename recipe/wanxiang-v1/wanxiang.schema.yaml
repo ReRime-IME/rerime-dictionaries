@@ -1,0 +1,93 @@
+# ReRime native full-Pinyin adaptation of Wanxiang. CC BY 4.0; see NOTICE.md.
+schema:
+  schema_id: wanxiang
+  name: 万象全拼
+  version: '1.0'
+  dependencies: [wanxiang_english, wanxiang_mixedcode]
+switches:
+  - name: ascii_mode
+    reset: 0
+  - name: traditionalization
+    reset: 0
+  - name: emoji
+    reset: 1
+engine:
+  processors: [ascii_composer, recognizer, key_binder, speller, punctuator, selector, navigator, express_editor]
+  segmentors: [ascii_segmentor, matcher, abc_segmentor, punct_segmentor, fallback_segmentor]
+  translators: [punct_translator, script_translator, table_translator@personal, table_translator@learned_english, table_translator@english, table_translator@mixed]
+  filters: [simplifier@emoji, simplifier@traditionalize, uniquifier]
+speller:
+  alphabet: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+  initials: abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ
+  delimiter: " '"
+  algebra:
+    __include: wanxiang_full_pinyin:/algebra
+translator:
+  dictionary: wanxiang
+  initial_quality: 1.2
+  enable_user_dict: true
+  enable_completion: true
+  enable_sentence: true
+  enable_correction: false
+  preedit_format:
+    - xform/([nl])v/$1ü/
+personal:
+  dictionary: ''
+  user_dict: rerime_personal
+  db_class: stabledb
+  enable_completion: false
+  enable_sentence: false
+  initial_quality: 100
+learned_english:
+  dictionary: ''
+  user_dict: wanxiang_english
+  db_class: userdb
+  enable_user_dict: true
+  enable_completion: false
+  enable_sentence: false
+  initial_quality: 2.0
+  comment_format: ["xform/.*//"]
+english:
+  dictionary: wanxiang_english
+  user_dict: wanxiang_english
+  enable_user_dict: true
+  enable_completion: true
+  enable_sentence: false
+  initial_quality: 0.5
+  comment_format: ["xform/.*//"]
+mixed:
+  dictionary: wanxiang_mixedcode
+  enable_user_dict: true
+  enable_completion: true
+  enable_sentence: false
+  initial_quality: 0.5
+  comment_format: ["xform/.*//"]
+emoji:
+  option_name: emoji
+  opencc_config: emoji.json
+  inherit_comment: false
+traditionalize:
+  excluded_types: [punct]
+  option_name: traditionalization
+  opencc_config: s2t.json
+  tips: none
+key_binder:
+  import_preset: default
+punctuator:
+  symbols:
+    __include: rerime_symbols:/symbols
+  half_shape:
+    ',': {commit: '，'}
+    '.': {commit: '。'}
+    '?': {commit: '？'}
+    '!': {commit: '！'}
+    ':': {commit: '：'}
+    ';': {commit: '；'}
+  full_shape:
+    ',': {commit: '，'}
+    '.': {commit: '。'}
+recognizer:
+  patterns:
+    __include: rerime_symbol_recognizer:/patterns
+    email: '^[A-Za-z][-_.0-9A-Za-z]*@.*$'
+    url: '^(https?:|www[.]).*$'
