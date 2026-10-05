@@ -67,7 +67,8 @@ the `Public dictionaries` workflow only when needed; manual dispatch remains
 available. The producer resolves official upstream Releases to exact commits and
 never rolls back to an older or diverged release. Channel renewal near expiry keeps
 the existing package and signing gates. See [publication and recovery](docs/release-recovery.md)
-and [watcher operations](docs/release-watcher.md).
+and [watcher operations](docs/release-watcher.md). Published files are also copied to two
+mirrors and old releases are pruned; see [mirrors and retention](docs/mirrors.md).
 
 Unchanged dictionary shards reuse qualified build results. Compatible Apps can use
 optional deltas to reconstruct the same signed full package, with automatic full

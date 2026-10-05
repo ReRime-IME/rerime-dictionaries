@@ -1,0 +1,48 @@
+name: Dictionary mirrors
+
+# Copies the signed files GitHub already serves to the mirrors, then prunes old
+# releases. It never signs: the signing key lives only in `Public dictionaries`.
+on:
+  workflow_run:
+    workflows: [Public dictionaries]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      retention:
+        type: choice
+        options: [dry-run, apply, skip]
+        default: dry-run
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dictionary-mirror
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    if: >-
+      github.repository == 'ReRime-IME/rerime-dictionaries' && github.ref == 'refs/heads/main' &&
+      (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write # retention deletes pruned releases and their tags
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Validate mirror and retention logic
+        run: python3 -m unittest tests.test_mirror -v
+      - name: Copy signed files to the mirrors, verify anonymous reads, then prune
+        env:
+          GH_TOKEN: ${{ github.token }}
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          CNB_TOKEN: ${{ secrets.CNB_TOKEN }}
+          RETENTION: ${{ inputs.retention || 'apply' }}
+        run: python3 mirror/mirror.py --retention "$RETENTION"
