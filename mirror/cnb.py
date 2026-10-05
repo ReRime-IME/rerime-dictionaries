@@ -70,7 +70,9 @@ class CNB:
         result=subprocess.run(['git','-c','user.name=ReRime dictionaries','-c','user.email=noreply@rerime.com',*args],
             cwd=cwd,env=environment,capture_output=True,text=True)
         if check and result.returncode:
-            raise RuntimeError('cnb-git '+args[0]+' failed: '+result.stderr[-400:].replace(self.token,'***').replace(basic,'***'))
+            # The remote echoes a partly masked token; keep that line out of public logs.
+            lines=[line for line in result.stderr.splitlines() if 'token' not in line.lower() and line.strip() not in ('remote:','')]
+            raise RuntimeError('cnb-git '+args[0]+' failed: '+' | '.join(lines)[-400:].replace(self.token,'***').replace(basic,'***'))
         return result
 
     @property
