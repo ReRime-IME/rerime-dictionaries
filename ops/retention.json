@@ -2,6 +2,7 @@
   "format_version": 1,
   "keep_per_profile": 5,
   "pinned_releases": [
-    "wanxiang-precompiled-32-08215909dafd"
+    "wanxiang-precompiled-32-08215909dafd",
+    "wanxiang-precompiled-34-26a9efeb18e6"
   ]
 }
