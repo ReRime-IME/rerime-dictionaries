@@ -55,7 +55,7 @@ For a failed check or build, inspect its failing stage, correct the named input 
 tool issue, and dispatch again. The previous channel remains usable until its signed
 expiry; installed dictionaries remain offline. A failed promotion can be rerun from
 the same run while its check plan is under four hours old and artifacts remain
-available (seven-day artifact retention). Existing assets must match exactly; the
+available (one-day artifact retention). Existing assets must match exactly; the
 publisher never overwrites them. A fresh run refuses to conceal a published release
 without an initial channel. If that occurs after the plan expires, inspect the
 immutable release and receipts and prepare an explicitly reviewed recovery; do not
