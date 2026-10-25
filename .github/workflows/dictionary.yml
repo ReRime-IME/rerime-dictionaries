@@ -161,3 +161,23 @@ jobs:
           RERIME_SIGNING_KEY: ${{ secrets.RERIME_SIGNING_KEY }}
           RERIME_PROFILE: ${{ inputs.profile || 'wanxiang-ios-arm64-rime1161-v1' }}
         run: python3 tools/promote.py --plan "$RUNNER_TEMP/rerime-check/check.json" --output "$RUNNER_TEMP/rerime-build-output" --profile "$RERIME_PROFILE"
+
+  # A published run no longer needs its temporary files, so they stop counting
+  # against Actions storage at once. A failed promotion never reaches this job and
+  # keeps them for a same-run rerun. A failed cleanup must not fail the run, which
+  # would hold back the mirror workflow.
+  cleanup:
+    needs: promote
+    runs-on: xcode-27
+    timeout-minutes: 5
+    continue-on-error: true
+    permissions:
+      actions: write
+    steps:
+      - name: Delete this run's artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for id in $(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" --jq '.artifacts[].id'); do
+            gh api -X DELETE "repos/$GITHUB_REPOSITORY/actions/artifacts/$id"
+          done
