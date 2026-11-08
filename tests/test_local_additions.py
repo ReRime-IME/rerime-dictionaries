@@ -5,9 +5,11 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from adapt import build
 from contract import ROOT
 from local_additions import apply, DATA
+from test_recipe_corrections import WEIGHTS, WEIGHT_ROWS
 
 
 class LocalAdditionsTests(unittest.TestCase):
@@ -26,7 +28,7 @@ class LocalAdditionsTests(unittest.TestCase):
                     if root:
                         content += f'import_tables:\n  - dicts/{schema}_fixture\n...\n'
                     else:
-                        content += '...\n你好\tni hao\t10\n'
+                        content += '...\n你好\tni hao\t10\n' + (WEIGHT_ROWS if schema == 'wanxiang_fixture' else '')
                     target.write_text(content)
                 work = Path(tmp)
                 with patch('adapt.download', download):
@@ -50,8 +52,60 @@ class LocalAdditionsTests(unittest.TestCase):
             (output / 'dicts').mkdir(parents=True)
             (output / 'opencc').mkdir()
             (output / 'wanxiang.dict.yaml').write_text('---\nimport_tables:\n  - dicts/base\n...\n')
+            (output / 'dicts/base.dict.yaml').write_text('---\nname: base\n...\n' + WEIGHT_ROWS)
             (output / 'opencc/emoji.txt').write_text('台湾\t台湾 🏝️\n香港\t香港 🇭🇰\n')
             apply(output)
             self.assertIn('台湾\t台湾 🏝️ 🇹🇼\n', (output / 'opencc/emoji.txt').read_text())
             self.assertIn('香港\t香港 🇭🇰\n', (output / 'opencc/emoji.txt').read_text())
             self.assertNotIn('🇭🇰 🇭🇰', (output / 'opencc/emoji.txt').read_text())
+
+
+def weight_tree(tmp, rows):
+    output = Path(tmp) / 'adapted'
+    (output / 'dicts').mkdir(parents=True)
+    (output / 'opencc').mkdir()
+    (output / 'wanxiang.dict.yaml').write_text('---\nimport_tables:\n  - dicts/base\n...\n')
+    (output / 'dicts/base.dict.yaml').write_text('---\nname: base\n...\n' + rows)
+    (output / 'opencc/emoji.txt').write_text('')
+    return output
+
+
+class LocalWeightTests(unittest.TestCase):
+    def test_listed_rows_are_raised_never_lowered(self):
+        self.assertTrue(WEIGHTS)
+        first, second = WEIGHTS[0], WEIGHTS[1]
+        rows = (f"{first['text']}\t{first['code']}\t1\n{first['text']}\tother reading\t1\n"
+                f"{second['text']}\t{second['code']}\t{second['weight'] + 5}\n" +
+                ''.join(f"{w['text']}\t{w['code']}\t1\n" for w in WEIGHTS[2:]))
+        with tempfile.TemporaryDirectory() as tmp:
+            output = weight_tree(tmp, rows)
+            apply(output)
+            table = (output / 'dicts/base.dict.yaml').read_text()
+            self.assertIn(f"{first['text']}\t{first['code']}\t{first['weight']}\n", table)
+            self.assertIn(f"{first['text']}\tother reading\t1\n", table)  # another reading is left alone
+            self.assertIn(f"{second['text']}\t{second['code']}\t{second['weight'] + 5}\n", table)
+            receipt = json.loads((output.parent / 'local-additions-receipt.json').read_text())
+            self.assertEqual([(w['text'], w['before'], w['after']) for w in receipt['weights']][:2],
+                             [(first['text'], 1, first['weight']), (second['text'], second['weight'] + 5, second['weight'] + 5)])
+            once = table
+            apply(output)
+            self.assertEqual((output / 'dicts/base.dict.yaml').read_text(), once)
+
+    def test_a_missing_or_repeated_row_stops_the_build(self):
+        first = WEIGHTS[0]
+        rest = ''.join(f"{w['text']}\t{w['code']}\t1\n" for w in WEIGHTS[1:])
+        for rows, error in [(rest, 'local-additions-weight-missing:' + first['text']),
+                            (rest + f"{first['text']}\t{first['code']}\t1\n" * 2,
+                             'local-additions-weight-ambiguous:' + first['text'])]:
+            with self.subTest(error=error), tempfile.TemporaryDirectory() as tmp:
+                with self.assertRaisesRegex(ValueError, error):
+                    apply(weight_tree(tmp, rows))
+
+    def test_weight_entries_are_reviewed_upstream_rows(self):
+        texts = [w['text'] for w in WEIGHTS]
+        self.assertEqual(len(texts), len(set(texts)))
+        for w in WEIGHTS:
+            with self.subTest(text=w['text']):
+                self.assertEqual(set(w), {'text', 'code', 'weight', 'upstream_weight', 'reason'})
+                self.assertGreater(w['weight'], w['upstream_weight'])
+                self.assertEqual(len(w['code'].split()), len(w['text']))

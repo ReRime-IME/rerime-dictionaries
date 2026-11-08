@@ -8,6 +8,28 @@
       "replace": "  - derive/([wfghkz])ei$/$1ie/  # ReRime: tei (忒) is a real syllable; typed tie must not also read tei\n",
       "reason": "The typo derivation turns tei into tie, so a correct tie (铁, 贴) silently also offers 忒 with no correction mark. It is the only one of the 38 typo derivations that collides with a real syllable.",
       "evidence": "Audit of all 38 typo derivations in wanxiang_full_pinyin.yaml (schema SHA-256 188326c8...): 1 real-syllable collision before, 0 after."
+    },
+    {
+      "id": "t9-rerime-script-translator",
+      "file": "wanxiang_t9.schema.yaml",
+      "profiles": [
+        "wanxiang-ios-arm64-rime1161-v2"
+      ],
+      "find": "  translators: [punct_translator, script_translator, table_translator@personal_t9]\n",
+      "replace": "  translators: [punct_translator, rerime_dual_script_translator, table_translator@personal_t9]  # ReRime IME-545: ReRime's copy of librime's script translator (App build 63+)\n",
+      "reason": "Nine-key tail completion (IME-532) lives in ReRime's own copy of librime 1.16.1's script translator, registered as rerime_dual_script_translator in the App and keyboard from App build 63 (IME-315). Without it the schema keeps librime's stock translator and the key below has no effect.",
+      "evidence": "re_rime IME-530 diagnosis and IME-532 tail completion; ReRime nine-key.ranking-benchmark --tail-completion applies exactly this change to a runtime copy."
+    },
+    {
+      "id": "t9-tail-completion",
+      "file": "wanxiang_t9.schema.yaml",
+      "profiles": [
+        "wanxiang-ios-arm64-rime1161-v2"
+      ],
+      "find": "  enable_completion: true\n",
+      "replace": "  enable_completion: true  # ReRime IME-545: also complete a short last syllable when the digits read whole\n  rerime_tail_completion: true\n",
+      "reason": "librime completes a short last syllable only when the digits cannot be read as whole syllables, and on a phone pad they nearly always can (2, 3 and 6 are a, e and o), so 7443 never offers 是的 and 5468 shows 李牧 before 今天. ReRime's translator reads this key; App versions without it ignore it.",
+      "evidence": "re_rime nine-key.ranking-benchmark (470 words): last1 top-1 51.1% -> 79.4%, top-3 61.7% -> 95.1%, absent 36.0% -> 0.2%; full top-1 97.4% -> 97.2% (re_rime IME-532 record)."
     }
   ]
 }

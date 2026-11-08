@@ -56,7 +56,7 @@ def verify_candidate(output,plan,public_policy,profile=PROFILE):
     cases=consumer_cases(profile)
     if consumer.get('cases')!=[dict(case=name,exit=0) for name in cases]:raise ValueError('consumer-cases')
     gates=dict(deployment_calls=0,dictionary_sources_absent=1,missing_table_rejected=1,public_hashes_unchanged=1)
-    if profile==PROFILE_V2:gates.update(compatibility_id=profile,missing_t9_prism_rejected=1)
+    if profile==PROFILE_V2:gates.update(compatibility_id=profile,missing_t9_prism_rejected=1,t9_rerime_translator=1,t9_tail_completion=1)
     if any(consumer.get(key)!=value for key,value in gates.items()):
         raise ValueError('consumer-gate')
     allowed={'manifest-payload.json','runtime-unsigned.zip',manifest['release_id']+'-source.zip',

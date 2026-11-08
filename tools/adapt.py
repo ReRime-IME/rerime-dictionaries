@@ -100,7 +100,7 @@ def build(work,revision,profile=None):
     for entry in actual:
         target=destination/entry['path'];target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copyfile(recipe/entry['path'],target)
-    apply_recipe_corrections(destination)
+    apply_recipe_corrections(destination,profile['id'])
     paths=[];tables={};rows={}
     def fetch(path):
         download(f'https://raw.githubusercontent.com/amzxyz/rime-wanxiang/{revision}/{path}',source/path)
