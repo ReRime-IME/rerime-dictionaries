@@ -162,7 +162,7 @@ class ProfilePolicyTests(unittest.TestCase):
         public = policy()
         self.assertEqual(minimum_app_build(public, PROFILE), public['minimum_app_build'])
         self.assertEqual(public['minimum_app_build'], 51)
-        self.assertEqual(minimum_app_build(public, PROFILE_V2), 62)
+        self.assertEqual(minimum_app_build(public, PROFILE_V2), 63)
         for override in (50, '62', None):
             with self.subTest(override=override), self.assertRaises(ValueError):
                 minimum_app_build(dict(minimum_app_build=51, profile_minimum_app_build={PROFILE_V2: override}), PROFILE_V2)
@@ -252,7 +252,7 @@ class ProfileCheckTests(unittest.TestCase):
         self.assertEqual(plan['mode'], 'build')
         # Shared counter: the v2 tag cannot collide with any existing release.
         self.assertEqual(plan['package_revision'], 20)
-        self.assertEqual(plan['minimum_app_build'], 62)
+        self.assertEqual(plan['minimum_app_build'], 63)
         v1 = self.run_check(PROFILE, [], None)
         self.assertEqual(v1['minimum_app_build'], 51)
         self.assertNotEqual(plan['input_identity'], v1['input_identity'])

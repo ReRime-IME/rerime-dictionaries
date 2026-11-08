@@ -1,17 +1,179 @@
 {
   "format_version": 1,
   "entries": [
-    {"text": "台湾", "pinyin": "tai wan", "emoji": "🇹🇼"},
-    {"text": "臺灣", "pinyin": "tai wan", "emoji": "🇹🇼"},
-    {"text": "台灣", "pinyin": "tai wan", "emoji": "🇹🇼"},
-    {"text": "台湾旗帜", "pinyin": "tai wan qi zhi", "emoji": "🇹🇼"},
-    {"text": "臺灣旗幟", "pinyin": "tai wan qi zhi", "emoji": "🇹🇼"},
-    {"text": "香港", "pinyin": "xiang gang", "emoji": "🇭🇰"},
-    {"text": "香港旗帜", "pinyin": "xiang gang qi zhi", "emoji": "🇭🇰"},
-    {"text": "香港旗幟", "pinyin": "xiang gang qi zhi", "emoji": "🇭🇰"},
-    {"text": "香港区旗", "pinyin": "xiang gang qu qi", "emoji": "🇭🇰"},
-    {"text": "香港區旗", "pinyin": "xiang gang qu qi", "emoji": "🇭🇰"},
-    {"text": "紫荆花旗", "pinyin": "zi jing hua qi", "emoji": "🇭🇰"},
-    {"text": "紫荊花旗", "pinyin": "zi jing hua qi", "emoji": "🇭🇰"}
+    {
+      "text": "台湾",
+      "pinyin": "tai wan",
+      "emoji": "🇹🇼"
+    },
+    {
+      "text": "臺灣",
+      "pinyin": "tai wan",
+      "emoji": "🇹🇼"
+    },
+    {
+      "text": "台灣",
+      "pinyin": "tai wan",
+      "emoji": "🇹🇼"
+    },
+    {
+      "text": "台湾旗帜",
+      "pinyin": "tai wan qi zhi",
+      "emoji": "🇹🇼"
+    },
+    {
+      "text": "臺灣旗幟",
+      "pinyin": "tai wan qi zhi",
+      "emoji": "🇹🇼"
+    },
+    {
+      "text": "香港",
+      "pinyin": "xiang gang",
+      "emoji": "🇭🇰"
+    },
+    {
+      "text": "香港旗帜",
+      "pinyin": "xiang gang qi zhi",
+      "emoji": "🇭🇰"
+    },
+    {
+      "text": "香港旗幟",
+      "pinyin": "xiang gang qi zhi",
+      "emoji": "🇭🇰"
+    },
+    {
+      "text": "香港区旗",
+      "pinyin": "xiang gang qu qi",
+      "emoji": "🇭🇰"
+    },
+    {
+      "text": "香港區旗",
+      "pinyin": "xiang gang qu qi",
+      "emoji": "🇭🇰"
+    },
+    {
+      "text": "紫荆花旗",
+      "pinyin": "zi jing hua qi",
+      "emoji": "🇭🇰"
+    },
+    {
+      "text": "紫荊花旗",
+      "pinyin": "zi jing hua qi",
+      "emoji": "🇭🇰"
+    }
+  ],
+  "weights": [
+    {
+      "text": "是的",
+      "code": "shì de",
+      "weight": 260000,
+      "upstream_weight": 2727,
+      "reason": "Report (IME-530): 7443 must offer 是的 first; it competes with 是否 (213,074) and 四个 (42,848, whole reading), and 74433 with 十分 (66,672)."
+    },
+    {
+      "text": "在的",
+      "code": "zài de",
+      "weight": 60000,
+      "upstream_weight": 2830,
+      "reason": "Report (IME-530): 9243 should offer 在的 first, behind 再到 (30,298) and 压根 (16,092, whole reading) today."
+    },
+    {
+      "text": "对的",
+      "code": "duì de",
+      "weight": 8000,
+      "upstream_weight": 386,
+      "reason": "Chat reply; 38433 shows 对等 (3,721, completed) and 对风 first. Kept low: at 50,000 it split 团队的 in a nine-key sentence."
+    },
+    {
+      "text": "行的",
+      "code": "xíng de",
+      "weight": 15000,
+      "upstream_weight": 4311,
+      "reason": "Chat reply; 946433 shows 赢得 (11,561, same digits) first."
+    },
+    {
+      "text": "是啊",
+      "code": "shì a",
+      "weight": 100000,
+      "upstream_weight": 8990,
+      "reason": "Chat reply; 7442 shows 市场 (252,352, completed) and 失败 first."
+    },
+    {
+      "text": "对啊",
+      "code": "duì a",
+      "weight": 60000,
+      "upstream_weight": 3272,
+      "reason": "Chat reply; 3842 shows 对比 (137,893, completed) first."
+    },
+    {
+      "text": "好啊",
+      "code": "hǎo a",
+      "weight": 30000,
+      "upstream_weight": 5668,
+      "reason": "Chat reply; 4262 shows 好处 (51,301, completed) first."
+    },
+    {
+      "text": "是吧",
+      "code": "shì ba",
+      "weight": 30000,
+      "upstream_weight": 14438,
+      "reason": "Chat reply; 74422 shows 失败 (58,781, completed) first."
+    },
+    {
+      "text": "在吗",
+      "code": "zài ma",
+      "weight": 15000,
+      "upstream_weight": 0,
+      "reason": "Chat greeting; upstream weight 0, so 92462 lists it 21st behind 在哪 (20,322) and 在那 (11,985, same digits). Raised to second only: 在哪 is as common in chat."
+    },
+    {
+      "text": "在呢",
+      "code": "zài ne",
+      "weight": 20000,
+      "upstream_weight": 1323,
+      "reason": "Chat reply; 92463 shows 在内 (22,071, completed) first."
+    },
+    {
+      "text": "好呢",
+      "code": "hǎo ne",
+      "weight": 15000,
+      "upstream_weight": 2415,
+      "reason": "Chat reply; 42663 shows 好么 (7,611, same digits) first."
+    },
+    {
+      "text": "多谢",
+      "code": "duō xiè",
+      "weight": 20000,
+      "upstream_weight": 3146,
+      "reason": "Chat thanks; 386943 shows 多一点 first."
+    },
+    {
+      "text": "稍等",
+      "code": "shāo děng",
+      "weight": 20000,
+      "upstream_weight": 634,
+      "reason": "Chat phrase; 74263364 shows 前锋 (12,161, same digits) and 山峰 first."
+    },
+    {
+      "text": "麻烦了",
+      "code": "má fan le",
+      "weight": 30000,
+      "upstream_weight": 1429,
+      "reason": "Chat phrase; 6232653 shows 拿到了 (24,922, same digits) first."
+    },
+    {
+      "text": "拜拜",
+      "code": "bái bái",
+      "weight": 15000,
+      "upstream_weight": 4192,
+      "reason": "Chat farewell; 224224 shows 白菜 (5,787, same digits) first."
+    },
+    {
+      "text": "您好",
+      "code": "nín hǎo",
+      "weight": 30000,
+      "upstream_weight": 5994,
+      "reason": "Greeting; 646426 shows 敏感 (14,475, same digits) first."
+    }
   ]
 }

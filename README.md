@@ -103,12 +103,22 @@ dedicated `rerime_regions` table, merging Emoji alternatives without removing
 existing ones. Emoji glyph appearance also depends on the device OS and region.
 See [regional additions](docs/regional-emoji-additions.md).
 
+## Chat-phrase weights
+
+Wanxiang counts some everyday chat replies far below their use in conversation:
+是的 has 2,727 against 四个's 42,848, so nine-key 7443 never offers it first. The
+`weights` list in `tools/local_additions.json` raises such exact upstream rows (text
+and reading) to a reviewed weight on every build, never lowers one, and stops the
+build when a listed row is missing. The weights are shared by 26-key and nine-key.
+See [chat-phrase weights](docs/chat-phrase-weights.md).
+
 ## Corrections to Wanxiang spelling rules
 
 `tools/recipe_corrections.json` replaces exact upstream rule lines in the adapted
 copy on every build. The locked recipe and its hash stay unchanged, so installed
 Apps accept the package. A rule that no longer matches stops the build for
-review. The first correction stops typed `tie` from also reading as `tei` (忒). See
+review. The first correction stops typed `tie` from also reading as `tei` (忒); two
+v2-only corrections turn on ReRime's nine-key tail completion (App build 63+). See
 [recipe corrections](docs/recipe-corrections.md).
 
 ## Licenses
