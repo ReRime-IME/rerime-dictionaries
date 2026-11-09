@@ -16,10 +16,19 @@ runs the three-profile code, v4 still needs a manual release after each upstream
 and a manual renewal within 30 days of signing. Each profile
 has its own signed channel file (`channels/<profile>.json`), input identity (its
 recipe lock), App build floor and workflow concurrency group. Package revisions are
-shared across profiles, so release tags never collide. Promotions of different
+shared across profiles: each run's check job takes the next free revision, so two
+profiles dispatched together can pick the same one. Promotions of different
 profiles are serialized, and a publisher never adopts a release whose body names
 another profile. The watcher never bootstraps a profile whose channel is missing.
-Manual v2 and v4 dispatches remain available for bootstrap and recovery:
+Manual v2 and v4 dispatches remain available for bootstrap and recovery.
+
+**Dispatch manual runs one profile at a time.** Start the next profile only after the
+previous run has finished. On 2026-11-09 (ReRime IME-567) v2 and v4 were dispatched
+seconds apart. Both checks picked revision 56, v2 published it, and v4's promotion
+stopped with `release-profile-conflict` before changing its channel. Recovery: dispatch
+the failed profile again on its own; it takes the next revision (57). Nothing needs
+cleaning up, and the failed run leaves no release.
+
 
 ```sh
 gh workflow run dictionary.yml --repo ReRime-IME/rerime-dictionaries --ref main \
