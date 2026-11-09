@@ -10,9 +10,10 @@ for private service inspection, credential renewal and recovery.
 
 The `profile` input selects `wanxiang-ios-arm64-rime1161-v1` (the default),
 `wanxiang-ios-arm64-rime1161-v2` or `wanxiang-ios-arm64-rime1161-v4` (小鹤双拼). The
-watcher releases and renews v1 and v2, one dispatch at a time
-([watcher operations](release-watcher.md#compatibility-profiles)). It does not serve v4 yet:
-v4 is released and renewed by manual dispatch until the watcher lists it. Each profile
+watcher releases and renews v1, v2 and v4, one dispatch at a time
+([watcher operations](release-watcher.md#compatibility-profiles)). Until the watcher host
+runs the three-profile code, v4 still needs a manual release after each upstream update
+and a manual renewal within 30 days of signing. Each profile
 has its own signed channel file (`channels/<profile>.json`), input identity (its
 recipe lock), App build floor and workflow concurrency group. Package revisions are
 shared across profiles, so release tags never collide. Promotions of different

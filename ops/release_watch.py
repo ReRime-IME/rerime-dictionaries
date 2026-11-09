@@ -21,13 +21,14 @@ WORKFLOW = f'repos/{REPO}/actions/workflows/dictionary.yml'
 DAY = 86400
 V1 = 'wanxiang-ios-arm64-rime1161-v1'
 V2 = 'wanxiang-ios-arm64-rime1161-v2'
+V4 = 'wanxiang-ios-arm64-rime1161-v4'
 # Dispatch order. Profiles are dispatched one at a time: check jobs of different
 # profiles share one package-revision counter, so parallel runs could pick the same
 # revision and the second promotion would fail with release-profile-conflict.
-PROFILES = (V1, V2)
-SHORT = {V1: 'v1', V2: 'v2'}
+PROFILES = (V1, V2, V4)
+SHORT = {V1: 'v1', V2: 'v2', V4: 'v4'}
 # Must render exactly like the run-name in .github/workflows/dictionary.yml.
-TITLE_SUFFIX = {V1: '', V2: ' v2'}
+TITLE_SUFFIX = {V1: '', V2: ' v2', V4: ' v4'}
 FAILING = ('blocked', 'failed', 'credential-required', 'channel-missing', 'channel-error')
 
 
