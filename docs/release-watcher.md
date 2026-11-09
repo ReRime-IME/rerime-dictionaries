@@ -33,48 +33,51 @@ be added to this repository, workflow inputs, run names, artifacts or public log
 
 ## Compatibility profiles
 
-The watcher serves `wanxiang-ios-arm64-rime1161-v1` and
-`wanxiang-ios-arm64-rime1161-v2` independently. It does not serve
-`wanxiang-ios-arm64-rime1161-v4` (小鹤双拼) yet; until it does, v4 is released after an
-upstream update and renewed within 30 days by manual dispatch
-([publication and recovery](release-recovery.md#compatibility-profiles)). The upstream Release and producer
+The watcher serves `wanxiang-ios-arm64-rime1161-v1`, `wanxiang-ios-arm64-rime1161-v2`
+and `wanxiang-ios-arm64-rime1161-v4` (小鹤双拼) independently. A host still running the
+two-profile code serves only v1 and v2; there, v4 is released after an upstream update
+and renewed within 30 days by manual dispatch
+([publication and recovery](release-recovery.md#compatibility-profiles)) until the
+three-profile code is installed. The upstream Release and producer
 tree reads stay shared (one conditional request per day each). Each profile compares
 them against its own `completed_release`/`completed_producer`, so one new upstream
-Release leads to one v1 check and one v2 check. Each profile also has its own
+Release leads to one check per profile: v1, then v2, then v4. Each profile also has its own
 daily channel read (`channels/<profile>.json` on `channel`), renewal, pending run,
 attempts, six-hour backoff and `blocked` state. A blocked or backing-off profile
-does not stop the other one.
+does not stop the others.
 
-- **One dispatch at a time.** v1 goes first. v2 is dispatched on a later tick, after
-  the v1 run is reconciled. The check jobs of both profiles read one shared
-  package-revision counter. If they ran in parallel, both could pick the same
-  revision, and the second promotion would fail with `release-profile-conflict`.
-  Running them one after the other avoids this. A blocked profile's stale pending
-  entry does not hold back the other profile.
+- **One dispatch at a time.** Dispatch order is v1, v2, v4. Each later profile is
+  dispatched on a later tick, after the earlier run is reconciled. The check jobs of
+  all profiles read one shared package-revision counter. If they ran in parallel, two
+  could pick the same revision, and the second promotion would fail with
+  `release-profile-conflict`. Running them one after the other avoids this. A blocked
+  profile's stale pending entry does not hold back the other profiles.
 - **Inputs.** v1 dispatches send `operation`, `release_id` and `request_id`,
-  as before. The workflow's default profile is v1. v2 dispatches add
-  `profile=wanxiang-ios-arm64-rime1161-v2`.
+  as before. The workflow's default profile is v1. v2 and v4 dispatches add
+  `profile=wanxiang-ios-arm64-rime1161-v2` or `profile=wanxiang-ios-arm64-rime1161-v4`.
 - **Reconciliation.** Runs are correlated by the exact rendered `run-name`:
-  `Dictionary <request_id>` for v1 and `Dictionary <request_id> v2` for v2.
+  `Dictionary <request_id>` for v1, `Dictionary <request_id> v2` for v2 and
+  `Dictionary <request_id> v4` for v4.
 - **Missing channel.** A 404 for a profile's channel file never breaks the other
-  profile. That profile reports `channel-missing` and is never bootstrapped or
+  profiles. That profile reports `channel-missing` and is never bootstrapped or
   dispatched by the watcher. Its channel is read again daily. Bootstrapping a
   profile is an explicit manual dispatch
   ([publication and recovery](release-recovery.md#compatibility-profiles)).
   A transient channel read error reports `channel-error` and is retried on the next tick.
 - **Output.** Each run prints one redacted line such as
-  `{"event":"tick","profiles":{"v1":"unchanged","v2":"dispatched"},"run_ids":{...}}`.
+  `{"event":"tick","profiles":{"v1":"unchanged","v2":"unchanged","v4":"dispatched"},"run_ids":{...}}`.
   The service exits non-zero when any profile reports `blocked`, `failed`,
   `credential-required`, `channel-missing` or `channel-error`. `waiting` means
-  the profile has work queued behind the other profile's dispatch.
+  the profile has work queued behind another profile's dispatch.
 - **State compatibility.** `format_version` stays 1. v1 keeps its original
-  top-level fields. v2 lives in the new `profiles` object, keyed by profile ID.
-  An existing v1-only state file loads unchanged and does not re-dispatch v1.
-  Because the v2 entry starts empty, the first tick after an upgrade dispatches
-  one v2 `release` check to record v2's completion. The cloud check skips
-  compilation when v2's inputs are unchanged. Older watcher code ignores
-  `profiles` and writes it back untouched. So a code rollback reuses the same state
-  file, with v2 dormant until the new code returns.
+  top-level fields. v2 and v4 live in the `profiles` object, keyed by profile ID.
+  An existing v1-only or two-profile state file loads unchanged and does not
+  re-dispatch a profile it has already completed. A profile whose entry starts empty
+  gets one `release` check after the upgrade, to record its completion; the cloud
+  check skips compilation when that profile's inputs are unchanged. The single-profile
+  code ignores `profiles` and writes it back untouched. The two-profile code rejects
+  a v4 entry (`state-profiles`), so a rollback to it needs that entry removed first
+  (see the rollback note below).
 
 ## Credentials
 
@@ -135,7 +138,7 @@ public immutable releases, the signed channel and private credentials. The old
 App's 72-hour advisory is a separate UI maintenance item, not a reason to invent
 fresh upstream checks during renewal.
 
-### Updating the installed watcher (two-profile code)
+### Updating the installed watcher (three-profile code)
 
 Deploying a reviewed commit is a separate, authorized step after merge:
 
@@ -146,21 +149,27 @@ Deploying a reviewed commit is a separate, authorized step after merge:
 2. Transfer the merged commit's `ops/` directory and run
    `bash ops/install.sh FULL_COMMIT_SHA` as an administrator. This installs a new
    versioned directory and switches `current`; the App drop-in and state stay.
-3. Run the probe (step 4 above). It should report `probe-ok` with both
-   `channel_days_remaining.v1` and `.v2` as positive integers. `null` means that
-   profile's channel file is missing.
+3. Run the probe (step 4 above). It should report `probe-ok` with
+   `channel_days_remaining.v1`, `.v2` and `.v4` as positive integers. `null` means
+   that profile's channel file is missing.
 4. `systemctl start rerime-release-watch.service`, then check its line in the
-   journal: v1 `unchanged` and v2 `dispatched` (the one-time v2 seeding check), or v1
-   `dispatched` if v1 has due work. Start it again after the cloud run completes,
-   and confirm `completed` for that profile. Then confirm that
-   `profiles.wanxiang-ios-arm64-rime1161-v2.completed_release` is recorded in state.
+   journal. From two-profile state, expect v1 and v2 `unchanged` and v4 `dispatched`
+   (the one-time v4 seeding check), or an earlier profile `dispatched` if it has due
+   work. Start it again after each cloud run completes, and confirm `completed` for
+   that profile. Then confirm that
+   `profiles.wanxiang-ios-arm64-rime1161-v4.completed_release` is recorded in state.
 5. `systemctl start rerime-release-watch.timer`, and check
    `systemctl list-timers rerime-release-watch.timer`.
 
 Rollback: stop the timer, run `ln -sfn /opt/rerime-release-watch/releases/PREVIOUS_SHA
-/opt/rerime-release-watch/current`, and start the timer again. The state file needs
-no change. If a v2 run was pending at rollback, it stays recorded and is reconciled
-after the new code returns. v2 renewals then fall back to manual dispatch.
+/opt/rerime-release-watch/current`, and start the timer again. Rolling back to the
+two-profile code needs one state change first: wait until v4 has no `pending` run,
+back up the state file, and delete only the
+`profiles.wanxiang-ios-arm64-rime1161-v4` entry. The two-profile code refuses state
+that contains it. v1 and v2 entries need no change. After the rollback, v4 releases
+and renewals fall back to manual dispatch, and when the three-profile code returns,
+v4 gets one seeding `release` check again. Rolling back to the single-profile code
+needs no state change; v2 and v4 stay dormant until the new code returns.
 
 ## GitHub App authentication migration
 

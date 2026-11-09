@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'ops'))
-from release_watch import AppCredential, GitHub, REPO, V2, load_credential, tick, RequestError
+from release_watch import AppCredential, GitHub, REPO, V2, V4, load_credential, tick, RequestError
 
 
 class AppAuthTests(unittest.TestCase):
@@ -63,12 +63,12 @@ class AppAuthTests(unittest.TestCase):
         state = {'completed_release':'42', 'observed_release':'42',
                  'next_release_check':self.now+100, 'next_producer_check':self.now+100, 'next_channel_check':self.now+100,
                  'expires_at':self.now+30*86400,
-                 'profiles':{V2:{'completed_release':'42','next_channel_check':self.now+100,
-                                 'expires_at':self.now+30*86400}}}
+                 'profiles':{profile:{'completed_release':'42','next_channel_check':self.now+100,
+                                      'expires_at':self.now+30*86400} for profile in (V2, V4)}}
         with patch.object(AppCredential, 'jwt', side_effect=AssertionError('idle auth')), patch.object(
                 GitHub, 'request', side_effect=AssertionError('idle request')):
             self.assertEqual(tick(GitHub(self.auth), state, self.now, lambda:None),
-                             {'v1':'unchanged', 'v2':'unchanged'})
+                             {'v1':'unchanged', 'v2':'unchanged', 'v4':'unchanged'})
 
     def test_invalid_exchange_scope_expiry_and_failure_are_closed(self):
         for field, value in [('permissions', {'contents':'write'}), ('repositories', []),
