@@ -130,3 +130,14 @@ corresponding-source archive with the other build tools.
   once in the App's form and carries the grammar block.
 - Ranking, the grammar sentence and speed are measured in ReRime with
   `shuangpin.benchmark --runtime <built> --xiaohe-schema wanxiang_xiaohe`.
+
+## Known gaps (released with them, 2026-11-08)
+
+The decision is recorded in ReRime IME-554, under the owner's delegation for the 双拼 tasks.
+
+- **Two-key 简拼.** Two lone initials always also read as one full code, and that reading wins
+  (`ud` 晒). `initials` top-3 is 47.7% against 全拼's 90.0%. ReRime task K owns closing this.
+- **Per-key time.** With 简拼, the every-key p95 in ReRime's benchmark is 2.6× 全拼's (7.44 vs
+  2.89 ms on a quiet host; max 52 ms; the last key is faster than 全拼's). The budget is 1.5×. It
+  must close before 小鹤 ships to the App Store (ReRime G2). Until then 小鹤 shows only in dev,
+  Owner and TestFlight installs. v1 and v2 are unchanged.
