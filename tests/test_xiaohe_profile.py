@@ -237,6 +237,24 @@ class XiaoheConsumerTests(unittest.TestCase):
                 if comment != '-':
                     self.assertEqual(comment, words[expected])
 
+    def test_promotion_admits_one_log_per_consumer_case(self):
+        # v4 writes 32 consumer logs; the artifact cap follows the profile's exact allowlist.
+        import promote
+        for profile in PROFILES:
+            with self.subTest(profile=profile), tempfile.TemporaryDirectory() as tmp:
+                output = Path(tmp)
+                for name in ['manifest-payload.json', 'runtime-unsigned.zip', 'x-source.zip', 'qualification.json',
+                             'build-receipt.json', 'upstream-lock.json', 'build-environment.json',
+                             'consumer-receipt.json', 'build-resources.json',
+                             *(f'consumer-{case}.log' for case in consumer_cases(profile))]:
+                    (output / name).write_text('x')
+                with patch('promote.verify', side_effect=RuntimeError('reached-verify')), \
+                        self.assertRaisesRegex(RuntimeError, 'reached-verify'):
+                    promote.verify_candidate(output, {}, {}, profile)
+                (output / 'extra.json').write_text('x')
+                with self.assertRaisesRegex(ValueError, 'artifact-count'):
+                    promote.verify_candidate(output, {}, {}, profile)
+
     def test_stand_in_requires_the_app_opt_in_form(self):
         # As librime writes it: keys sorted, values quoted.
         compiled = ('engine:\n  translators:\n    - punct_translator\n' + XIAOHE_TRANSLATOR[0] +
