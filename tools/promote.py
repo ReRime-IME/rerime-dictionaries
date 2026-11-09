@@ -34,7 +34,9 @@ def validate_qualification(qualification):
 
 def verify_candidate(output,plan,public_policy,profile=PROFILE):
     files=list(output.iterdir())
-    if len(files)>32:raise ValueError('artifact-count')
+    cases=consumer_cases(profile)
+    # The exact allowlist below: 9 fixed files plus one log per consumer case of the profile.
+    if len(files)>9+len(cases):raise ValueError('artifact-count')
     for file in files:
         limit=MAX_ZIP if file.suffix=='.zip' else 8*1024*1024 if file.suffix=='.log' else 524288
         if file.is_symlink() or not file.is_file() or not 0<file.stat().st_size<=limit:raise ValueError('artifact-file-bound')
@@ -53,7 +55,6 @@ def verify_candidate(output,plan,public_policy,profile=PROFILE):
     qualification=json.loads((output/'qualification.json').read_text())
     validate_qualification(qualification)
     consumer=json.loads((output/'consumer-receipt.json').read_text())
-    cases=consumer_cases(profile)
     if consumer.get('cases')!=[dict(case=name,exit=0) for name in cases]:raise ValueError('consumer-cases')
     gates=dict(deployment_calls=0,dictionary_sources_absent=1,missing_table_rejected=1,public_hashes_unchanged=1)
     if profile in (PROFILE_V2,PROFILE_V4):gates.update(compatibility_id=profile,missing_t9_prism_rejected=1,t9_rerime_translator=1,t9_tail_completion=1)
