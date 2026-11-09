@@ -259,17 +259,28 @@ class XiaoheConsumerTests(unittest.TestCase):
         # As librime writes it: keys sorted, values quoted.
         compiled = ('engine:\n  translators:\n    - punct_translator\n' + XIAOHE_TRANSLATOR[0] +
                     '    - table_translator@personal_xiaohe\ngrammar:\n  collocation_max_length: 6\n'
-                    '  language: "rerime-grammar"\n  rear_penalty: "-18"\nkey_binder:\n  import_preset: default\n')
+                    '  language: "rerime-grammar"\n  rear_penalty: "-18"\nkey_binder:\n  import_preset: default\n'
+                    'translator:\n  dictionary: wanxiang\n  prism: wanxiang_xiaohe\n  rerime_two_key_abbreviation: true\n'
+                    'personal_xiaohe:\n  user_dict: rerime_personal_xiaohe\n')
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / 'wanxiang_xiaohe.schema.yaml'
             path.write_text(compiled)
-            self.assertEqual(xiaohe_stand_in(path), dict(xiaohe_rerime_translator=1, xiaohe_grammar_block=1))
+            self.assertEqual(xiaohe_stand_in(path), dict(xiaohe_rerime_translator=1, xiaohe_grammar_block=1,
+                                                         xiaohe_two_key_abbreviation=1))
             self.assertIn(XIAOHE_TRANSLATOR[1], path.read_text())
             for broken in [compiled.replace(XIAOHE_TRANSLATOR[0], XIAOHE_TRANSLATOR[1]),
                            compiled.replace('\ngrammar:\n', '\nother:\n'),
                            compiled.replace('rerime-grammar', 'other-grammar')]:
                 path.write_text(broken)
                 with self.assertRaisesRegex(ValueError, 'consumer-xiaohe-translator'):
+                    xiaohe_stand_in(path)
+            # IME-561: the two-key 简拼 key, once, in the translator block.
+            for broken in [compiled.replace('  rerime_two_key_abbreviation: true\n', ''),
+                           compiled.replace('  rerime_two_key_abbreviation: true\n', '  rerime_two_key_abbreviation: false\n'),
+                           compiled.replace('  user_dict: rerime_personal_xiaohe\n',
+                                            '  user_dict: rerime_personal_xiaohe\n  rerime_two_key_abbreviation: true\n')]:
+                path.write_text(broken)
+                with self.assertRaisesRegex(ValueError, 'consumer-xiaohe-two-key'):
                     xiaohe_stand_in(path)
 
 

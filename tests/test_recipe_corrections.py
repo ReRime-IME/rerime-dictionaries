@@ -15,6 +15,7 @@ WEIGHT_ROWS = ''.join(f"{w['text']}\t{w['code']}\t1\n" for w in WEIGHTS)
 
 RULES = ROOT / 'recipe/wanxiang-v1/wanxiang_full_pinyin.yaml'
 T9 = ROOT / 'recipe/wanxiang-v1/wanxiang_t9.schema.yaml'
+XIAOHE_RECIPE = ROOT / 'recipe/wanxiang-v1/wanxiang_xiaohe.schema.yaml'
 
 
 def fake_download(url, target):
@@ -56,7 +57,8 @@ class RecipeCorrectionsTests(unittest.TestCase):
         t9_before = T9.read_bytes()
         t9_ids = ['t9-rerime-script-translator', 't9-tail-completion']
         for profile, expected in [(PROFILE, ['tei-is-a-syllable']), (PROFILE_V2, ['tei-is-a-syllable', *t9_ids]),
-                                  (PROFILE_V4, ['tei-is-a-syllable', *t9_ids, 'v4-deploys-xiaohe'])]:
+                                  (PROFILE_V4, ['tei-is-a-syllable', *t9_ids, 'v4-deploys-xiaohe',
+                                               'xiaohe-two-key-abbreviation'])]:
             with self.subTest(profile=profile), tempfile.TemporaryDirectory() as tmp:
                 work = Path(tmp)
                 with patch('adapt.download', fake_download):
@@ -68,6 +70,15 @@ class RecipeCorrectionsTests(unittest.TestCase):
                     self.assertFalse(default.exists())
                 else:
                     self.assertEqual('wanxiang_xiaohe' in default.read_text(), profile == PROFILE_V4)
+                if profile == PROFILE_V4:
+                    # IME-561: the 小鹤 translator gains the two-key 简拼 key; nothing else changes.
+                    xiaohe = (work / 'adapted/wanxiang_xiaohe.schema.yaml').read_text()
+                    recipe = XIAOHE_RECIPE.read_text()
+                    translator = xiaohe[xiaohe.index('\ntranslator:\n'):xiaohe.index('\npersonal_xiaohe:\n')]
+                    self.assertEqual(translator.count('\n  rerime_two_key_abbreviation: true'), 1)
+                    self.assertEqual(xiaohe.count('rerime_two_key_abbreviation'), 1)
+                    self.assertEqual(set(recipe.splitlines()) - set(xiaohe.splitlines()), set())
+                    self.assertEqual(len(xiaohe.splitlines()), len(recipe.splitlines()) + 1)
                 if profile != PROFILE:
                     schema = (work / 'adapted/wanxiang_t9.schema.yaml').read_text()
                     self.assertIn('  translators: [punct_translator, rerime_dual_script_translator, '
