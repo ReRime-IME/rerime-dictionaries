@@ -61,6 +61,26 @@ completion is on (5468 now offers 今天 before 李牧). Not raised because the 
 on the same digits is as common: 谢谢 / 这些 (943943), 干嘛 / 好吗, 早安 / 晚安,
 走了 / 有了, 恭喜 / 工资, 呵呵 / 各个; learning ranks them for each user once chosen.
 
+## 26-key context phrases (IME-564)
+
+The same list also raises a phrase whose context the 26-key sentence needs. librime's
+first sentence scores words by their own weight, with a fixed cost per word, and 的
+(48 million) is nearly free. So a short upstream fragment can take the character that
+belongs to an X的 phrase: `woyouxindejianpan` gave 我有心的键盘 (我有心 752 + 的)
+instead of 我有新的键盘 (我有 + 新的), a user report.
+
+| Phrase | Reading | Upstream | Raised to | Why |
+| --- | --- | --- | --- | --- |
+| 有新的 | yǒu xīn de | 3,944 | 40,000 | 我有新的… and 他有新的… lost to the fragments 我有心 (752) and 他有心 (698) followed by 的. |
+
+Tried and dropped, measured with ReRime's host probe on 5,326 rows (the IME-310
+corpus, the 311 benchmark sentences, the 470 benchmark words): raising 新的 to
+1,100,000 broke 我会伤心的 and 放心的; raising 我有新 above 我有心 broke 我有心帮你.
+Raising the phrase that carries the 的 changes that one reported row and nothing else
+in the top three. Lowering a fragment is not possible here (raise only), and a weight
+cannot fix a pair whose choice depends on the words around it (老师 / 老是, re_rime
+IME-564): that is left to the grammar sentence.
+
 ## Verification
 
 - `tests/test_local_additions.py` covers raising, never lowering, leaving other
