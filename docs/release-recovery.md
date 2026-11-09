@@ -8,21 +8,27 @@ for private service inspection, credential renewal and recovery.
 
 ## Compatibility profiles
 
-The `profile` input selects `wanxiang-ios-arm64-rime1161-v1` (the default) or
-`wanxiang-ios-arm64-rime1161-v2`. The watcher releases and renews both, one
-dispatch at a time ([watcher operations](release-watcher.md#compatibility-profiles)). Each profile
+The `profile` input selects `wanxiang-ios-arm64-rime1161-v1` (the default),
+`wanxiang-ios-arm64-rime1161-v2` or `wanxiang-ios-arm64-rime1161-v4` (小鹤双拼). The
+watcher releases and renews v1 and v2, one dispatch at a time
+([watcher operations](release-watcher.md#compatibility-profiles)). It does not serve v4 yet:
+v4 is released and renewed by manual dispatch until the watcher lists it. Each profile
 has its own signed channel file (`channels/<profile>.json`), input identity (its
 recipe lock), App build floor and workflow concurrency group. Package revisions are
 shared across profiles, so release tags never collide. Promotions of different
 profiles are serialized, and a publisher never adopts a release whose body names
 another profile. The watcher never bootstraps a profile whose channel is missing.
-Manual v2 dispatches remain available for bootstrap and recovery:
+Manual v2 and v4 dispatches remain available for bootstrap and recovery:
 
 ```sh
 gh workflow run dictionary.yml --repo ReRime-IME/rerime-dictionaries --ref main \
   -f profile=wanxiang-ios-arm64-rime1161-v2 -f operation=release
 gh workflow run dictionary.yml --repo ReRime-IME/rerime-dictionaries --ref main \
   -f profile=wanxiang-ios-arm64-rime1161-v2 -f operation=renew
+gh workflow run dictionary.yml --repo ReRime-IME/rerime-dictionaries --ref main \
+  -f profile=wanxiang-ios-arm64-rime1161-v4 -f operation=release
+gh workflow run dictionary.yml --repo ReRime-IME/rerime-dictionaries --ref main \
+  -f profile=wanxiang-ios-arm64-rime1161-v4 -f operation=renew
 ```
 
 Recovery below applies per profile: a missing channel only blocks a fresh check

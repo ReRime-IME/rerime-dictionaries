@@ -3,7 +3,7 @@ import sys
 import unittest
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from contract import ROOT, RUNTIME, LEGACY_RUNTIME, RECIPE_V2_ONLY, canonical, fingerprints, sha
+from contract import ROOT, RUNTIME, LEGACY_RUNTIME, RECIPE_V2_ONLY, RECIPE_V4_ONLY, canonical, fingerprints, sha
 from wanxiang_auxiliary import read_locked, convert_emoji
 
 class SourceUnificationTests(unittest.TestCase):
@@ -20,12 +20,13 @@ class SourceUnificationTests(unittest.TestCase):
             self.assertIn(retired, LEGACY_RUNTIME)
 
     def test_exact_recipe_and_source_lock(self):
-        # The v2 lock covers every recipe file; v1 is the same set without the
-        # nine-key additions, so the production recipe hash stays unchanged.
+        # The v4 lock covers every recipe file; v2 is the same set without the 小鹤
+        # schema and v1 also without the nine-key additions, so neither hash changes.
         recipe = ROOT / 'recipe/wanxiang-v1'
         every = sorted(p.relative_to(recipe).as_posix() for p in recipe.rglob('*') if p.is_file())
-        for lock_path, paths in [('locks/recipe.json', [p for p in every if p not in RECIPE_V2_ONLY]),
-                                 ('locks/recipe-v2.json', every)]:
+        for lock_path, paths in [('locks/recipe.json', [p for p in every if p not in RECIPE_V2_ONLY + RECIPE_V4_ONLY]),
+                                 ('locks/recipe-v2.json', [p for p in every if p not in RECIPE_V4_ONLY]),
+                                 ('locks/recipe-v4.json', every)]:
             with self.subTest(lock=lock_path):
                 lock = json.loads((ROOT/lock_path).read_text())
                 actual = fingerprints(recipe, paths)
@@ -33,6 +34,9 @@ class SourceUnificationTests(unittest.TestCase):
                 self.assertEqual(sha(canonical(actual)),lock['sha256'])
         self.assertEqual(json.loads((ROOT/'locks/recipe.json').read_text())['sha256'],
                          '9630235fe1c5a48a08063ecea08c7c5eb3d6e03ae825025251cdfe2afb8d0ca2')
+        # Installed Apps trust the v2 recipe; adding 小鹤 must not change it.
+        self.assertEqual(json.loads((ROOT/'locks/recipe-v2.json').read_text())['sha256'],
+                         '87b1ff98b0b3a455a1d700fc2afddbd220cb91270ba4ac3d8e2f7a37f96ff20d')
 
     def test_promotion_requires_current_os_evidence(self):
         from promote import validate_qualification

@@ -81,7 +81,7 @@ Each profile has its own signed channel file on the `channel` branch
 profile's file. Package revisions are one repository-wide counter, so release tags
 keep the `wanxiang-precompiled-<revision>-<commit>` form and never collide; each
 profile's revisions only increase. Release bodies name the profile; only v1 releases
-are marked GitHub's "latest". Both profiles are qualified for iOS 27.0 only.
+are marked GitHub's "latest". All profiles are qualified for iOS 27.0 only.
 
 - **v1** `wanxiang-ios-arm64-rime1161-v1`: full-Pinyin, English and mixed schemas.
 - **v2** `wanxiang-ios-arm64-rime1161-v2`: v1 plus the `wanxiang_t9` nine-key schema
@@ -90,6 +90,12 @@ are marked GitHub's "latest". Both profiles are qualified for iOS 27.0 only.
   It mounts the shared `wanxiang` dictionary under its own `wanxiang_t9` prism
   (`contract/compatibility-rime1161-v2.json`). `locks/recipe-v2.json` selects the v1
   recipe files plus `wanxiang_t9.schema.yaml` and `default.custom.yaml`.
+- **v4** `wanxiang-ios-arm64-rime1161-v4`: v2 plus the `wanxiang_xiaohe` 小鹤双拼 schema
+  (`recipe/wanxiang-v1/wanxiang_xiaohe.schema.yaml`): Wanxiang's 小鹤 speller with 简拼 at
+  any position, full-Pinyin comments, ReRime's grammar opt-in and Shift+V as the symbol
+  prefix (zh = v). It mounts the shared `wanxiang` dictionary under its own
+  `wanxiang_xiaohe` prism (`contract/compatibility-rime1161-v4.json`, `locks/recipe-v4.json`).
+  v3 was a retired ReRime profile and is not reused. See [小鹤双拼 profile](docs/xiaohe-shuangpin.md).
 
 The workflow's `profile` input selects the profile; absent means v1. Minimum App
 builds per profile are in `locks/release.json`.
@@ -118,7 +124,8 @@ See [chat-phrase weights](docs/chat-phrase-weights.md).
 copy on every build. The locked recipe and its hash stay unchanged, so installed
 Apps accept the package. A rule that no longer matches stops the build for
 review. The first correction stops typed `tie` from also reading as `tei` (忒); two
-v2-only corrections turn on ReRime's nine-key tail completion (App build 63+). See
+corrections for v2 and v4 turn on ReRime's nine-key tail completion (App build 63+), and
+one v4-only correction lists the 小鹤 schema in `default.custom.yaml`. See
 [recipe corrections](docs/recipe-corrections.md).
 
 ## Licenses

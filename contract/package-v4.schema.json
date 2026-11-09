@@ -49,7 +49,8 @@
       "type": "string",
       "enum": [
         "wanxiang-ios-arm64-rime1161-v1",
-        "wanxiang-ios-arm64-rime1161-v2"
+        "wanxiang-ios-arm64-rime1161-v2",
+        "wanxiang-ios-arm64-rime1161-v4"
       ]
     },
     "engine_archive_sha256": {
@@ -142,6 +143,8 @@
               "build/wanxiang_mixedcode.table.bin",
               "build/wanxiang_t9.prism.bin",
               "build/wanxiang_t9.schema.yaml",
+              "build/wanxiang_xiaohe.prism.bin",
+              "build/wanxiang_xiaohe.schema.yaml",
               "default.yaml",
               "opencc/LICENSE",
               "opencc/STCharacters.ocd2",

@@ -2,7 +2,7 @@
 """Publish complete immutable assets, verify anonymous bytes, then advance one channel."""
 import argparse,base64,json,os,re,shutil,subprocess,tempfile,time,zipfile
 from pathlib import Path
-from contract import ROOT,PROFILE,PROFILE_V2,PROFILES,MAX_ZIP,build_profile,canonical,sha,file_sha,strict_json,validate_manifest
+from contract import ROOT,PROFILE,PROFILE_V2,PROFILE_V4,PROFILES,MAX_ZIP,build_profile,canonical,sha,file_sha,strict_json,validate_manifest
 from channel import validate_channel
 from check_release import policy,previous,current_channel,channel_path,relevant_tools,release_profile,minimum_app_build,continuation
 from release_http import REPO,api,download,read
@@ -56,7 +56,8 @@ def verify_candidate(output,plan,public_policy,profile=PROFILE):
     cases=consumer_cases(profile)
     if consumer.get('cases')!=[dict(case=name,exit=0) for name in cases]:raise ValueError('consumer-cases')
     gates=dict(deployment_calls=0,dictionary_sources_absent=1,missing_table_rejected=1,public_hashes_unchanged=1)
-    if profile==PROFILE_V2:gates.update(compatibility_id=profile,missing_t9_prism_rejected=1,t9_rerime_translator=1,t9_tail_completion=1)
+    if profile in (PROFILE_V2,PROFILE_V4):gates.update(compatibility_id=profile,missing_t9_prism_rejected=1,t9_rerime_translator=1,t9_tail_completion=1)
+    if profile==PROFILE_V4:gates.update(missing_xiaohe_prism_rejected=1,xiaohe_rerime_translator=1,xiaohe_grammar_block=1)
     if any(consumer.get(key)!=value for key,value in gates.items()):
         raise ValueError('consumer-gate')
     allowed={'manifest-payload.json','runtime-unsigned.zip',manifest['release_id']+'-source.zip',
@@ -115,7 +116,7 @@ def publish_assets(tag,commit,staging,records,profile=PROFILE):
         if asset['size']!=expected[asset['name']]['size'] or asset.get('digest')!='sha256:'+expected[asset['name']]['sha256']:
             raise ValueError('uploaded-asset-integrity')
     if current['draft']:
-        # Only the default profile's release is GitHub's "latest"; v2 never displaces it.
+        # Only the default profile's release is GitHub's "latest"; v2 and v4 never displace it.
         latest='true' if profile==PROFILE else 'false'
         current=api(f'repos/{REPO}/releases/{release["id"]}','PATCH',dict(draft=False,make_latest=latest))
     if current.get('immutable') is not True:raise ValueError('release-not-immutable')

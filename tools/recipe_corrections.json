@@ -13,7 +13,8 @@
       "id": "t9-rerime-script-translator",
       "file": "wanxiang_t9.schema.yaml",
       "profiles": [
-        "wanxiang-ios-arm64-rime1161-v2"
+        "wanxiang-ios-arm64-rime1161-v2",
+        "wanxiang-ios-arm64-rime1161-v4"
       ],
       "find": "  translators: [punct_translator, script_translator, table_translator@personal_t9]\n",
       "replace": "  translators: [punct_translator, rerime_dual_script_translator, table_translator@personal_t9]  # ReRime IME-545: ReRime's copy of librime's script translator (App build 63+)\n",
@@ -24,12 +25,24 @@
       "id": "t9-tail-completion",
       "file": "wanxiang_t9.schema.yaml",
       "profiles": [
-        "wanxiang-ios-arm64-rime1161-v2"
+        "wanxiang-ios-arm64-rime1161-v2",
+        "wanxiang-ios-arm64-rime1161-v4"
       ],
       "find": "  enable_completion: true\n",
       "replace": "  enable_completion: true  # ReRime IME-545: also complete a short last syllable when the digits read whole\n  rerime_tail_completion: true\n",
       "reason": "librime completes a short last syllable only when the digits cannot be read as whole syllables, and on a phone pad they nearly always can (2, 3 and 6 are a, e and o), so 7443 never offers 是的 and 5468 shows 李牧 before 今天. ReRime's translator reads this key; App versions without it ignore it.",
       "evidence": "re_rime nine-key.ranking-benchmark (470 words): last1 top-1 51.1% -> 79.4%, top-3 61.7% -> 95.1%, absent 36.0% -> 0.2%; full top-1 97.4% -> 97.2% (re_rime IME-532 record)."
+    },
+    {
+      "id": "v4-deploys-xiaohe",
+      "file": "default.custom.yaml",
+      "profiles": [
+        "wanxiang-ios-arm64-rime1161-v4"
+      ],
+      "find": "    - schema: wanxiang_t9\n",
+      "replace": "    - schema: wanxiang_t9\n    - schema: wanxiang_xiaohe  # ReRime IME-554: profile v4 also deploys 小鹤双拼\n",
+      "reason": "librime compiles and lists only the schemas in default.yaml's schema_list. v4 adds wanxiang_xiaohe after wanxiang_t9, so the build compiles its prism and a session that last used 小鹤 opens it directly instead of building 全拼 first (ReRime IME-548: about 110 ms of a cold 小鹤 start). v2 builds keep the file unchanged, so the v2 recipe hash and installed Apps are unaffected.",
+      "evidence": "ReRime IME-548 hand-over: cold 小鹤 engine_start 142.6 ms with the schema listed, equal to cold 全拼 147-153 ms; about 110 ms more without."
     }
   ]
 }

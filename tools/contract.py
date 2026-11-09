@@ -23,13 +23,23 @@ PRISM_ONLY_SCHEMAS = ('wanxiang_t9',)
 RUNTIME_V2 = sorted(RUNTIME + [f'build/{name}.{suffix}' for name in PRISM_ONLY_SCHEMAS for suffix in ('schema.yaml','prism.bin')])
 # Recipe files that only the v2 recipe lock selects; a v1 build never copies them.
 RECIPE_V2_ONLY = ('default.custom.yaml', 'wanxiang_t9.schema.yaml')
+# Profile v4 is v2 plus the 小鹤双拼 schema (wanxiang_xiaohe), which also mounts the shared
+# wanxiang dictionary under its own prism. v3 was the retired grammar profile (ReRime
+# IME-350); its ID is never reused. The 小鹤 symbol table is generated at build time
+# (xiaohe_symbols.py) and compiled into the schema, so it is not a runtime file.
+PROFILE_V4 = 'wanxiang-ios-arm64-rime1161-v4'
+PRISM_ONLY_SCHEMAS_V4 = PRISM_ONLY_SCHEMAS + ('wanxiang_xiaohe',)
+RUNTIME_V4 = sorted(RUNTIME + [f'build/{name}.{suffix}' for name in PRISM_ONLY_SCHEMAS_V4 for suffix in ('schema.yaml','prism.bin')])
+# Recipe files that only the v4 recipe lock selects.
+RECIPE_V4_ONLY = ('wanxiang_xiaohe.schema.yaml',)
 PROFILES = {
-    PROFILE: dict(id=PROFILE, recipe_lock='locks/recipe.json', runtime=RUNTIME, prism_only=()),
-    PROFILE_V2: dict(id=PROFILE_V2, recipe_lock='locks/recipe-v2.json', runtime=RUNTIME_V2, prism_only=PRISM_ONLY_SCHEMAS),
+    PROFILE: dict(id=PROFILE, recipe_lock='locks/recipe.json', runtime=RUNTIME, prism_only=(), xiaohe=False),
+    PROFILE_V2: dict(id=PROFILE_V2, recipe_lock='locks/recipe-v2.json', runtime=RUNTIME_V2, prism_only=PRISM_ONLY_SCHEMAS, xiaohe=False),
+    PROFILE_V4: dict(id=PROFILE_V4, recipe_lock='locks/recipe-v4.json', runtime=RUNTIME_V4, prism_only=PRISM_ONLY_SCHEMAS_V4, xiaohe=True),
 }
 
 def build_profile(name=None):
-    """The production default stays v1; v2 is selected explicitly (RERIME_PROFILE)."""
+    """The production default stays v1; v2 and v4 are selected explicitly (RERIME_PROFILE)."""
     name = name or os.environ.get('RERIME_PROFILE') or PROFILE
     if name not in PROFILES: raise ValueError('profile')
     return PROFILES[name]

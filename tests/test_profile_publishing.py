@@ -11,7 +11,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-from contract import ROOT, SCHEMAS, PROFILE, PROFILE_V2, PROFILES, canonical, recipe_sha, sha
+from contract import ROOT, SCHEMAS, PROFILE, PROFILE_V2, PROFILE_V4, PROFILES, canonical, recipe_sha, sha
 from channel import validate_channel
 from check_release import (channel_path, check, continuation, minimum_app_build, policy, release_profile, verify_source,
                            CHANNEL_PATH)
@@ -313,13 +313,14 @@ class WorkflowProfileTests(unittest.TestCase):
 
     def test_profile_input_defaults_to_v1_for_the_watcher(self):
         block = re.search(r'      profile:\n((?:        .*\n)+)', self.value).group(1)
-        self.assertIn(f'options: [{PROFILE}, {PROFILE_V2}]', block)
+        self.assertIn(f'options: [{PROFILE}, {PROFILE_V2}, {PROFILE_V4}]', block)
         self.assertIn(f'default: {PROFILE}', block)
-        self.assertEqual(sorted(PROFILES), [PROFILE, PROFILE_V2])
+        self.assertEqual(sorted(PROFILES), [PROFILE, PROFILE_V2, PROFILE_V4])
         # The watcher's exact title and the v1 concurrency group are unchanged.
         self.assertIn("run-name: Dictionary ${{ inputs.request_id || github.run_id }}${{ inputs.profile == "
-                      f"'{PROFILE_V2}' && ' v2' || '' }}}}\n", self.value)
-        self.assertIn(f"  group: dictionary-channel-${{{{ inputs.profile == '{PROFILE_V2}' && 'v2' || 'v1' }}}}\n", self.value)
+                      f"'{PROFILE_V2}' && ' v2' || inputs.profile == '{PROFILE_V4}' && ' v4' || '' }}}}\n", self.value)
+        self.assertIn(f"  group: dictionary-channel-${{{{ inputs.profile == '{PROFILE_V2}' && 'v2' || "
+                      f"inputs.profile == '{PROFILE_V4}' && 'v4' || 'v1' }}}}\n", self.value)
 
     def test_each_stage_receives_the_selected_profile(self):
         check = self.value.split('\n  check:\n')[1].split('\n  build:\n')[0]

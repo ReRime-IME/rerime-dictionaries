@@ -1,6 +1,6 @@
 name: Public dictionaries
-# The watcher correlates v1 runs by this exact title; only v2 runs add a suffix.
-run-name: Dictionary ${{ inputs.request_id || github.run_id }}${{ inputs.profile == 'wanxiang-ios-arm64-rime1161-v2' && ' v2' || '' }}
+# The watcher correlates v1 runs by this exact title; v2 and v4 runs add a suffix.
+run-name: Dictionary ${{ inputs.request_id || github.run_id }}${{ inputs.profile == 'wanxiang-ios-arm64-rime1161-v2' && ' v2' || inputs.profile == 'wanxiang-ios-arm64-rime1161-v4' && ' v4' || '' }}
 
 on:
   workflow_dispatch:
@@ -19,14 +19,14 @@ on:
       # own channel file, releases and concurrency group.
       profile:
         type: choice
-        options: [wanxiang-ios-arm64-rime1161-v1, wanxiang-ios-arm64-rime1161-v2]
+        options: [wanxiang-ios-arm64-rime1161-v1, wanxiang-ios-arm64-rime1161-v2, wanxiang-ios-arm64-rime1161-v4]
         default: wanxiang-ios-arm64-rime1161-v1
 
 permissions:
   contents: read
 
 concurrency:
-  group: dictionary-channel-${{ inputs.profile == 'wanxiang-ios-arm64-rime1161-v2' && 'v2' || 'v1' }}
+  group: dictionary-channel-${{ inputs.profile == 'wanxiang-ios-arm64-rime1161-v2' && 'v2' || inputs.profile == 'wanxiang-ios-arm64-rime1161-v4' && 'v4' || 'v1' }}
   cancel-in-progress: false
 
 jobs:

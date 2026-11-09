@@ -34,7 +34,10 @@ be added to this repository, workflow inputs, run names, artifacts or public log
 ## Compatibility profiles
 
 The watcher serves `wanxiang-ios-arm64-rime1161-v1` and
-`wanxiang-ios-arm64-rime1161-v2` independently. The upstream Release and producer
+`wanxiang-ios-arm64-rime1161-v2` independently. It does not serve
+`wanxiang-ios-arm64-rime1161-v4` (小鹤双拼) yet; until it does, v4 is released after an
+upstream update and renewed within 30 days by manual dispatch
+([publication and recovery](release-recovery.md#compatibility-profiles)). The upstream Release and producer
 tree reads stay shared (one conditional request per day each). Each profile compares
 them against its own `completed_release`/`completed_producer`, so one new upstream
 Release leads to one v1 check and one v2 check. Each profile also has its own

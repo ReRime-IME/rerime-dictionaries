@@ -15,8 +15,8 @@ int main(int argc, char** argv) {
   std::string root=argv[1], schema=argv[2], input=argv[3], expected=argv[4], build=root+"/build";
   std::string feed=argc==8?argv[6]:"keys", comment=argc==8?argv[7]:"-";
   if (feed!="keys" && feed!="set_input") return 2;
-  // The nine-key schema mounts the shared wanxiang table under its own prism.
-  std::string dictionary=schema=="wanxiang_t9"?"wanxiang":schema;
+  // The nine-key and 小鹤 schemas mount the shared wanxiang table under their own prisms.
+  std::string dictionary=schema=="wanxiang_t9"||schema=="wanxiang_xiaohe"?"wanxiang":schema;
   if (!std::filesystem::is_regular_file(build+"/"+dictionary+".table.bin")) return 3;
   if (!std::filesystem::is_regular_file(build+"/"+schema+".prism.bin")) return 3;
   rime_require_module_core(); rime_require_module_dict(); rime_require_module_gears(); rime::rime_require_module_default();

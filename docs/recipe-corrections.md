@@ -38,11 +38,14 @@ Current corrections:
 
 - `tei-is-a-syllable` narrows the rule to `derive/([wfghkz])ei$/$1ie/`. After it,
   none of the typo derivations collides with a real syllable.
-- `t9-rerime-script-translator` and `t9-tail-completion` (IME-545, v2 only) turn on
+- `t9-rerime-script-translator` and `t9-tail-completion` (IME-545, v2 and v4) turn on
   ReRime's nine-key tail completion in `wanxiang_t9.schema.yaml`; see below.
+- `v4-deploys-xiaohe` (IME-554, v4 only) adds `wanxiang_xiaohe` to `default.custom.yaml`'s
+  `schema_list` patch, so v4 builds compile the 小鹤 prism and list the schema. v2 keeps the
+  file unchanged. See [小鹤双拼 profile](xiaohe-shuangpin.md).
 
 A correction may name `profiles`. It then applies only to builds of those profiles
-(the nine-key schema is not part of a v1 build), and within them it must apply like
+(the nine-key schema is not part of a v1 build, and only v4 lists the 小鹤 schema), and within them it must apply like
 any other: a missing file or rule line stops the build. A correction without
 `profiles` applies to every profile.
 
@@ -79,8 +82,9 @@ evidence, then run the tests.
 - `tests/test_recipe_corrections.py` covers:
   - two isolated upstream adaptation runs correct the adapted copy and leave the
     recipe untouched;
-  - the nine-key corrections apply to v2 builds only, change exactly their two lines
-    and add the one key, and must apply in a v2 build;
+  - the nine-key corrections apply to v2 and v4 builds only, change exactly their two
+    lines and add the one key, and must apply in those builds; the 小鹤 schema-list
+    correction applies to v4 only;
   - repeat application is idempotent;
   - a reworded or missing rule stops the build;
   - only the one rule line changes.
