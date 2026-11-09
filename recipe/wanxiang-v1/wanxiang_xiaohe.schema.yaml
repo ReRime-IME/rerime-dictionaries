@@ -1,0 +1,194 @@
+# ReRime 小鹤双拼 (Xiaohe Shuangpin) adaptation of Wanxiang. CC BY 4.0; see NOTICE.md.
+# Speller algebra: the `base/小鹤双拼` block of upstream wanxiang_algebra.yaml at the
+# pinned revision 64c9c8c10524c5a354a62ef92fa4ad3187b16bc5 (locks/source.json), with
+# three ReRime changes at the end (marked): upstream's own commented-out 简拼 rule is on,
+# and the tone-digit spellings are dropped, because the alphabet has no digits and they
+# can never be typed (prism 132 KB -> 58 KB with 简拼; upstream without 简拼: 107 KB).
+# The rest is ReRime's 全拼 schema (wanxiang.schema.yaml) with these changes:
+#   - `v` is an initial (zh = v), so the symbol prefix is Shift+V (`V`, plus `/`),
+#     generated at build time into rerime_xiaohe_symbols.yaml (tools/xiaohe_symbols.py);
+#   - each candidate comment carries its toneless full Pinyin (spelling_hints);
+#   - ReRime's dual translator and a `grammar:` block, exactly as the App opts 全拼 in
+#     (App build 63+; a missing model turns the grammar sentence off);
+#   - imported personal words come from rerime_personal_xiaohe (小鹤 codes).
+# No Lua, no auxiliary codes, no 26-key typo derivations.
+schema:
+  schema_id: wanxiang_xiaohe
+  name: 小鹤双拼
+  version: '1.0'
+  author:
+    - amzxyz (Wanxiang 小鹤双拼 spelling rules, CC BY 4.0)
+  description: ReRime 小鹤双拼 adaptation of the Wanxiang speller over the shared wanxiang dictionary.
+  dependencies: [wanxiang_english, wanxiang_mixedcode]
+switches:
+  - name: ascii_mode
+    reset: 0
+  - name: traditionalization
+    reset: 0
+  - name: emoji
+    reset: 1
+engine:
+  processors: [ascii_composer, recognizer, key_binder, speller, punctuator, selector, navigator, express_editor]
+  segmentors: [ascii_segmentor, matcher, abc_segmentor, punct_segmentor, fallback_segmentor]
+  translators: [punct_translator, rerime_dual_script_translator@translator, table_translator@personal_xiaohe, table_translator@learned_english, table_translator@english, table_translator@mixed]
+  filters: [simplifier@emoji, simplifier@traditionalize, uniquifier]
+speller:
+  alphabet: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+  initials: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+  delimiter: " '"
+  algebra:
+    - xform/Ⅲ//
+    - xform/^([a-z]+)$/$1④/
+    - xform/ā([a-z]*)$/a$1①/
+    - xform/á([a-z]*)$/a$1②/
+    - xform/ǎ([a-z]*)$/a$1③/
+    - xform/à([a-z]*)$/a$1④/
+    - xform/ō([a-z]*)$/o$1①/
+    - xform/ó([a-z]*)$/o$1②/
+    - xform/ǒ([a-z]*)$/o$1③/
+    - xform/ò([a-z]*)$/o$1④/
+    - xform/ē([a-z]*)$/e$1①/
+    - xform/é([a-z]*)$/e$1②/
+    - xform/ě([a-z]*)$/e$1③/
+    - xform/è([a-z]*)$/e$1④/
+    - xform/ī([a-z]*)$/i$1①/
+    - xform/í([a-z]*)$/i$1②/
+    - xform/ǐ([a-z]*)$/i$1③/
+    - xform/ì([a-z]*)$/i$1④/
+    - xform/ū([a-z]*)$/u$1①/
+    - xform/ú([a-z]*)$/u$1②/
+    - xform/ǔ([a-z]*)$/u$1③/
+    - xform/ù([a-z]*)$/u$1④/
+    - xform/ǖ([a-z]*)$/v$1①/
+    - xform/ǘ([a-z]*)$/v$1②/
+    - xform/ǚ([a-z]*)$/v$1③/
+    - xform/ǜ([a-z]*)$/v$1④/
+    - xform/ü/v/
+    - xform/ń([a-z]*)$/n$1②/
+    - xform/ň([a-z]*)$/n$1③/
+    - xform/ǹ([a-z]*)$/n$1④/
+    - xform/m̄([a-z]*)$/m$1①/
+    - xform/ḿ([a-z]*)$/m$1②/
+    - xform/m̀([a-z]*)$/m$1④/
+    - xlit/①②③④/7890
+    - derive/^ng(\d)/eng$1/
+    - xform/^n(\d)/en$1/
+    - xform/^m(\d)/me$1/
+    - derive/^([jqxy])u(\d)$/$1v$2/
+    - derive/^([aoe])([ioun])(\d)$/$1$1$2$3/
+    - xform/^([aoe])(ng)?(\d)$/$1$1$2$3/
+    - xform/iu(\d)$/Ⓠ$1/
+    - xform/(.)ei(\d)$/$1Ⓦ$2/
+    - xform/uan(\d)$/Ⓡ$1/
+    - xform/[uv]e(\d)$/Ⓣ$1/
+    - xform/un(\d)$/Ⓨ$1/
+    - xform/^sh/Ⓤ/
+    - xform/^ch/Ⓘ/
+    - xform/^zh/Ⓥ/
+    - xform/uo(\d)$/Ⓞ$1/
+    - xform/ie(\d)$/Ⓟ$1/
+    - xform/(.)i?ong(\d)$/$1Ⓢ$2/
+    - xform/ing(\d)$/Ⓚ$1/
+    - xform/uai(\d)$/Ⓚ$1/
+    - xform/(.)ai(\d)$/$1Ⓓ$2/
+    - xform/(.)eng(\d)$/$1Ⓖ$2/
+    - xform/(.)en(\d)$/$1Ⓕ$2/
+    - xform/[iu]ang(\d)$/Ⓛ$1/
+    - xform/(.)ang(\d)$/$1Ⓗ$2/
+    - xform/ian(\d)$/Ⓜ$1/
+    - xform/(.)an(\d)$/$1Ⓙ$2/
+    - xform/(.)ou(\d)$/$1Ⓩ$2/
+    - xform/[iu]a(\d)$/Ⓧ$1/
+    - xform/iao(\d)$/Ⓝ$1/
+    - xform/(.)ao(\d)$/$1Ⓒ$2/
+    - xform/ui(\d)$/Ⓥ$1/
+    - xform/in(\d)$/Ⓑ$1/
+    - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwrtyuiopsdfghjklzxcvbnm/
+    - xform/^(aj|ac|ad|ew|ef|oz)(\d?)$//
+    - xform/^(..)(\d)$/$1/  # ReRime: upstream derive/; keep only the typeable toneless code
+    # ReRime: upstream's derive/^(.).+(\d)$/$1$2/ (first letter + tone digit) is left out
+    - abbrev/^([a-z]).+$/$1/  # ReRime: upstream's 简拼 rule, commented out upstream
+translator:
+  dictionary: wanxiang
+  prism: wanxiang_xiaohe
+  initial_quality: 1.2
+  enable_user_dict: true
+  enable_completion: true
+  enable_sentence: true
+  enable_correction: false
+  # Each comment carries the candidate's toneless full Pinyin, e.g. "shi de".
+  spelling_hints: 50
+  always_show_comments: true
+  comment_format:
+    - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜüńňǹ/aaaaooooeeeeiiiiuuuuvvvvvnnn/
+    - xform/ḿ/me/
+    - xform/m̀/me/
+    - xform/\bn\b/en/
+personal_xiaohe:
+  dictionary: ''
+  user_dict: rerime_personal_xiaohe
+  db_class: stabledb
+  enable_completion: false
+  enable_sentence: false
+  initial_quality: 100
+learned_english:
+  dictionary: ''
+  user_dict: wanxiang_english
+  db_class: userdb
+  enable_user_dict: true
+  enable_completion: false
+  enable_sentence: false
+  initial_quality: 2.0
+  comment_format: ["xform/.*//"]
+english:
+  dictionary: wanxiang_english
+  user_dict: wanxiang_english
+  enable_user_dict: true
+  enable_completion: true
+  enable_sentence: false
+  initial_quality: 0.5
+  comment_format: ["xform/.*//"]
+mixed:
+  dictionary: wanxiang_mixedcode
+  enable_user_dict: true
+  enable_completion: true
+  enable_sentence: false
+  initial_quality: 0.5
+  comment_format: ["xform/.*//"]
+emoji:
+  option_name: emoji
+  opencc_config: emoji.json
+  inherit_comment: false
+traditionalize:
+  excluded_types: [punct]
+  option_name: traditionalization
+  opencc_config: s2t.json
+  tips: none
+key_binder:
+  import_preset: default
+punctuator:
+  symbols:
+    __include: rerime_xiaohe_symbols:/symbols
+  half_shape:
+    ',': {commit: '，'}
+    '.': {commit: '。'}
+    '?': {commit: '？'}
+    '!': {commit: '！'}
+    ':': {commit: '：'}
+    ';': {commit: '；'}
+  full_shape:
+    ',': {commit: '，'}
+    '.': {commit: '。'}
+recognizer:
+  patterns:
+    __include: rerime_xiaohe_symbols:/patterns
+    email: '^[A-Za-z][-_.0-9A-Za-z]*@.*$'
+    url: '^(https?:|www[.]).*$'
+grammar:
+  language: rerime-grammar
+  collocation_max_length: 6
+  collocation_min_length: 2
+  collocation_penalty: -14
+  non_collocation_penalty: -6
+  weak_collocation_penalty: -100
+  rear_penalty: -18

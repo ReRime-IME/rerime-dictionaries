@@ -9,6 +9,7 @@ from pathlib import Path
 from contract import ROOT, SCHEMAS, build_profile, canonical, fingerprints, sha
 from local_additions import apply as apply_local_additions
 from recipe_corrections import apply as apply_recipe_corrections
+from xiaohe_symbols import generate as generate_xiaohe_symbols
 
 MAX_FILE = 80 * 1024 * 1024
 TABLE = re.compile(r'dicts/[a-z_]{1,40}')
@@ -93,7 +94,7 @@ def build(work,revision,profile=None):
     source.mkdir(parents=True,exist_ok=False);destination.mkdir(exist_ok=False)
     (source/'dicts').mkdir();(destination/'dicts').mkdir()
     recipe=ROOT/'recipe/wanxiang-v1'
-    # The profile's lock selects the exact recipe files; v1 never copies v2-only files.
+    # The profile's lock selects the exact recipe files; v1 never copies v2- or v4-only files.
     lock=json.loads((ROOT/profile['recipe_lock']).read_text())
     actual=fingerprints(recipe,[f['path'] for f in lock['files']])
     if actual!=lock['files'] or sha(canonical(actual))!=lock['sha256']: raise ValueError('recipe-integrity')
@@ -101,6 +102,8 @@ def build(work,revision,profile=None):
         target=destination/entry['path'];target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copyfile(recipe/entry['path'],target)
     apply_recipe_corrections(destination,profile['id'])
+    # v4: the 小鹤 schema opens symbol codes with V, derived from the copied 全拼 symbol table.
+    if profile['xiaohe']:generate_xiaohe_symbols(destination)
     paths=[];tables={};rows={}
     def fetch(path):
         download(f'https://raw.githubusercontent.com/amzxyz/rime-wanxiang/{revision}/{path}',source/path)

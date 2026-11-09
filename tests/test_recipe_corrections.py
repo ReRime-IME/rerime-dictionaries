@@ -6,7 +6,7 @@ from pathlib import Path
 from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from adapt import build
-from contract import ROOT, PROFILE, PROFILE_V2
+from contract import ROOT, PROFILE, PROFILE_V2, PROFILE_V4
 from recipe_corrections import apply, DATA
 
 WEIGHTS = json.loads((ROOT / 'tools/local_additions.json').read_text()).get('weights', [])
@@ -52,17 +52,23 @@ class RecipeCorrectionsTests(unittest.TestCase):
         # The locked recipe itself is never modified.
         self.assertEqual(RULES.read_bytes(), recipe_before)
 
-    def test_nine_key_corrections_apply_to_v2_builds_only(self):
+    def test_nine_key_corrections_apply_to_v2_and_v4_builds_only(self):
         t9_before = T9.read_bytes()
         t9_ids = ['t9-rerime-script-translator', 't9-tail-completion']
-        for profile, expected in [(PROFILE, ['tei-is-a-syllable']), (PROFILE_V2, ['tei-is-a-syllable', *t9_ids])]:
+        for profile, expected in [(PROFILE, ['tei-is-a-syllable']), (PROFILE_V2, ['tei-is-a-syllable', *t9_ids]),
+                                  (PROFILE_V4, ['tei-is-a-syllable', *t9_ids, 'v4-deploys-xiaohe'])]:
             with self.subTest(profile=profile), tempfile.TemporaryDirectory() as tmp:
                 work = Path(tmp)
                 with patch('adapt.download', fake_download):
                     build(work, 'a' * 40, profile)
                 receipt = json.loads((work / 'recipe-corrections-receipt.json').read_text())
                 self.assertEqual([c['id'] for c in receipt['corrections']], expected)
-                if profile == PROFILE_V2:
+                default = (work / 'adapted/default.custom.yaml')
+                if profile == PROFILE:
+                    self.assertFalse(default.exists())
+                else:
+                    self.assertEqual('wanxiang_xiaohe' in default.read_text(), profile == PROFILE_V4)
+                if profile != PROFILE:
                     schema = (work / 'adapted/wanxiang_t9.schema.yaml').read_text()
                     self.assertIn('  translators: [punct_translator, rerime_dual_script_translator, '
                                   'table_translator@personal_t9]', schema)

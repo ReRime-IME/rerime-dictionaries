@@ -216,7 +216,8 @@ class ProfileWatcherTests(unittest.TestCase):
     def test_reconcile_matches_each_profile_exact_run_title(self):
         workflow=WORKFLOW_FILE.read_text()
         self.assertIn("run-name: Dictionary ${{ inputs.request_id || github.run_id }}"
-                      "${{ inputs.profile == 'wanxiang-ios-arm64-rime1161-v2' && ' v2' || '' }}",workflow)
+                      "${{ inputs.profile == 'wanxiang-ios-arm64-rime1161-v2' && ' v2' || "
+                      "inputs.profile == 'wanxiang-ios-arm64-rime1161-v4' && ' v4' || '' }}",workflow)
         self.assertEqual(run_title(V1,'abc'),'Dictionary abc')
         self.assertEqual(run_title(V2,'abc'),'Dictionary abc v2')
         api=FakeAPI(v2_expires=8*DAY);state=done()

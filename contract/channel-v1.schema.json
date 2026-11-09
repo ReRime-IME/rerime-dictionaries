@@ -52,7 +52,7 @@
       "type": "string"
     },
     "compatibility_id": {
-      "enum": ["wanxiang-ios-arm64-rime1161-v1", "wanxiang-ios-arm64-rime1161-v2"],
+      "enum": ["wanxiang-ios-arm64-rime1161-v1", "wanxiang-ios-arm64-rime1161-v2", "wanxiang-ios-arm64-rime1161-v4"],
       "type": "string"
     },
     "release_id": {
