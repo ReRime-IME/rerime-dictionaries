@@ -43,6 +43,10 @@ Current corrections:
 - `v4-deploys-xiaohe` (IME-554, v4 only) adds `wanxiang_xiaohe` to `default.custom.yaml`'s
   `schema_list` patch, so v4 builds compile the 小鹤 prism and list the schema. v2 keeps the
   file unchanged. See [小鹤双拼 profile](xiaohe-shuangpin.md).
+- `xiaohe-two-key-abbreviation` (ReRime IME-558/IME-561, v4 only) adds
+  `translator/rerime_two_key_abbreviation: true` to `wanxiang_xiaohe.schema.yaml`: two
+  letters that read as one 小鹤 code are also read as two abbreviated syllables in ReRime's
+  translator. See [小鹤双拼 profile](xiaohe-shuangpin.md).
 
 A correction may name `profiles`. It then applies only to builds of those profiles
 (the nine-key schema is not part of a v1 build, and only v4 lists the 小鹤 schema), and within them it must apply like
@@ -84,7 +88,8 @@ evidence, then run the tests.
     recipe untouched;
   - the nine-key corrections apply to v2 and v4 builds only, change exactly their two
     lines and add the one key, and must apply in those builds; the 小鹤 schema-list
-    correction applies to v4 only;
+    correction and the two-key 简拼 key apply to v4 only, the key once in the 小鹤
+    translator with every recipe line kept;
   - repeat application is idempotent;
   - a reworded or missing rule stops the build;
   - only the one rule line changes.

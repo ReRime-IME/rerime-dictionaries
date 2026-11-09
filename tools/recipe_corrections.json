@@ -43,6 +43,17 @@
       "replace": "    - schema: wanxiang_t9\n    - schema: wanxiang_xiaohe  # ReRime IME-554: profile v4 also deploys 小鹤双拼\n",
       "reason": "librime compiles and lists only the schemas in default.yaml's schema_list. v4 adds wanxiang_xiaohe after wanxiang_t9, so the build compiles its prism and a session that last used 小鹤 opens it directly instead of building 全拼 first (ReRime IME-548: about 110 ms of a cold 小鹤 start). v2 builds keep the file unchanged, so the v2 recipe hash and installed Apps are unaffected.",
       "evidence": "ReRime IME-548 hand-over: cold 小鹤 engine_start 142.6 ms with the schema listed, equal to cold 全拼 147-153 ms; about 110 ms more without."
+    },
+    {
+      "id": "xiaohe-two-key-abbreviation",
+      "file": "wanxiang_xiaohe.schema.yaml",
+      "profiles": [
+        "wanxiang-ios-arm64-rime1161-v4"
+      ],
+      "find": "  prism: wanxiang_xiaohe\n",
+      "replace": "  prism: wanxiang_xiaohe\n  rerime_two_key_abbreviation: true  # ReRime IME-558/IME-561: two letters also read as two abbreviated syllables\n",
+      "reason": "In 小鹤 two lone initials are nearly always also one full code (ud = 晒), and librime 1.16.1 drops every abbreviated reading once full spelling reaches the end, so 是的 is never offered for ud. ReRime's rerime_dual_script_translator reads this key (re_rime IME-558) and also reads the two letters as two abbreviations, never putting such a word before a character of the full code; with the key its Emoji filter puts that character's emoji after the third candidate (IME-561). App versions without that code ignore the key.",
+      "evidence": "re_rime shuangpin.benchmark arm xiaohe-k (IME-561, package 52): initials top-3 47.7% -> 85.5% (gate 85.0%); full top-1 99.2% and sentence top-1/top-2 82.6/90.7% unchanged; two-key characters top-3 86.0% -> 79.8%; two-letter key p95 0.20 -> 0.43 ms (全拼 0.43 ms)."
     }
   ]
 }

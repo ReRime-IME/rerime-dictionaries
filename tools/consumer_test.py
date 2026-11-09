@@ -56,6 +56,7 @@ XIAOHE_PERSONAL_CASE=('xh-personal','wanxiang_xiaohe','rvldmugsfh','瑞莱姆工
 # copy; ReRime's shuangpin.benchmark measures the dual translator and the grammar sentence.
 XIAOHE_TRANSLATOR=('    - "rerime_dual_script_translator@translator"\n','    - script_translator\n')
 # librime writes the block's keys sorted and its values quoted.
+XIAOHE_TWO_KEY_KEY='  rerime_two_key_abbreviation: true\n'
 XIAOHE_GRAMMAR=re.compile(r'^grammar:\n(?:  [a-z_]+: .*\n)*  language: "?rerime-grammar"?\n',re.M)
 NINE_KEY_PROFILES=(PROFILE_V2,PROFILE_V4)
 CONSUMER_CASES=[case[0] for case in [*CASES, PERSONAL_EDIT_CASE]]
@@ -79,12 +80,17 @@ def t9_stand_in(schema):
 
 def xiaohe_stand_in(schema):
     """The compiled 小鹤 schema names ReRime's dual translator once, in the App's opt-in form, and
-    carries the grammar block; the scratch copy names librime's stock translator in its place."""
+    carries the grammar block and, in its translator, ReRime's two-key 简拼 key (IME-561); the
+    scratch copy names librime's stock translator in its place."""
     text=schema.read_text()
     if text.count(XIAOHE_TRANSLATOR[0])!=1 or XIAOHE_TRANSLATOR[1] in text or len(XIAOHE_GRAMMAR.findall(text))!=1:
         raise ValueError('consumer-xiaohe-translator')
+    block=re.search(r'^translator:\n((?:  .*\n)*)',text,re.M)
+    translator=block.group(1) if block else ''
+    if translator.count(XIAOHE_TWO_KEY_KEY)!=1 or text.count('rerime_two_key_abbreviation')!=1:
+        raise ValueError('consumer-xiaohe-two-key')
     schema.write_text(text.replace(*XIAOHE_TRANSLATOR))
-    return dict(xiaohe_rerime_translator=1,xiaohe_grammar_block=1)
+    return dict(xiaohe_rerime_translator=1,xiaohe_grammar_block=1,xiaohe_two_key_abbreviation=1)
 
 def test(directory,simulator):
     manifest=json.loads((directory/'manifest-payload.json').read_text());zip_shape(directory/'runtime-unsigned.zip',manifest,False)

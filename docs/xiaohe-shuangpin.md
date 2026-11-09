@@ -42,6 +42,17 @@ that does not know v4 never asks for the v4 channel.
   candidate comment carries its toneless full Pinyin (`spelling_hints: 50`, the nine-key
   comment format), for example `shi de` for `uide`. ReRime's composition line reads it
   (IME-547 task C). There is no `preedit_format`, so the raw input stays the typed codes.
+- **Two-key 简拼 (ReRime IME-558/IME-561).** Two lone initials are nearly always also one
+  full code (`ud` = 晒), and librime drops every abbreviated reading once full spelling
+  reaches the end, so `ud` never offered 是的 (`initials` top-3 47.7%). The v4-only
+  correction `xiaohe-two-key-abbreviation` adds `translator/rerime_two_key_abbreviation: true`.
+  ReRime's translator then also reads the two letters as two abbreviations. It never puts such
+  a word before a character of the full code, and its Emoji filter puts that character's emoji
+  after the third candidate. ReRime's `shuangpin.benchmark` (arm `xiaohe-k`, package 52):
+  `initials` top-3 85.5% (全拼 90.0%), `full` and sentences unchanged, two-key characters
+  top-3 86.0% → 79.8%. App builds without that code ignore the key; the minimum App build
+  stays 63. The consumer checks that the compiled translator carries the key once
+  (`xiaohe_two_key_abbreviation` in the receipt).
 - **Grammar.** `translators:` names `rerime_dual_script_translator@translator` and the
   schema ends with the `grammar:` block. Both are exactly what ReRime's App writes when it
   opts 全拼 in (`GrammarSecondCandidateStaging`), so the App's opt-in and the
