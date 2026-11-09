@@ -174,6 +174,13 @@
       "weight": 30000,
       "upstream_weight": 5994,
       "reason": "Greeting; 646426 shows 敏感 (14,475, same digits) first."
+    },
+    {
+      "text": "有新的",
+      "code": "yǒu xīn de",
+      "weight": 40000,
+      "upstream_weight": 3944,
+      "reason": "User report (re_rime IME-564): woyouxindejianpan made 我有心的键盘. The 26-key sentence prefers the fragment 我有心 (752) plus a nearly free 的 (48 million) over 我有 + 新的; raising this phrase, which carries the 的 context, fixes every subject (我/他有新的…) and leaves 我有心帮你 and 我有心无力 alone, where raising 我有新 or 新的 would not."
     }
   ]
 }
