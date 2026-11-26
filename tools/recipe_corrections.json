@@ -54,6 +54,39 @@
       "replace": "  prism: wanxiang_xiaohe\n  rerime_two_key_abbreviation: true  # ReRime IME-558/IME-561: two letters also read as two abbreviated syllables\n",
       "reason": "In 小鹤 two lone initials are nearly always also one full code (ud = 晒), and librime 1.16.1 drops every abbreviated reading once full spelling reaches the end, so 是的 is never offered for ud. ReRime's rerime_dual_script_translator reads this key (re_rime IME-558) and also reads the two letters as two abbreviations, never putting such a word before a character of the full code; with the key its Emoji filter puts that character's emoji after the third candidate (IME-561). App versions without that code ignore the key.",
       "evidence": "re_rime shuangpin.benchmark arm xiaohe-k (IME-561, package 52): initials top-3 47.7% -> 85.5% (gate 85.0%); full top-1 99.2% and sentence top-1/top-2 82.6/90.7% unchanged; two-key characters top-3 86.0% -> 79.8%; two-letter key p95 0.20 -> 0.43 ms (全拼 0.43 ms)."
+    },
+    {
+      "id": "personal-pack-quanpin",
+      "file": "wanxiang.schema.yaml",
+      "profiles": [
+        "wanxiang-ios-arm64-rime1161-v4"
+      ],
+      "find": "translator:\n  dictionary: wanxiang\n  initial_quality: 1.2\n",
+      "replace": "translator:\n  dictionary: wanxiang\n  packs: [rerime_personal_pack]  # ReRime IME-710: imported 我的词条, compiled by the App; optional\n  initial_quality: 1.2\n",
+      "reason": "ReRime's App compiles the person's imported 我的词条 into a librime dictionary pack (rerime_personal_pack.table.bin, coded with this dictionary's toned syllables) and stages it in front of the package's build directory. Mounted on the main translator, an imported word takes part in 简拼, partial Pinyin, completion and whole sentences like a dictionary word, at weight 10,000. packs are optional in librime: with no pack table (no imports, or an App that does not build one) the dictionary loads exactly as before, and the stabledb table_translator@personal* tables stay mounted for those Apps.",
+      "evidence": "re_rime IME-702 host benchmark (5,000 invented imports, weight 10,000, the pack alone): common words full 466/470, initials 322/470, sentences 257/311, all equal to no import; imports first on full Pinyin 284/300 (top-3 299), initials 130/300, last syllable cut 202/300, inside a sentence 265/300. Owner chose this option (E2) on 2026-11-25."
+    },
+    {
+      "id": "personal-pack-t9",
+      "file": "wanxiang_t9.schema.yaml",
+      "profiles": [
+        "wanxiang-ios-arm64-rime1161-v4"
+      ],
+      "find": "  dictionary: wanxiang\n  prism: wanxiang_t9\n",
+      "replace": "  dictionary: wanxiang\n  packs: [rerime_personal_pack]  # ReRime IME-710: imported 我的词条, compiled by the App; optional\n  prism: wanxiang_t9\n",
+      "reason": "ReRime's App compiles the person's imported 我的词条 into a librime dictionary pack (rerime_personal_pack.table.bin, coded with this dictionary's toned syllables) and stages it in front of the package's build directory. Mounted on the main translator, an imported word takes part in 简拼, partial Pinyin, completion and whole sentences like a dictionary word, at weight 10,000. packs are optional in librime: with no pack table (no imports, or an App that does not build one) the dictionary loads exactly as before, and the stabledb table_translator@personal* tables stay mounted for those Apps.",
+      "evidence": "re_rime IME-702 host benchmark (5,000 invented imports, weight 10,000, the pack alone): common words full 466/470, initials 322/470, sentences 257/311, all equal to no import; imports first on full Pinyin 284/300 (top-3 299), initials 130/300, last syllable cut 202/300, inside a sentence 265/300. Owner chose this option (E2) on 2026-11-25."
+    },
+    {
+      "id": "personal-pack-xiaohe",
+      "file": "wanxiang_xiaohe.schema.yaml",
+      "profiles": [
+        "wanxiang-ios-arm64-rime1161-v4"
+      ],
+      "find": "  dictionary: wanxiang\n  prism: wanxiang_xiaohe\n",
+      "replace": "  dictionary: wanxiang\n  packs: [rerime_personal_pack]  # ReRime IME-710: imported 我的词条, compiled by the App; optional\n  prism: wanxiang_xiaohe\n",
+      "reason": "ReRime's App compiles the person's imported 我的词条 into a librime dictionary pack (rerime_personal_pack.table.bin, coded with this dictionary's toned syllables) and stages it in front of the package's build directory. Mounted on the main translator, an imported word takes part in 简拼, partial Pinyin, completion and whole sentences like a dictionary word, at weight 10,000. packs are optional in librime: with no pack table (no imports, or an App that does not build one) the dictionary loads exactly as before, and the stabledb table_translator@personal* tables stay mounted for those Apps.",
+      "evidence": "re_rime IME-702 host benchmark (5,000 invented imports, weight 10,000, the pack alone): common words full 466/470, initials 322/470, sentences 257/311, all equal to no import; imports first on full Pinyin 284/300 (top-3 299), initials 130/300, last syllable cut 202/300, inside a sentence 265/300. Owner chose this option (E2) on 2026-11-25."
     }
   ]
 }

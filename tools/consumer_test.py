@@ -92,6 +92,16 @@ def xiaohe_stand_in(schema):
     schema.write_text(text.replace(*XIAOHE_TRANSLATOR))
     return dict(xiaohe_rerime_translator=1,xiaohe_grammar_block=1,xiaohe_two_key_abbreviation=1)
 
+# ReRime IME-710: v4 mounts the App-compiled 我的词条 pack on each main translator. librime treats
+# packs as optional; every case below runs with no pack table present, as an App that builds none.
+PERSONAL_PACK=re.compile(r'^translator:\n(?:  .*\n|    .*\n)*?  packs:\n    - "?rerime_personal_pack"?\n',re.M)
+
+def personal_pack_mounted(directory):
+    for name in ('wanxiang','wanxiang_t9','wanxiang_xiaohe'):
+        text=(directory/'build'/(name+'.schema.yaml')).read_text()
+        if len(PERSONAL_PACK.findall(text))!=1 or text.count('rerime_personal_pack')!=1:
+            raise ValueError('consumer-personal-pack:'+name)
+
 def test(directory,simulator):
     manifest=json.loads((directory/'manifest-payload.json').read_text());zip_shape(directory/'runtime-unsigned.zip',manifest,False)
     scratch=Path(tempfile.mkdtemp(prefix='consumer-',dir=ROOT/'.build'))
@@ -104,6 +114,7 @@ def test(directory,simulator):
         stand_in={}
         if manifest['compatibility_id'] in NINE_KEY_PROFILES:stand_in=t9_stand_in(scratch/'build/wanxiang_t9.schema.yaml')
         if manifest['compatibility_id']==PROFILE_V4:stand_in.update(xiaohe_stand_in(scratch/'build/wanxiang_xiaohe.schema.yaml'))
+        if manifest['compatibility_id']==PROFILE_V4:personal_pack_mounted(scratch)
         public=[f['path'] for f in manifest['files']]
         before={p:file_sha(scratch/p) for p in public}
         (scratch/'rerime_personal.txt').write_text('星河工作室\txing he gong zuo shi\t100000\n')

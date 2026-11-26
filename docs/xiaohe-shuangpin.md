@@ -61,7 +61,9 @@ that does not know v4 never asks for the v4 channel.
   sentence option is off. App builds without the translator would lose candidates, so
   v4's minimum App build is 63, the first build that registers it (`locks/release.json`).
 - **Personal words.** `table_translator@personal_xiaohe` reads `rerime_personal_xiaohe`
-  (joined 小鹤 codes, written by the App like `rerime_personal_t9`; IME-547 task D).
+  (joined 小鹤 codes, written by the App like `rerime_personal_t9`; IME-547 task D). Since
+  ReRime IME-710 the main translator also mounts `rerime_personal_pack`, the App-compiled pack
+  of imported words shared with 全拼 and nine-key ([recipe corrections](recipe-corrections.md)).
 - **Everything else** (switches, English and mixed tables, emoji, traditional, punctuation)
   is the 全拼 schema's.
 - **Schema list.** The v4-only correction `v4-deploys-xiaohe` adds `wanxiang_xiaohe` to

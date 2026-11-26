@@ -48,6 +48,10 @@ Current corrections:
   letters that read as one 小鹤 code are also read as two abbreviated syllables in ReRime's
   translator. See [小鹤双拼 profile](xiaohe-shuangpin.md).
 
+- `personal-pack-quanpin`, `personal-pack-t9` and `personal-pack-xiaohe` (ReRime IME-710, v4
+  only) add `packs: [rerime_personal_pack]` to the main translator of `wanxiang`, `wanxiang_t9`
+  and `wanxiang_xiaohe`, directly under `dictionary: wanxiang`. See below.
+
 A correction may name `profiles`. It then applies only to builds of those profiles
 (the nine-key schema is not part of a v1 build, and only v4 lists the 小鹤 schema), and within them it must apply like
 any other: a missing file or rule line stops the build. A correction without
@@ -81,6 +85,22 @@ To correct another upstream rule, add an entry with the exact `find` line
 (including indentation and newline), its `replace` line, a reason and the
 evidence, then run the tests.
 
+## Imported personal words as a dictionary pack (IME-710)
+
+ReRime's App compiles the person's imported 我的词条 into a librime dictionary pack,
+`rerime_personal_pack.table.bin`, coded with this dictionary's toned syllables, and stages it
+in front of the package's `build/` (ReRime ADR 0035). One pack serves all three schemas,
+because each reads `dictionary: wanxiang` through its own prism: an imported word is typed by
+full Pinyin, 简拼, a partial last syllable, nine-key digits or 小鹤 codes, completes and joins
+sentences like any dictionary word, at weight 10,000. librime treats `packs` as optional
+(`Dictionary::Load`): with no pack table, the case for everyone without imports and for every
+App that builds none, the dictionary loads exactly as before, and a deployment logs that the
+pack has neither source nor table and goes on. The `table_translator@personal*` 我的词条 tables
+stay in the schemas, so Apps that write those tables keep working; an App that builds the pack
+writes them only for rows the pack cannot hold. The pack is user data: it is never in a
+package, its manifest or the corresponding source. The consumer checks that a v4 build mounts
+the pack once in each main translator and types every case with no pack present.
+
 ## Verification
 
 - `tests/test_recipe_corrections.py` covers:
@@ -90,6 +110,8 @@ evidence, then run the tests.
     lines and add the one key, and must apply in those builds; the 小鹤 schema-list
     correction and the two-key 简拼 key apply to v4 only, the key once in the 小鹤
     translator with every recipe line kept;
+  - the personal pack line is added to the three main translators of v4 builds only,
+    directly under their dictionary, and the 我的词条 table translators stay;
   - repeat application is idempotent;
   - a reworded or missing rule stops the build;
   - only the one rule line changes.
