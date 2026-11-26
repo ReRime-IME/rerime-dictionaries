@@ -14,6 +14,9 @@ WEIGHTS = json.loads((ROOT / 'tools/local_additions.json').read_text()).get('wei
 WEIGHT_ROWS = ''.join(f"{w['text']}\t{w['code']}\t1\n" for w in WEIGHTS)
 
 RULES = ROOT / 'recipe/wanxiang-v1/wanxiang_full_pinyin.yaml'
+QUANPIN_RECIPE = ROOT / 'recipe/wanxiang-v1/wanxiang.schema.yaml'
+PACK_IDS = ['personal-pack-quanpin', 'personal-pack-t9', 'personal-pack-xiaohe']
+PACK_LINE = '\n  packs: [rerime_personal_pack]  #'
 T9 = ROOT / 'recipe/wanxiang-v1/wanxiang_t9.schema.yaml'
 XIAOHE_RECIPE = ROOT / 'recipe/wanxiang-v1/wanxiang_xiaohe.schema.yaml'
 
@@ -58,7 +61,7 @@ class RecipeCorrectionsTests(unittest.TestCase):
         t9_ids = ['t9-rerime-script-translator', 't9-tail-completion']
         for profile, expected in [(PROFILE, ['tei-is-a-syllable']), (PROFILE_V2, ['tei-is-a-syllable', *t9_ids]),
                                   (PROFILE_V4, ['tei-is-a-syllable', *t9_ids, 'v4-deploys-xiaohe',
-                                               'xiaohe-two-key-abbreviation'])]:
+                                               'xiaohe-two-key-abbreviation', *PACK_IDS])]:
             with self.subTest(profile=profile), tempfile.TemporaryDirectory() as tmp:
                 work = Path(tmp)
                 with patch('adapt.download', fake_download):
@@ -71,14 +74,16 @@ class RecipeCorrectionsTests(unittest.TestCase):
                 else:
                     self.assertEqual('wanxiang_xiaohe' in default.read_text(), profile == PROFILE_V4)
                 if profile == PROFILE_V4:
-                    # IME-561: the 小鹤 translator gains the two-key 简拼 key; nothing else changes.
+                    # IME-561: the 小鹤 translator gains the two-key 简拼 key and (IME-710) the
+                    # personal pack; nothing else changes.
                     xiaohe = (work / 'adapted/wanxiang_xiaohe.schema.yaml').read_text()
                     recipe = XIAOHE_RECIPE.read_text()
                     translator = xiaohe[xiaohe.index('\ntranslator:\n'):xiaohe.index('\npersonal_xiaohe:\n')]
                     self.assertEqual(translator.count('\n  rerime_two_key_abbreviation: true'), 1)
                     self.assertEqual(xiaohe.count('rerime_two_key_abbreviation'), 1)
+                    self.assertEqual(translator.count(PACK_LINE), 1)
                     self.assertEqual(set(recipe.splitlines()) - set(xiaohe.splitlines()), set())
-                    self.assertEqual(len(xiaohe.splitlines()), len(recipe.splitlines()) + 1)
+                    self.assertEqual(len(xiaohe.splitlines()), len(recipe.splitlines()) + 2)
                 if profile != PROFILE:
                     schema = (work / 'adapted/wanxiang_t9.schema.yaml').read_text()
                     self.assertIn('  translators: [punct_translator, rerime_dual_script_translator, '
@@ -87,12 +92,54 @@ class RecipeCorrectionsTests(unittest.TestCase):
                     translator = schema[schema.index('\ntranslator:\n'):schema.index('\npersonal_t9:\n')]
                     self.assertEqual(translator.count('\n  rerime_tail_completion: true\n'), 1)
                     self.assertEqual(translator.count('\n  enable_completion: true'), 1)
-                    # Only the two lines change; the tail completion key is the one added line.
+                    # Only the two lines change; the tail completion key is the one added line,
+                    # and v4 (IME-710) adds the personal pack line too.
                     removed = set(T9.read_text().splitlines()) - set(schema.splitlines())
                     self.assertEqual(removed, {'  translators: [punct_translator, script_translator, table_translator@personal_t9]',
                                                '  enable_completion: true'})
-                    self.assertEqual(len(schema.splitlines()), len(T9.read_text().splitlines()) + 1)
+                    self.assertEqual(translator.count(PACK_LINE), int(profile == PROFILE_V4))
+                    self.assertEqual(len(schema.splitlines()),
+                                     len(T9.read_text().splitlines()) + 1 + int(profile == PROFILE_V4))
         self.assertEqual(T9.read_bytes(), t9_before)
+
+    def test_v4_mounts_the_personal_pack_on_each_main_translator(self):
+        # IME-710: one line per schema, directly under `dictionary: wanxiang` of the main
+        # translator; the 我的词条 table translators stay; v1 and v2 builds get no pack.
+        for profile in (PROFILE, PROFILE_V2, PROFILE_V4):
+            with self.subTest(profile=profile), tempfile.TemporaryDirectory() as tmp:
+                work = Path(tmp)
+                with patch('adapt.download', fake_download):
+                    build(work, 'a' * 40, profile)
+                names = ['wanxiang.schema.yaml'] + ([] if profile == PROFILE else ['wanxiang_t9.schema.yaml']) \
+                    + (['wanxiang_xiaohe.schema.yaml'] if profile == PROFILE_V4 else [])
+                for name in names:
+                    schema = (work / 'adapted' / name).read_text()
+                    recipe = (ROOT / 'recipe/wanxiang-v1' / name).read_text()
+                    self.assertEqual(schema.count('rerime_personal_pack'), int(profile == PROFILE_V4), name)
+                    self.assertEqual(recipe.count('rerime_personal_pack'), 0, name)
+                    if profile != PROFILE_V4:
+                        continue
+                    # Directly under the main translator's dictionary, inside its block.
+                    at = schema.index('\n  dictionary: wanxiang' + PACK_LINE)
+                    block = schema[schema.index('\ntranslator:\n'):at]
+                    self.assertFalse(any(l and l[0] not in ' #' for l in block.splitlines()[2:]), name)
+                    self.assertIn('table_translator@personal', schema, name)
+                    self.assertEqual(set(recipe.splitlines()) - set(schema.splitlines()) -
+                                     {'  translators: [punct_translator, script_translator, table_translator@personal_t9]',
+                                      '  enable_completion: true'}, set(), name)
+        # Repeat application of the pack corrections leaves a v4 copy as it was.
+        data = json.loads(DATA.read_text())
+        only = dict(data, corrections=[c for c in data['corrections'] if c['id'] in PACK_IDS])
+        with tempfile.TemporaryDirectory() as tmp, patch('recipe_corrections.json.loads', return_value=only):
+            output = Path(tmp) / 'adapted'
+            output.mkdir()
+            for name in ('wanxiang.schema.yaml', 'wanxiang_t9.schema.yaml', 'wanxiang_xiaohe.schema.yaml'):
+                (output / name).write_bytes((ROOT / 'recipe/wanxiang-v1' / name).read_bytes())
+            apply(output, PROFILE_V4)
+            once = {n.name: n.read_bytes() for n in output.iterdir()}
+            apply(output, PROFILE_V4)
+            self.assertEqual({n.name: n.read_bytes() for n in output.iterdir()}, once)
+        self.assertNotIn('rerime_personal_pack', QUANPIN_RECIPE.read_text())
 
     def test_profile_scoped_corrections_must_apply_in_their_profile(self):
         with tempfile.TemporaryDirectory() as tmp:
